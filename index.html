@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 1052</h1>
+        <h1>IHA Rack System 1056</h1>
     </header>
 
     <main>
@@ -112,14 +112,14 @@
             // Create the YAML configuration string based on the selected type
             let yamlConfig, additionalConfig;
 
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1') {
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig = `
-substitutions 1:
+substitutions 1: "${selectedOptionValue1}"
   show text group
   111"`;
             } else if (selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2') {
                 additionalConfig = `
-substitutions 2: tyep ${selectedOptionValue1}
+substitutions 2: tyep "${selectedOptionValue2}"
   show text group
   222"`;
             }
