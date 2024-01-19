@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 1132</h1>
+        <h1>IHA Rack System 1144</h1>
     </header>
 
     <main>
@@ -103,9 +103,6 @@
             if (dropdown1.value === 'none' && dropdown2.value !== 'none') {
                 subbDiv1.style.display = 'none';
             }
-            if (dropdown1.value === 'none' && dropdown2.value !== 'none') {
-                subbDiv2.style.display = 'none';
-            }            
         }
 
         dropdown1.addEventListener('change', updateSubbVisibility);
@@ -121,16 +118,14 @@
             let yamlConfig = '', additionalConfig = '';
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
-                additionalConfig = `
+                additionalConfig += `
 substitutions 1:
   show text group
   111"`;
-            } else {
-                additionalConfig = ''; // Reset additionalConfig if the condition is not met
             }
 
-            if (selectedTypeValue2 === '16 GPIO Rack Card 1') {
-                additionalConfig = `
+            if (selectedTypeValue2 === '16 GPIO Rack Card 1' && selectedTypeValue1 !== '16 GPIO Rack Card 1') {
+                additionalConfig += `
 substitutions 2:
   show text group
   222"`;
