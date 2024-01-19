@@ -48,8 +48,8 @@
         </select>
     </div>
     <main>
-      <label for="dropdown1">Node Device 2 Address:</label>
-      <select id="dropdown1">
+      <label for="dropdown2">Node Device 2 Address:</label>
+      <select id="dropdown2">
           <option value="none">None</option>
           <option value="0x20">0x20</option>
           <option value="0x21">0x21</option>
@@ -63,8 +63,8 @@
       </select>
   </main>
   <div class="subb">
-      <label for="type1">Node Device 2 Type:</label>
-      <select id="type1">
+      <label for="type2">Node Device 2 Type:</label>
+      <select id="type2">
           <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
           <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
           <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
@@ -82,7 +82,8 @@
     <!-- Add your JavaScript code here if needed -->
     <script>
         const dropdown = document.getElementById('dropdown1');
-        const typeDropdown = document.getElementById('type1');
+        const typeDropdown1 = document.getElementById('type1');
+        const typeDropdown2 = document.getElementById('type1');
         const subbDiv = document.querySelector('.subb');
         const downloadButton = document.getElementById('downloadButton');
 
@@ -94,12 +95,12 @@
         downloadButton.addEventListener('click', function() {
             // Get the selected values
             const selectedOptionValue = dropdown.value;
-            const selectedTypeValue = typeDropdown.value;
-
+            const selectedTypeValue1 = typeDropdown1.value;
+            const selectedTypeValue2 = typeDropdown2.value;
             // Create the YAML configuration string based on the selected type
             let yamlConfig, additionalConfig;
 
-            if (selectedTypeValue === '16 GPIO Rack Card 1') {
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig = `
 substitutions:
   gpio_rack_card_1_device_1: "GPIO 1"
@@ -919,7 +920,7 @@ binary_sensor:
             
   `
       ;
-            } else if (selectedTypeValue === '16 GPIO Rack Card 2') {
+            } else if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2') {
                 yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_2'\n    address: "${selectedOptionValue}"`;
                 additionalConfig = `
 substitutions:
