@@ -57,18 +57,15 @@
         const downloadButton = document.getElementById('downloadButton');
         const nodeTypeDiv = document.getElementById('nodeTypeDiv');
 
+        // Initial check on page load
+        toggleDropdownVisibility();
+
+        // Add event listener for the dropdown change event
+        dropdown.addEventListener('change', toggleDropdownVisibility);
+
         downloadButton.addEventListener('click', function() {
-            // Get the selected value
-            const selectedOptionValue = dropdown.value;
-
-            // Check if "none" is selected and toggle visibility of the div
-            if (selectedOptionValue === 'none') {
-                nodeTypeDiv.style.display = 'none';
-            } else {
-                nodeTypeDiv.style.display = 'block';
-            }
-
             // Rest of your download code...
+            const selectedOptionValue = dropdown.value;
             const selectedTypeValue = typeDropdown.value;
             const textContent = `Node Device Address: ${selectedOptionValue}\nNode Device Type: ${selectedTypeValue}`;
             const blob = new Blob([textContent], { type: 'text/plain' });
@@ -82,6 +79,12 @@
 
             document.body.removeChild(downloadLink);
         });
+
+        // Function to toggle visibility of the dropdown based on the selected value
+        function toggleDropdownVisibility() {
+            const selectedOptionValue = dropdown.value;
+            nodeTypeDiv.style.display = selectedOptionValue === 'none' ? 'none' : 'block';
+        }
     </script>
 </body>
 </html>
