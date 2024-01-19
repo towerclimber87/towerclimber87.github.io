@@ -68,10 +68,11 @@
             const selectedTypeValue = typeDropdown.value;
 
             // Create the YAML configuration string
-            const yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_1'\n    address: "${selectedOptionValue}"`;
 
             const additionalConfig = `
-
+    mcp23017:
+    - id: 'mcp23017_hub_16_gpio_rack_card_1'
+        address: "${selectedOptionValue}"
     substitutions:
     gpio_rack_card_1_device_1: "GPIO 1"
     gpio_rack_card_1_device_2: "GPIO 2"
@@ -112,7 +113,7 @@
                 id(device_15_set_1_16) = 1;
                 id(device_16_set_1_16) = 1;
     - platform: template
-        name: GPIO State Set (NO\NC 1-16)
+        name: GPIO State Set (NONC 1-16)
         icon: "mdi:set-merge"
         on_press:
         - lambda: |-
@@ -273,7 +274,7 @@
         - "GPIO 16"     
 
     - platform: template
-        name: GPIO NO\NC (1-16)
+        name: GPIO NONC (1-16)
         id: device_select
         optimistic: true
         initial_option: "NO"
@@ -879,6 +880,7 @@
             pullup: True           
         inverted: True
 
+    
     `;
 
             // Combine the two configurations
