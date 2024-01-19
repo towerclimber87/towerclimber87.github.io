@@ -62,7 +62,7 @@
           <!-- Add more options for Node Device 1 as needed -->
       </select>
   </main>
-  <div2 class="subb2">
+  <div2 class="subb">
       <label for="type2">Node Device 2 Type:</label>
       <select id="type2">
           <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
@@ -76,39 +76,28 @@
           <option value="8 Port Relay Board 4">8 Port Relay Board 4</option>      
           <!-- Add more options for Node Device Type 1 as needed -->
       </select>
-  </div2>
+  </div>
     <button id="downloadButton">Download YAML File</button>
 
     <!-- Add your JavaScript code here if needed -->
     <script>
-        const dropdown1 = document.getElementById('dropdown1');
+        const dropdown = document.getElementById('dropdown1');
         const typeDropdown1 = document.getElementById('type1');
-        const dropdown2 = document.getElementById('dropdown2');
-        const typeDropdown2 = document.getElementById('type2');
+        const typeDropdown2 = document.getElementById('type1');
         const subbDiv = document.querySelector('.subb');
         const downloadButton = document.getElementById('downloadButton');
 
-        function handleDropdownChange(dropdown, typeDropdown) {
+        dropdown.addEventListener('change', function() {
+            // Show/hide the subbDiv based on the selected value
             subbDiv.style.display = dropdown.value === 'none' ? 'none' : 'block';
-            typeDropdown.style.display = dropdown.value === 'none' ? 'none' : 'block';
-        }
-
-        dropdown1.addEventListener('change', function() {
-            handleDropdownChange(dropdown1, typeDropdown1);
-        });
-
-        dropdown2.addEventListener('change', function() {
-            handleDropdownChange(dropdown2, typeDropdown2);
         });
 
         downloadButton.addEventListener('click', function() {
             // Get the selected values
-            const selectedOptionValue1 = dropdown1.value;
+            const selectedOptionValue = dropdown.value;
             const selectedTypeValue1 = typeDropdown1.value;
-            const selectedOptionValue2 = dropdown2.value;
             const selectedTypeValue2 = typeDropdown2.value;
-
-            // Create the YAML configuration string based on the selected types
+            // Create the YAML configuration string based on the selected type
             let yamlConfig, additionalConfig;
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
