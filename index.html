@@ -52,11 +52,13 @@
     <!-- Add your JavaScript code here if needed -->
     <script>
         const dropdown = document.getElementById('dropdown1');
+        const typeDropdown = document.getElementById('type1');
         const downloadButton = document.getElementById('downloadButton');
 
         downloadButton.addEventListener('click', function() {
             // Get the selected values
             const selectedOptionValue = dropdown.value;
+            const selectedTypeValue = typeDropdown.value;
 
             // Create the YAML configuration string
             const yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_1'\n    address: "${selectedOptionValue}"`;
