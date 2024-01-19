@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 1107</h1>
+        <h1>IHA Rack System 1111</h1>
     </header>
 
     <main>
@@ -98,6 +98,11 @@
 
             // Show/hide the subbDiv2 based on the selected value of dropdown2
             subbDiv2.style.display = dropdown2.value === 'none' ? 'none' : 'block';
+
+            // If dropdown1 is set to none and dropdown2 is not set to none, hide subbDiv1
+            if (dropdown1.value === 'none' && dropdown2.value !== 'none') {
+                subbDiv1.style.display = 'none';
+            }
         }
 
         dropdown1.addEventListener('change', updateSubbVisibility);
