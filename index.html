@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 1117</h1>
+        <h1>IHA Rack System 1121</h1>
     </header>
 
     <main>
@@ -118,18 +118,18 @@
             let yamlConfig = '', additionalConfig = '';
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
-    additionalConfig = `
+            additionalConfig = `
 substitutions 1:
   show text group
   111"`;
-} else if (selectedTypeValue2 === '16 GPIO Rack Card 1') {
-    additionalConfig = `
+            } else if (selectedTypeValue2 === '16 GPIO Rack Card 1') {
+                additionalConfig = `
 substitutions 2:
   show text group
   222"`;
-} else {
-    additionalConfig = ''; // Reset additionalConfig if neither condition is met
-}
+            } else {
+                additionalConfig = ''; // Reset additionalConfig if neither condition is met
+            }
 
             // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
