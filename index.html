@@ -3,62 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dropdown Example</title>
-    <style>
-        /* Add your CSS styles here */
-        .subb {
-            margin-left: 2em;
-            display: block; /* Initially set to block */
-        }
-    </style>
+    <title>Configuration Downloader</title>
 </head>
 <body>
-    <header>
-        <h1>IHA Rack System</h1>
-    </header>
 
-    <main>
-        <label for="dropdown1">Node Device 1 Address:</label>
-        <select id="dropdown1">
-            <option value="none">none</option>
-            <option value="list1">0x20</option>
-            <option value="list2">0x21</option>
-            <option value="list3">0x22</option>
-            <option value="list3">0x23</option>  
-            <option value="list1">0x24</option>
-            <option value="list2">0x25</option>
-            <option value="list3">0x26</option>
-            <option value="list3">0x27</option>   
-            <!-- Add more options for Node Device 1 as needed -->
-        </select>
-    </main>
-    <div class="subb" id="nodeTypeDiv"> <!-- Added id for easy manipulation -->
-        <label for="type1">Node Device Type:</label>
-        <select id="type1">
-            <option value="list1">16 GPIO Rack Card 1</option>
-            <option value="list1">16 GPIO Rack Card 2</option>
-            <option value="list1">16 GPIO Rack Card 3</option>
-            <option value="list1">16 GPIO Rack Card 4</option>
-            <option value="list1">Button Controller</option>
-            <option value="list2">8 Port Relay Board 1</option>
-            <option value="list2">8 Port Relay Board 2</option>
-            <option value="list2">8 Port Relay Board 3</option> 
-            <option value="list2">8 Port Relay Board 4</option>      
-            <!-- Add more options for Node Device Type 1 as needed -->
+    <h1>Configuration Downloader</h1>
+
+    <label for="nodeDevice">Node Device 1 Address:</label>
+    <select id="nodeDevice">
+        <option value="none">Select Address</option>
+        <option value="0x20">0x20</option>
+        <option value="0x21">0x21</option>
+        <!-- Add more options as needed -->
+    </select>
+
+    <div id="nodeTypeDiv" style="display: none;">
+        <label for="nodeType">Node Type:</label>
+        <select id="nodeType">
+            <option value="type1">Type 1</option>
+            <option value="type2">Type 2</option>
+            <!-- Add more options as needed -->
         </select>
     </div>
 
-    <button id="downloadButton">Download Notepad File</button>
+    <button id="downloadButton">Download Configuration</button>
 
-    <!-- Add your JavaScript code here if needed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
     <script>
-        const dropdown = document.getElementById('dropdown1');
-        const typeDropdown = document.getElementById('type1');
-        const downloadButton = document.getElementById('downloadButton');
+        const dropdown = document.getElementById('nodeDevice');
+        const typeDropdown = document.getElementById('nodeType');
         const nodeTypeDiv = document.getElementById('nodeTypeDiv');
-
-        // Initial check on page load
-        toggleDropdownVisibility();
+        const downloadButton = document.getElementById('downloadButton');
 
         // Add event listener for the dropdown change event
         dropdown.addEventListener('change', toggleDropdownVisibility);
@@ -67,12 +42,20 @@
             // Rest of your download code...
             const selectedOptionValue = dropdown.value;
             const selectedTypeValue = typeDropdown.value;
-            const textContent = `Node Device Address: ${selectedOptionValue}\nNode Device Type: ${selectedTypeValue}`;
+            
+            // Replace the placeholder with the selected Node Device 1 Address
+            const mcp23017Config = {
+                id: 'mcp23017_hub_16_gpio_rack_card_1',
+                address: selectedOptionValue
+            };
+
+            const textContent = YAML.stringify({ mcp23017: [mcp23017Config] });
+
             const blob = new Blob([textContent], { type: 'text/plain' });
             const downloadLink = document.createElement('a');
 
             downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'node_device_info.txt';
+            downloadLink.download = 'node_device_info.yml';
 
             document.body.appendChild(downloadLink);
             downloadLink.click();
@@ -82,9 +65,14 @@
 
         // Function to toggle visibility of the dropdown based on the selected value
         function toggleDropdownVisibility() {
-            const selectedOptionValue = dropdown.value;
-            nodeTypeDiv.style.display = selectedOptionValue === 'none' ? 'none' : 'block';
+            const selectedValue = dropdown.value;
+            if (selectedValue === 'none') {
+                nodeTypeDiv.style.display = 'none';
+            } else {
+                nodeTypeDiv.style.display = 'block';
+            }
         }
     </script>
+
 </body>
 </html>
