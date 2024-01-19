@@ -17,9 +17,8 @@
     </header>
 
     <main>
-        <label for="nodeDevice">Node Device 1 Address:</label>
-        <select id="nodeDevice">
-            <option value="none">Select Address</option>
+        <label for="dropdown1">Node Device 1 Address:</label>
+        <select id="dropdown1">
             <option value="0x20">0x20</option>
             <option value="0x21">0x21</option>
             <option value="0x22">0x22</option>
@@ -31,55 +30,64 @@
             <!-- Add more options for Node Device 1 as needed -->
         </select>
     </main>
-    
     <div class="subb">
-        <label for="nodeType">Node Device Type:</label>
-        <select id="nodeType">
-            <option value="none">Select Type</option>
-            <option value="16_gpio_rack_card_1">16 GPIO Rack Card 1</option>
-            <option value="16_gpio_rack_card_2">16 GPIO Rack Card 2</option>
-            <option value="16_gpio_rack_card_3">16 GPIO Rack Card 3</option>
-            <option value="16_gpio_rack_card_4">16 GPIO Rack Card 4</option>
-            <option value="button_controller">Button Controller</option>
-            <option value="8_port_relay_board_1">8 Port Relay Board 1</option>
-            <option value="8_port_relay_board_2">8 Port Relay Board 2</option>
-            <option value="8_port_relay_board_3">8 Port Relay Board 3</option> 
-            <option value="8_port_relay_board_4">8 Port Relay Board 4</option>
+        <label for="type1">Node Device Type:</label>
+        <select id="type1">
+            <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
+            <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
+            <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
+            <option value="16 GPIO Rack Card 4">16 GPIO Rack Card 4</option>
+            <option value="Button Controller">Button Controller</option>
+            <option value="8 Port Relay Board 1">8 Port Relay Board 1</option>
+            <option value="8 Port Relay Board 2">8 Port Relay Board 2</option>
+            <option value="8 Port Relay Board 3">8 Port Relay Board 3</option>
+            <option value="8 Port Relay Board 4">8 Port Relay Board 4</option>
             <!-- Add more options for Node Device Type 1 as needed -->
         </select>
     </div>
 
     <button id="downloadButton">Download Configuration</button>
 
+    <!-- Add your JavaScript code here if needed -->
     <script>
-        const dropdown = document.getElementById('nodeDevice');
-        const typeDropdown = document.getElementById('nodeType');
+        const dropdown = document.getElementById('dropdown1');
+        const typeDropdown = document.getElementById('type1');
         const downloadButton = document.getElementById('downloadButton');
 
         downloadButton.addEventListener('click', function() {
+            // Get the selected values
             const selectedOptionValue = dropdown.value;
             const selectedTypeValue = typeDropdown.value;
-            
-            const mcp23017Config = {
-                id: 'mcp23017_hub_16_gpio_rack_card_1',
-                address: selectedOptionValue
-            };
 
-            const configObject = {
-                mcp23017: [mcp23017Config],
+            // Create the configuration object
+            const configuration = {
+                mcp23017: [
+                    {
+                        id: 'mcp23017_hub_16_gpio_rack_card_1',
+                        address: selectedOptionValue
+                    }
+                ],
                 type: selectedTypeValue
             };
 
-            const textContent = JSON.stringify(configObject, null, 2);
-            const blob = new Blob([textContent], { type: 'application/json' });
+            // Convert the object to JSON
+            const jsonConfig = JSON.stringify(configuration, null, 2);
 
+            // Create a Blob and download link
+            const blob = new Blob([jsonConfig], { type: 'application/json' });
             const downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'node_device_info.json';
 
+            // Set attributes for the download link
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'rack_system_config.json';
+
+            // Append the link to the body and simulate a click to trigger the download
+            document.body.appendChild(downloadLink);
             downloadLink.click();
+
+            // Remove the link from the body
+            document.body.removeChild(downloadLink);
         });
     </script>
-
 </body>
 </html>
