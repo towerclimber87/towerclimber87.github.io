@@ -30,56 +30,38 @@
             <!-- Add more options for Node Device 1 as needed -->
         </select>
     </main>
-    <div class="subb">
-        <label for="type1">Node Device Type:</label>
-        <select id="type1">
-            <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
-            <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
-            <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
-            <option value="16 GPIO Rack Card 4">16 GPIO Rack Card 4</option>
-            <option value="Button Controller">Button Controller</option>
-            <option value="8 Port Relay Board 1">8 Port Relay Board 1</option>
-            <option value="8 Port Relay Board 2">8 Port Relay Board 2</option>
-            <option value="8 Port Relay Board 3">8 Port Relay Board 3</option>
-            <option value="8 Port Relay Board 4">8 Port Relay Board 4</option>
-            <!-- Add more options for Node Device Type 1 as needed -->
-        </select>
-    </div>
 
     <button id="downloadButton">Download Configuration</button>
 
     <!-- Add your JavaScript code here if needed -->
     <script>
         const dropdown = document.getElementById('dropdown1');
-        const typeDropdown = document.getElementById('type1');
         const downloadButton = document.getElementById('downloadButton');
 
         downloadButton.addEventListener('click', function() {
             // Get the selected values
             const selectedOptionValue = dropdown.value;
-            const selectedTypeValue = typeDropdown.value;
 
             // Create the configuration object
             const configuration = {
                 mcp23017: [
                     {
                         id: 'mcp23017_hub_16_gpio_rack_card_1',
-                        address: selectedOptionValue
+                        address: `""${selectedOptionValue}""`
                     }
-                ],
-                type: selectedTypeValue
+                ]
             };
 
-            // Convert the object to JSON
-            const jsonConfig = JSON.stringify(configuration, null, 2);
+            // Convert the object to YAML format
+            const yamlConfig = jsyaml.dump(configuration);
 
             // Create a Blob and download link
-            const blob = new Blob([jsonConfig], { type: 'application/json' });
+            const blob = new Blob([yamlConfig], { type: 'text/plain' });
             const downloadLink = document.createElement('a');
 
             // Set attributes for the download link
             downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'rack_system_config.json';
+            downloadLink.download = 'rack_system_config.yaml';
 
             // Append the link to the body and simulate a click to trigger the download
             document.body.appendChild(downloadLink);
