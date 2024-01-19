@@ -71,17 +71,13 @@
             };
 
             const textContent = JSON.stringify(configObject, null, 2);
-
             const blob = new Blob([textContent], { type: 'application/json' });
-            const downloadLink = document.createElement('a');
 
+            const downloadLink = document.createElement('a');
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = 'node_device_info.json';
 
-            document.body.appendChild(downloadLink);
             downloadLink.click();
-
-            document.body.removeChild(downloadLink);
         });
     </script>
 
