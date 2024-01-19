@@ -62,76 +62,52 @@
             subbDiv.style.display = dropdown.value === 'none' ? 'none' : 'block';
         });
 
-        // Check if "16 GPIO Rack Card 1" is selected
-        if (typeDropdown.value === '16 GPIO Rack Card 1') {
-            downloadButton.addEventListener('click', function() {
-                // Get the selected values
-                const selectedOptionValue = dropdown.value;
-                const selectedTypeValue = typeDropdown.value;
+        downloadButton.addEventListener('click', function() {
+            // Get the selected values
+            const selectedOptionValue = dropdown.value;
+            const selectedTypeValue = typeDropdown.value;
 
-                // Create the YAML configuration string
-                const yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_1'\n    address: "${selectedOptionValue}"`;
+            // Create the YAML configuration string based on the selected type
+            let yamlConfig, additionalConfig;
 
-                const additionalConfig = `
+            if (selectedTypeValue === '16 GPIO Rack Card 1') {
+                yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_1'\n    address: "${selectedOptionValue}"`;
+                additionalConfig = `
 substitutions:
   gpio_rack_card_1_device_1: "GPIO 1"
   gpio_rack_card_1_device_2: "GPIO 2"
   gpio_rack_card_1_device_3: "GPIO 3"
   gpio_rack_card_1_device_4: "GPIO 4"
-  gpio_rack_card_1_device_5: "GPIO 5"
-  gpio_rack_card_1_device_6: "GPIO 6"
-  gpio_rack_card_1_device_7: "GPIO 7"
-  gpio_rack_card_1_device_8: "GPIO 8"
-  gpio_rack_card_1_device_9: "GPIO 9"
-  gpio_rack_card_1_device_10: "GPIO 10"
-  gpio_rack_card_1_device_11: "GPIO 11"
-  gpio_rack_card_1_device_12: "GPIO 12"
-  gpio_rack_card_1_device_13: "GPIO 13"
-  gpio_rack_card_1_device_14: "GPIO 14"
-  gpio_rack_card_1_device_15: "GPIO 15"
-  gpio_rack_card_1_device_16: "GPIO 16"  
-button:
-  - platform: template
-    name: Reset All GPIO to NO (1-16)
-    icon: "mdi:alert"
-    on_press:
-      - lambda: |-
-        id(device_1_set_1_16) = 1;
-        id(device_2_set_1_16) = 1;
-        id(device_3_set_1_16) = 1;
-        id(device_4_set_1_16) = 1;
-        id(device_5_set_1_16) = 1;
-        id(device_6_set_1_16) = 1;
-        id(device_7_set_1_16) = 1;
-        id(device_8_set_1_16) = 1;
-        id(device_9_set_1_16) = 1;
-        id(device_10_set_1_16) = 1;
-        id(device_11_set_1_16) = 1;
-        id(device_12_set_1_16) = 1;
-        id(device_13_set_1_16) = 1;
-        id(device_14_set_1_16) = 1;
-        id(device_15_set_1_16) = 1;
-        id(device_16_set_1_16) = 1;
-    `;
-                // Combine the two configurations
-                const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
+  gpio_rack_card_1_device_5: "GPIO 5"`;
+            } else if (selectedTypeValue === '16 GPIO Rack Card 2') {
+                yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_2'\n    address: "${selectedOptionValue}"`;
+                additionalConfig = `
+substitutions:
+  gpio_rack_card_2_device_1: "GPIO 1"
+  gpio_rack_card_2_device_2: "GPIO 2"
+  gpio_rack_card_2_device_3: "GPIO 3"
+  gpio_rack_card_2_device_4: "GPIO 4"
+  gpio_rack_card_2_device_5: "GPIO 5"`;
+            }
 
-                // Create a Blob and download link
-                const blob = new Blob([combinedConfig], { type: 'text/plain' });
-                const downloadLink = document.createElement('a');
+            // Combine the two configurations
+            const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
 
-                // Set attributes for the download link
-                downloadLink.href = URL.createObjectURL(blob);
-                downloadLink.download = 'rack_system_config.yaml';
+            // Create a Blob and download link
+            const blob = new Blob([combinedConfig], { type: 'text/plain' });
+            const downloadLink = document.createElement('a');
 
-                // Append the link to the body and simulate a click to trigger the download
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
+            // Set attributes for the download link
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = 'rack_system_config.yaml';
 
-                // Remove the link from the body
-                document.body.removeChild(downloadLink);
-            });
-        }
+            // Append the link to the body and simulate a click to trigger the download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+
+            // Remove the link from the body
+            document.body.removeChild(downloadLink);
+        });
     </script>
 </body>
 </html>
