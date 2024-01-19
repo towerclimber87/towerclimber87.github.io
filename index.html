@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,8 @@
     <style>
         /* Add your CSS styles here */
         .subb {
-            margin-left: 2em; /* Adjust the value as needed */
+            margin-left: 2em;
+            display: block; /* Initially set to block */
         }
     </style>
 </head>
@@ -20,7 +20,7 @@
     <main>
         <label for="dropdown1">Node Device 1 Address:</label>
         <select id="dropdown1">
-            <option value="list1">0x20</option>
+            <option value="none">none</option>
             <option value="list1">0x20</option>
             <option value="list2">0x21</option>
             <option value="list3">0x22</option>
@@ -32,7 +32,7 @@
             <!-- Add more options for Node Device 1 as needed -->
         </select>
     </main>
-    <div class="subb">
+    <div class="subb" id="nodeTypeDiv"> <!-- Added id for easy manipulation -->
         <label for="type1">Node Device Type:</label>
         <select id="type1">
             <option value="list1">16 GPIO Rack Card 1</option>
@@ -55,28 +55,31 @@
         const dropdown = document.getElementById('dropdown1');
         const typeDropdown = document.getElementById('type1');
         const downloadButton = document.getElementById('downloadButton');
+        const nodeTypeDiv = document.getElementById('nodeTypeDiv');
 
         downloadButton.addEventListener('click', function() {
-            // Get the selected values
+            // Get the selected value
             const selectedOptionValue = dropdown.value;
+
+            // Check if "none" is selected and toggle visibility of the div
+            if (selectedOptionValue === 'none') {
+                nodeTypeDiv.style.display = 'none';
+            } else {
+                nodeTypeDiv.style.display = 'block';
+            }
+
+            // Rest of your download code...
             const selectedTypeValue = typeDropdown.value;
-
-            // Create a text content
             const textContent = `Node Device Address: ${selectedOptionValue}\nNode Device Type: ${selectedTypeValue}`;
-
-            // Create a Blob and download link
             const blob = new Blob([textContent], { type: 'text/plain' });
             const downloadLink = document.createElement('a');
 
-            // Set attributes for the download link
             downloadLink.href = URL.createObjectURL(blob);
             downloadLink.download = 'node_device_info.txt';
 
-            // Append the link to the body and simulate a click to trigger the download
             document.body.appendChild(downloadLink);
             downloadLink.click();
 
-            // Remove the link from the body
             document.body.removeChild(downloadLink);
         });
     </script>
