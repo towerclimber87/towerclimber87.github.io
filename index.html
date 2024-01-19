@@ -117,10 +117,9 @@
 substitutions 1:
   show text group
   111"`;
-            } else if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2') {
-                yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_2'\n    address: "${selectedOptionValue1}"`;
+            } else if (selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2') {
                 additionalConfig = `
-substitutions 2:
+substitutions 2: tyep ${selectedOptionValue1}
   show text group
   222"`;
             }
