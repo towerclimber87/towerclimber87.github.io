@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IHA Rack System Configuration Downloader</title>
+    <title>Dropdown Example</title>
     <style>
         /* Add your CSS styles here */
         .subb {
@@ -20,18 +20,34 @@
         <label for="dropdown1">Node Device 1 Address:</label>
         <select id="dropdown1">
             <option value="0x20">0x20</option>
+            <option value="0x20">0x20</option>
             <option value="0x21">0x21</option>
             <option value="0x22">0x22</option>
-            <option value="0x23">0x23</option>
+            <option value="0x23">0x23</option>  
             <option value="0x24">0x24</option>
             <option value="0x25">0x25</option>
             <option value="0x26">0x26</option>
-            <option value="0x27">0x27</option>
+            <option value="0x27">0x27</option>   
             <!-- Add more options for Node Device 1 as needed -->
         </select>
     </main>
+    <div class="subb">
+        <label for="type1">Node Device Type:</label>
+        <select id="type1">
+            <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
+            <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
+            <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
+            <option value="16 GPIO Rack Card 4">16 GPIO Rack Card 4</option>
+            <option value="Button Controller">Button Controller</option>
+            <option value="8 Port Relay Board 1">8 Port Relay Board 1</option>
+            <option value="8 Port Relay Board 2">8 Port Relay Board 2</option>
+            <option value="8 Port Relay Board 3">8 Port Relay Board 3</option> 
+            <option value="8 Port Relay Board 4">8 Port Relay Board 4</option>      
+            <!-- Add more options for Node Device Type 1 as needed -->
+        </select>
+    </div>
 
-    <button id="downloadButton">Download Configuration</button>
+    <button id="downloadButton">Download YAML File</button>
 
     <!-- Add your JavaScript code here if needed -->
     <script>
@@ -42,18 +58,8 @@
             // Get the selected values
             const selectedOptionValue = dropdown.value;
 
-            // Create the configuration object
-            const configuration = {
-                mcp23017: [
-                    {
-                        id: 'mcp23017_hub_16_gpio_rack_card_1',
-                        address: `""${selectedOptionValue}""`
-                    }
-                ]
-            };
-
-            // Convert the object to YAML format
-            const yamlConfig = jsyaml.dump(configuration);
+            // Create the YAML configuration string
+            const yamlConfig = `mcp23017:\n  - id: 'mcp23017_hub_16_gpio_rack_card_1'\n    address: "${selectedOptionValue}"`;
 
             // Create a Blob and download link
             const blob = new Blob([yamlConfig], { type: 'text/plain' });
