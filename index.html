@@ -8,6 +8,7 @@
         /* Add your CSS styles here */
         .subb {
             margin-left: 2em; /* Adjust the value as needed */
+            display: none; /* Hide the div by default */
         }
     </style>
 </head>
@@ -19,7 +20,7 @@
     <main>
         <label for="dropdown1">Node Device 1 Address:</label>
         <select id="dropdown1">
-            <option value="0x20">0x20</option>
+            <option value="none">None</option>
             <option value="0x20">0x20</option>
             <option value="0x21">0x21</option>
             <option value="0x22">0x22</option>
@@ -53,7 +54,13 @@
     <script>
         const dropdown = document.getElementById('dropdown1');
         const typeDropdown = document.getElementById('type1');
+        const subbDiv = document.querySelector('.subb');
         const downloadButton = document.getElementById('downloadButton');
+
+        dropdown.addEventListener('change', function() {
+            // Show/hide the subbDiv based on the selected value
+            subbDiv.style.display = dropdown.value === 'none' ? 'none' : 'block';
+        });
 
         downloadButton.addEventListener('click', function() {
             // Get the selected values
