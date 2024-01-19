@@ -51,7 +51,6 @@
 
     <button id="downloadButton">Download Configuration</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
     <script>
         const dropdown = document.getElementById('nodeDevice');
         const typeDropdown = document.getElementById('nodeType');
@@ -66,13 +65,18 @@
                 address: selectedOptionValue
             };
 
-            const textContent = YAML.stringify({ mcp23017: [mcp23017Config], type: selectedTypeValue });
+            const configObject = {
+                mcp23017: [mcp23017Config],
+                type: selectedTypeValue
+            };
 
-            const blob = new Blob([textContent], { type: 'text/plain' });
+            const textContent = JSON.stringify(configObject, null, 2);
+
+            const blob = new Blob([textContent], { type: 'application/json' });
             const downloadLink = document.createElement('a');
 
             downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'node_device_info.yml';
+            downloadLink.download = 'node_device_info.json';
 
             document.body.appendChild(downloadLink);
             downloadLink.click();
