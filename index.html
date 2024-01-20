@@ -19,20 +19,20 @@
         }
 
         #downloadButton {
-        margin-left: 2em; /* Adjust the value as needed */    
-        background-color: green; /* Set the background color to green */
-        color: white; /* Set the text color to white */
-        border: none; /* Remove border for a cleaner look */
-        padding: 10px 20px; /* Add padding for better appearance */
-        cursor: pointer; /* Add cursor pointer for user interaction */
-        }        
+            margin-left: 2em; /* Adjust the value as needed */
+            background-color: green; /* Set the background color to green */
+            color: white; /* Set the text color to white */
+            border: none; /* Remove border for a cleaner look */
+            padding: 10px 20px; /* Add padding for better appearance */
+            cursor: pointer; /* Add cursor pointer for user interaction */
+        }
     </style>
 
 </head>
 
 <body>
     <header>
-        <h1>IHA Rack System V1</h1>
+        <h1>IHA Rack System V2</h1>
     </header>
 
     <main>
@@ -53,7 +53,7 @@
     <div class="subb">
         <label for="type1">Node Device 1 Type:</label>
         <select id="type1">
-            <option value="none">none</option>            
+            <option value="none">none</option>
             <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
             <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
             <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
@@ -97,6 +97,31 @@
             <!-- Add more options for Node Device Type 2 as needed -->
         </select>
     </div>
+    <!-- Add 6 text entry boxes -->
+    <div>
+        <label for="textEntry1">Text Entry 1:</label>
+        <input type="text" id="textEntry1">
+    </div>
+    <div>
+        <label for="textEntry2">Text Entry 2:</label>
+        <input type="text" id="textEntry2">
+    </div>
+    <div>
+        <label for="textEntry3">Text Entry 3:</label>
+        <input type="text" id="textEntry3">
+    </div>
+    <div>
+        <label for="textEntry4">Text Entry 4:</label>
+        <input type="text" id="textEntry4">
+    </div>
+    <div>
+        <label for="textEntry5">Text Entry 5:</label>
+        <input type="text" id="textEntry5">
+    </div>
+    <div>
+        <label for="textEntry6">Text Entry 6:</label>
+        <input type="text" id="textEntry6">
+    </div>
     <button id="downloadButton">Download YAML File</button>
 
     <!-- Add your JavaScript code here if needed -->
@@ -131,8 +156,27 @@
             const selectedOptionValue2 = dropdown2.value;
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
+
+            // Get text entry values
+            const textEntry1 = document.getElementById('textEntry1').value;
+            const textEntry2 = document.getElementById('textEntry2').value;
+            const textEntry3 = document.getElementById('textEntry3').value;
+            const textEntry4 = document.getElementById('textEntry4').value;
+            const textEntry5 = document.getElementById('textEntry5').value;
+            const textEntry6 = document.getElementById('textEntry6').value;
+
             // Create the YAML configuration string based on the selected type
-            let yamlConfig = '', additionalConfig = '';
+            let yamlConfig = '';
+            let additionalConfig = '';
+
+            // Add text entry values to the YAML
+            additionalConfig += `
+textEntry1: ${textEntry1}
+textEntry2: ${textEntry2}
+textEntry3: ${textEntry3}
+textEntry4: ${textEntry4}
+textEntry5: ${textEntry5}
+textEntry6: ${textEntry6}`;
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
