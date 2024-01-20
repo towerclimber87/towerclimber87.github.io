@@ -57,7 +57,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System bin</h1>
+        <h1>IHA Rack System asfasdfsdfasf</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -358,8 +358,32 @@
     <!-- Add your JavaScript code here if needed -->
 
     <script name="yamlmaker">
-        // Existing code for the "yamlmaker" script
-
+        const dropdown1 = document.getElementById('dropdown1');
+        const dropdown2 = document.getElementById('dropdown2');
+        const dropdown3 = document.getElementById('dropdown3');
+        const dropdown4 = document.getElementById('dropdown4');  
+        const dropdown5 = document.getElementById('dropdown5');
+        const dropdown6 = document.getElementById('dropdown6');
+        const dropdown7 = document.getElementById('dropdown7');
+        const dropdown8 = document.getElementById('dropdown8');                
+        const typeDropdown1 = document.getElementById('type1');
+        const typeDropdown2 = document.getElementById('type2');
+        const typeDropdown3 = document.getElementById('type3');
+        const typeDropdown4 = document.getElementById('type4'); 
+        const typeDropdown5 = document.getElementById('type5');
+        const typeDropdown6 = document.getElementById('type6');
+        const typeDropdown7 = document.getElementById('type7');
+        const typeDropdown8 = document.getElementById('type8');                
+        const subbDiv1 = document.querySelector('.subb');
+        const subbDiv2 = document.querySelector('.subb2');
+        const subbDiv3 = document.querySelector('.subb3');
+        const subbDiv4 = document.querySelector('.subb4'); 
+        const subbDiv5 = document.querySelector('.subb5');
+        const subbDiv6 = document.querySelector('.subb6');
+        const subbDiv7 = document.querySelector('.subb7');
+        const subbDiv8 = document.querySelector('.subb8');                
+        const downloadButton = document.getElementById('downloadButton');  
+  
         // Your existing logic for updating visibility
         function updateSubbVisibility() {
           // Show/hide the subbDiv1 based on the selected value of dropdown1
@@ -372,88 +396,47 @@
           subbDiv7.style.display = dropdown7.value === 'none' ? 'none' : 'block';
           subbDiv8.style.display = dropdown8.value === 'none' ? 'none' : 'block';                        
         }
-
-        // Function to generate YAML configuration
-        function generateYAML() {
-          const dropdown1 = document.getElementById('dropdown1');
-          const dropdown2 = document.getElementById('dropdown2');
-          const dropdown3 = document.getElementById('dropdown3');
-          const dropdown4 = document.getElementById('dropdown4');  
-          const dropdown5 = document.getElementById('dropdown5');
-          const dropdown6 = document.getElementById('dropdown6');
-          const dropdown7 = document.getElementById('dropdown7');
-          const dropdown8 = document.getElementById('dropdown8');                
-          const typeDropdown1 = document.getElementById('type1');
-          const typeDropdown2 = document.getElementById('type2');
-          const typeDropdown3 = document.getElementById('type3');
-          const typeDropdown4 = document.getElementById('type4'); 
-          const typeDropdown5 = document.getElementById('type5');
-          const typeDropdown6 = document.getElementById('type6');
-          const typeDropdown7 = document.getElementById('type7');
-          const typeDropdown8 = document.getElementById('type8');                
-          const subbDiv1 = document.querySelector('.subb');
-          const subbDiv2 = document.querySelector('.subb2');
-          const subbDiv3 = document.querySelector('.subb3');
-          const subbDiv4 = document.querySelector('.subb4'); 
-          const subbDiv5 = document.querySelector('.subb5');
-          const subbDiv6 = document.querySelector('.subb6');
-          const subbDiv7 = document.querySelector('.subb7');
-          const subbDiv8 = document.querySelector('.subb8');                
-          const downloadButton = document.getElementById('downloadButton');  
-
-          // Your existing logic for updating visibility
-          function updateSubbVisibility() {
-            // Show/hide the subbDiv1 based on the selected value of dropdown1
-            subbDiv1.style.display = dropdown1.value === 'none' ? 'none' : 'block';
-            subbDiv2.style.display = dropdown2.value === 'none' ? 'none' : 'block';
-            subbDiv3.style.display = dropdown3.value === 'none' ? 'none' : 'block';
-            subbDiv4.style.display = dropdown4.value === 'none' ? 'none' : 'block';  
-            subbDiv5.style.display = dropdown5.value === 'none' ? 'none' : 'block';
-            subbDiv6.style.display = dropdown6.value === 'none' ? 'none' : 'block';
-            subbDiv7.style.display = dropdown7.value === 'none' ? 'none' : 'block';
-            subbDiv8.style.display = dropdown8.value === 'none' ? 'none' : 'block';                        
-          }
-
-          dropdown1.addEventListener('change', updateSubbVisibility);
-          dropdown2.addEventListener('change', updateSubbVisibility);
-          dropdown3.addEventListener('change', updateSubbVisibility);
-          dropdown4.addEventListener('change', updateSubbVisibility);    
-          dropdown5.addEventListener('change', updateSubbVisibility);
-          dropdown6.addEventListener('change', updateSubbVisibility);
-          dropdown7.addEventListener('change', updateSubbVisibility);
-          dropdown8.addEventListener('change', updateSubbVisibility); 
-                      
-          downloadButton.addEventListener('click', function () {
-            // Get the selected values and text entry values
-            const selectedOptionValue1 = dropdown1.value;
-            const selectedOptionValue2 = dropdown2.value;
-            const selectedOptionValue3 = dropdown3.value;
-            const selectedOptionValue4 = dropdown4.value; 
-            const selectedOptionValue5 = dropdown5.value;
-            const selectedOptionValue6 = dropdown6.value;
-            const selectedOptionValue7 = dropdown7.value;
-            const selectedOptionValue8 = dropdown8.value;  
-            const selectedOptionValue9 = dropdown9.value;                                    
-            const selectedTypeValue1 = typeDropdown1.value;
-            const selectedTypeValue2 = typeDropdown2.value;
-            const selectedTypeValue3 = typeDropdown3.value;
-            const selectedTypeValue4 = typeDropdown4.value; 
-            const selectedTypeValue5 = typeDropdown5.value;
-            const selectedTypeValue6 = typeDropdown6.value;
-            const selectedTypeValue7 = typeDropdown7.value;
-            const selectedTypeValue8 = typeDropdown8.value;                                  
-            const textEntry1 = document.getElementById('textEntry1').value;
-            const textEntry2 = document.getElementById('textEntry2').value;
-            const textEntry3 = document.getElementById('textEntry3').value;
-            const textEntry4 = document.getElementById('textEntry4').value;
-            const textEntry5 = document.getElementById('textEntry5').value;
-            const textEntry6 = document.getElementById('textEntry6').value;
-
-            // Create the YAML configuration string based on the selected type
-            let yamlConfig = '';
-            let additionalConfig = 'substitutions:';
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
-              additionalConfig += `
+  
+        dropdown1.addEventListener('change', updateSubbVisibility);
+        dropdown2.addEventListener('change', updateSubbVisibility);
+        dropdown3.addEventListener('change', updateSubbVisibility);
+        dropdown4.addEventListener('change', updateSubbVisibility);    
+        dropdown5.addEventListener('change', updateSubbVisibility);
+        dropdown6.addEventListener('change', updateSubbVisibility);
+        dropdown7.addEventListener('change', updateSubbVisibility);
+        dropdown8.addEventListener('change', updateSubbVisibility); 
+                        
+        downloadButton.addEventListener('click', function () {
+          // Get the selected values and text entry values
+          const selectedOptionValue1 = dropdown1.value;
+          const selectedOptionValue2 = dropdown2.value;
+          const selectedOptionValue3 = dropdown3.value;
+          const selectedOptionValue4 = dropdown4.value; 
+          const selectedOptionValue5 = dropdown5.value;
+          const selectedOptionValue6 = dropdown6.value;
+          const selectedOptionValue7 = dropdown7.value;
+          const selectedOptionValue8 = dropdown8.value;  
+          const selectedOptionValue9 = dropdown9.value;                                    
+          const selectedTypeValue1 = typeDropdown1.value;
+          const selectedTypeValue2 = typeDropdown2.value;
+          const selectedTypeValue3 = typeDropdown3.value;
+          const selectedTypeValue4 = typeDropdown4.value; 
+          const selectedTypeValue5 = typeDropdown5.value;
+          const selectedTypeValue6 = typeDropdown6.value;
+          const selectedTypeValue7 = typeDropdown7.value;
+          const selectedTypeValue8 = typeDropdown8.value;                                  
+          const textEntry1 = document.getElementById('textEntry1').value;
+          const textEntry2 = document.getElementById('textEntry2').value;
+          const textEntry3 = document.getElementById('textEntry3').value;
+          const textEntry4 = document.getElementById('textEntry4').value;
+          const textEntry5 = document.getElementById('textEntry5').value;
+          const textEntry6 = document.getElementById('textEntry6').value;
+  
+          // Create the YAML configuration string based on the selected type
+          let yamlConfig = '';
+          let additionalConfig = 'substitutions:';
+          if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
+            additionalConfig += `
   gpio_rack_card_1_device_1: "GPIO 1"
   gpio_rack_card_1_device_2: "GPIO 2"
   gpio_rack_card_1_device_3: "GPIO 3"
@@ -4381,60 +4364,100 @@ globals: `;
   - id: device_16_set_49_64
     type: float
     restore_value: yes 
-  `;  
-          }         
-
-            // Combine the two configurations
-            const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
-
-            // Return the combined configuration
-            return combinedConfig;
-          });
-
-          // Initial call to set the initial visibility based on the default values
-          updateSubbVisibility();
-        }
-
-        // Function to handle the button click event
-        async function handleButtonClick() {
-          // Generate YAML using the existing logic
-          const generatedYAML = generateYAML();
-
-          // Make an asynchronous request to the server-side script
-          const response = await fetch('/compile-esphome', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ yaml: generatedYAML }),
-          });
-
-          // Check if the request was successful
-          if (response.ok) {
-            // Parse the response to get the compiled binary data
-            const compiledBinaryData = await response.arrayBuffer();
-
-            // Save the compiled binary file
-            const blob = new Blob([compiledBinaryData], { type: 'application/octet-stream' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'compiled_binary.bin';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          } else {
-            console.error('Error compiling ESPHome:', response.statusText);
-            alert('Error compiling ESPHome. Check console for details.');
+            `;
           }
+  
+          // Combine the two configurations
+          const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
+  
+          // Return the generated YAML
+          return combinedConfig;
+        });
+  
+      // Function to handle the button click event for downloading YAML
+      document.getElementById('downloadYAML').addEventListener('click', function () {
+        // Generate YAML using the existing logic
+        const generatedYAML = generateYAML();
+  
+        // Create a Blob and download link for YAML
+        const blob = new Blob([generatedYAML], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'generated_config.yaml';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+  
+      // Function to handle the button click event for generating ESPHome binary
+      async function handleButtonClick() {
+        // Generate YAML using the existing logic
+        const generatedYAML = generateYAML();
+  
+        // Make an asynchronous request to the server-side script
+        const response = await fetch('/compile-esphome', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ yaml: generatedYAML }),
+        });
+  
+        // Check if the request was successful
+        if (response.ok) {
+          // Parse the response to get the compiled binary data
+          const compiledBinaryData = await response.arrayBuffer();
+  
+          // Save the compiled binary file
+          const blob = new Blob([compiledBinaryData], { type: 'application/octet-stream' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'compiled_binary.bin';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          console.error('Error compiling ESPHome:', response.statusText);
+          alert('Error compiling ESPHome. Check console for details.');
         }
-
-        // Add an event listener to the button
-        document.getElementById('generateBinary').addEventListener('click', handleButtonClick);
-
-        // Initial call to set the initial visibility based on the default values
-        updateSubbVisibility();
-      </script>
-
-    </body>
-    </html>
+      }
+  
+      // Add an event listener to the button for generating ESPHome binary
+      document.getElementById('generateBinary').addEventListener('click', handleButtonClick);
+  
+      // Initial call to set the initial visibility based on the default values
+      updateSubbVisibility();
+    </script>
+  
+    <!-- Your existing script -->
+    <script>
+      // Your existing code for generating YAML from the dropdowns and text entries
+      // ...
+  
+      // Function to handle the button click event
+      downloadButton.addEventListener('click', function () {
+        // Your existing logic for getting selected values and text entries
+        // ...
+  
+        // Your existing logic for creating YAML configuration
+        // ...
+  
+        // Create a Blob and download link for YAML
+        const blob = new Blob([combinedConfig], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'rack_system_config.yaml';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+  
+      // Initial call to set the initial visibility based on the default values
+      updateSubbVisibility();
+    </script>
+  
+  </body>
+  </html>  <
