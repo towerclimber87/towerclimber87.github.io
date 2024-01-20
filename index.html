@@ -46,7 +46,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System</h1>
+        <h1>IHA Rack System asdfasdf</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -2272,7 +2272,7 @@ binary_sensor:
                 additionalConfig += `   
   - platform: template
     name: $gpio_rack_card_3_device_1
-    id: device_1_invert_2
+    id: device_1_invert_3
     lambda: |-
       if ((id(rack_3_device_1).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_1).state == false && id(device_1_set_33_48) == 2))
@@ -2305,7 +2305,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_2
-    id: device_2_invert_2
+    id: device_2_invert_3
     lambda: |-
       if ((id(rack_3_device_2).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_2).state == false && id(device_1_set_33_48) == 2))
@@ -2327,7 +2327,7 @@ binary_sensor:
             id(last_name_pressed).publish_state("$gpio_rack_card_3_device_2");
             id(last_state_pressed).publish_state("OFF");  
   - platform: gpio
-    id: rack_3_device_2
+    id: rack_3_device_3
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 1
@@ -2371,7 +2371,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_4
-    id: device_4_invert_2
+    id: device_4_invert_3
     lambda: |-
       if ((id(rack_3_device_4).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_4).state == false && id(device_1_set_33_48) == 2))
@@ -2404,7 +2404,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_5
-    id: device_5_invert_2
+    id: device_5_invert_3
     lambda: |-
       if ((id(rack_3_device_5).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_5).state == false && id(device_1_set_33_48) == 2))
@@ -2437,7 +2437,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_6
-    id: device_6_invert_2
+    id: device_6_invert_3
     lambda: |-
       if ((id(rack_3_device_6).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_6).state == false && id(device_1_set_33_48) == 2))
@@ -2470,7 +2470,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_7
-    id: device_7_invert_2
+    id: device_7_invert_3
     lambda: |-
       if ((id(rack_3_device_7).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_7).state == false && id(device_1_set_33_48) == 2))
@@ -2503,7 +2503,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_8
-    id: device_8_invert_2
+    id: device_8_invert_3
     lambda: |-
       if ((id(rack_3_device_8).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_8).state == false && id(device_1_set_33_48) == 2))
@@ -2536,7 +2536,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_9
-    id: device_9_invert_2
+    id: device_9_invert_3
     lambda: |-
       if ((id(rack_3_device_9).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_9).state == false && id(device_1_set_33_48) == 2))
@@ -2569,7 +2569,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_10
-    id: device_10_invert_2
+    id: device_10_invert_3
     lambda: |-
       if ((id(rack_3_device_10).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_10).state == false && id(device_1_set_33_48) == 2))
@@ -2602,7 +2602,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_11
-    id: device_11_invert_2
+    id: device_11_invert_3
     lambda: |-
       if ((id(rack_3_device_11).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_11).state == false && id(device_1_set_33_48) == 2))
@@ -2635,7 +2635,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_12
-    id: device_12_invert_2
+    id: device_12_invert_3
     lambda: |-
       if ((id(rack_3_device_12).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_12).state == false && id(device_1_set_33_48) == 2))
@@ -2668,7 +2668,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_13
-    id: device_13_invert_2
+    id: device_13_invert_3
     lambda: |-
       if ((id(rack_3_device_13).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_13).state == false && id(device_1_set_33_48) == 2))
@@ -2701,7 +2701,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_14
-    id: device_14_invert_2
+    id: device_14_invert_3
     lambda: |-
       if ((id(rack_3_device_14).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_14).state == false && id(device_1_set_33_48) == 2))
@@ -2734,7 +2734,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_15
-    id: device_15_invert_2
+    id: device_15_invert_3
     lambda: |-
       if ((id(rack_3_device_15).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_15).state == false && id(device_1_set_33_48) == 2))
@@ -2767,7 +2767,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_16
-    id: device_16_invert_2
+    id: device_16_invert_3
     lambda: |-
       if ((id(rack_3_device_16).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_16).state == false && id(device_1_set_33_48) == 2))
@@ -2803,7 +2803,7 @@ binary_sensor:
                 additionalConfig += `   
   - platform: template
     name: $gpio_rack_card_4_device_1
-    id: device_1_invert_2
+    id: device_1_invert_4
     lambda: |-
       if ((id(rack_4_device_1).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_1).state == false && id(device_1_set_49_64) == 2))
@@ -2836,7 +2836,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_2
-    id: device_2_invert_2
+    id: device_2_invert_4
     lambda: |-
       if ((id(rack_4_device_2).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_2).state == false && id(device_1_set_49_64) == 2))
@@ -2869,7 +2869,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_3
-    id: device_3_invert_2
+    id: device_3_invert_4
     lambda: |-
       if ((id(rack_4_device_3).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_3).state == false && id(device_1_set_49_64) == 2))
@@ -2902,7 +2902,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_4
-    id: device_4_invert_2
+    id: device_4_invert_4
     lambda: |-
       if ((id(rack_4_device_4).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_4).state == false && id(device_1_set_49_64) == 2))
@@ -2935,7 +2935,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_5
-    id: device_5_invert_2
+    id: device_5_invert_4
     lambda: |-
       if ((id(rack_4_device_5).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_5).state == false && id(device_1_set_49_64) == 2))
@@ -2968,7 +2968,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_6
-    id: device_6_invert_2
+    id: device_6_invert_4
     lambda: |-
       if ((id(rack_4_device_6).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_6).state == false && id(device_1_set_49_64) == 2))
@@ -3001,7 +3001,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_7
-    id: device_7_invert_2
+    id: device_7_invert_4
     lambda: |-
       if ((id(rack_4_device_7).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_7).state == false && id(device_1_set_49_64) == 2))
@@ -3034,7 +3034,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_8
-    id: device_8_invert_2
+    id: device_8_invert_4
     lambda: |-
       if ((id(rack_4_device_8).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_8).state == false && id(device_1_set_49_64) == 2))
@@ -3067,7 +3067,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_9
-    id: device_9_invert_2
+    id: device_9_invert_4
     lambda: |-
       if ((id(rack_4_device_9).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_9).state == false && id(device_1_set_49_64) == 2))
@@ -3100,7 +3100,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_10
-    id: device_10_invert_2
+    id: device_10_invert_4
     lambda: |-
       if ((id(rack_4_device_10).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_10).state == false && id(device_1_set_49_64) == 2))
@@ -3133,7 +3133,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_11
-    id: device_11_invert_2
+    id: device_11_invert_4
     lambda: |-
       if ((id(rack_4_device_11).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_11).state == false && id(device_1_set_49_64) == 2))
@@ -3166,7 +3166,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_12
-    id: device_12_invert_2
+    id: device_12_invert_4
     lambda: |-
       if ((id(rack_4_device_12).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_12).state == false && id(device_1_set_49_64) == 2))
@@ -3199,7 +3199,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_13
-    id: device_13_invert_2
+    id: device_13_invert_4
     lambda: |-
       if ((id(rack_4_device_13).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_13).state == false && id(device_1_set_49_64) == 2))
@@ -3232,7 +3232,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_14
-    id: device_14_invert_2
+    id: device_14_invert_4
     lambda: |-
       if ((id(rack_4_device_14).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_14).state == false && id(device_1_set_49_64) == 2))
@@ -3265,7 +3265,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_15
-    id: device_15_invert_2
+    id: device_15_invert_4
     lambda: |-
       if ((id(rack_4_device_15).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_15).state == false && id(device_1_set_49_64) == 2))
@@ -3298,7 +3298,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_16
-    id: device_16_invert_2
+    id: device_16_invert_4
     lambda: |-
       if ((id(rack_4_device_16).state == true && id(device_1_set_49_64) == 1) || 
           (id(rack_4_device_16).state == false && id(device_1_set_49_64) == 2))
@@ -3681,7 +3681,7 @@ button: `;
             id(device_16_set_33_48) = 1;
 
   - platform: template
-    name: GPIO State Set (NO\NC 33-48)
+    name: GPIO State Set (NO-NC 33-48)
     icon: "mdi:set-merge"
     on_press:
       - lambda: |-
@@ -3694,123 +3694,123 @@ button: `;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 34") {
-            id(device_1_set_33_49) = 1;
+            id(device_2_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 34") {
-            id(device_1_set_33_49) = 2;
+            id(device_2_set_33_49) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 35") {
-            id(device_1_set_33_49) = 1;
+            id(device_3_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 35") {
-            id(device_1_set_33_49) = 2;
+            id(device_3_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 36") {
-            id(device_1_set_33_49) = 1;
+            id(device_4_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 36") {
-            id(device_1_set_33_49) = 2;
+            id(device_4_set_33_49) = 2;
           }  
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 37") {
-            id(device_1_set_33_49) = 1;
+            id(device_5_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 37") {
-            id(device_1_set_33_49) = 2;
+            id(device_5_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 38") {
-            id(device_1_set_33_49) = 1;
+            id(device_6_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 38") {
-            id(device_1_set_33_49) = 2;
+            id(device_6_set_33_49) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 39") {
-            id(device_1_set_33_49) = 1;
+            id(device_7_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 39") {
-            id(device_1_set_33_49) = 2;
+            id(device_7_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 40") {
-            id(device_1_set_33_49) = 1;
+            id(device_8_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 40") {
-            id(device_1_set_33_49) = 2;
+            id(device_8_set_33_49) = 2;
           }  
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 41") {
-            id(device_1_set_33_49) = 1;
+            id(device_9_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 41") {
-            id(device_1_set_33_49) = 2;
+            id(device_9_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 42") {
-            id(device_1_set_33_49) = 1;
+            id(device_10_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 42") {
-            id(device_1_set_33_49) = 2;
+            id(device_10_set_33_49) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 43") {
-            id(device_1_set_33_49) = 1;
+            id(device_11_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 43") {
-            id(device_1_set_33_49) = 2;
+            id(device_11_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 44") {
-            id(device_1_set_33_49) = 1;
+            id(device_12_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 44") {
-            id(device_1_set_33_49) = 2;
+            id(device_12_set_33_49) = 2;
           }  
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 45") {
-            id(device_1_set_33_49) = 1;
+            id(device_13_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 45") {
-            id(device_1_set_33_49) = 2;
+            id(device_13_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 46") {
-            id(device_1_set_33_49) = 1;
+            id(device_14_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 46") {
-            id(device_1_set_33_49) = 2;
+            id(device_14_set_33_49) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 47") {
-            id(device_1_set_33_49) = 1;
+            id(device_15_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 47") {
-            id(device_1_set_33_49) = 2;
+            id(device_15_set_33_49) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 48") {
-            id(device_1_set_33_49) = 1;
+            id(device_16_set_33_49) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 48") {
-            id(device_1_set_33_49) = 2;
+            id(device_16_set_33_49) = 2;
           }  
       - select.set:
           id: select_gpio_3
@@ -4291,49 +4291,49 @@ globals: `;
   - id: device_1_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_2_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_3_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_4_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_5_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_6_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_7_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_8_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_9_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_10_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_11_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_12_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_13_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_14_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_15_set_49_64
     type: float
     restore_value: yes
-  - id: device_1_set_49_64
+  - id: device_16_set_49_64
     type: float
     restore_value: yes 
   `;  
