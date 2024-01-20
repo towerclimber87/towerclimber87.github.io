@@ -38,6 +38,7 @@
     <div class="subb">
         <label for="type1">Node Device 1 Type:</label>
         <select id="type1">
+            <option value="none">none</option>            
             <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
             <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
             <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
@@ -68,6 +69,7 @@
     <div class="subb2">
         <label for="type2">Node Device 2 Type:</label>
         <select id="type2">
+            <option value="none">none</option>
             <option value="16 GPIO Rack Card 1">16 GPIO Rack Card 1</option>
             <option value="16 GPIO Rack Card 2">16 GPIO Rack Card 2</option>
             <option value="16 GPIO Rack Card 3">16 GPIO Rack Card 3</option>
@@ -171,6 +173,62 @@ Button Controller:
   show text group
   ${selectedOptionValue1}`;
             }
+
+            //asdfasdfasdfasadf/sdf
+            if (selectedTypeValue2 === '16 GPIO Rack Card 1') {
+                additionalConfig += `
+16 GPIO Rack Card 1B:
+  show text group
+  ${selectedOptionValue2}`;
+            }
+            if (selectedTypeValue2 === '16 GPIO Rack Card 2') {
+                additionalConfig += `
+16 GPIO Rack Card 2B:
+  show text group
+  ${selectedOptionValue2}`;
+            }
+            if (selectedTypeValue2 === '16 GPIO Rack Card 3') {
+                additionalConfig += `
+16 GPIO Rack Card 3B:
+  show text group
+  ${selectedOptionValue2}`;
+            }
+            if (selectedTypeValue2 === '16 GPIO Rack Card 4') {
+                additionalConfig += `
+16 GPIO Rack Card 4B:
+  show text group
+  ${selectedOptionValue2}`;
+            }
+            if (selectedTypeValue2 === 'Button Controller') {
+                additionalConfig += `
+Button Controller B:
+  show text group
+  ${selectedOptionValue2}`;
+            }       
+            if (selectedTypeValue2 === '8 Port Relay Board 1') {
+                additionalConfig += `                 
+8 Port Relay Board 1B:
+  show text group
+  ${selectedOptionValue2}`;
+            }
+            if (selectedTypeValue2 === '8 Port Relay Board 2') {
+                additionalConfig += `
+8 Port Relay Board 2B:
+  show text group
+  ${selectedOptionValue2}`;
+            }
+            if (selectedTypeValue2 === '8 Port Relay Board 3') {
+                additionalConfig += `
+8 Port Relay Board 3B:
+  show text group
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === '8 Port Relay Board 4') {
+                additionalConfig += `
+8 Port Relay Board 4B:
+  show text group
+  ${selectedOptionValue1}`;
+            }            
             // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
 
