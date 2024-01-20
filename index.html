@@ -2338,7 +2338,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_3
-    id: device_3_invert_2
+    id: device_3_invert_3
     lambda: |-
       if ((id(rack_3_device_3).state == true && id(device_1_set_33_48) == 1) || 
           (id(rack_3_device_3).state == false && id(device_1_set_33_48) == 2))
@@ -3680,7 +3680,7 @@ button: `;
             id(device_15_set_33_48) = 1;
             id(device_16_set_33_48) = 1;
 
-            - platform: template
+  - platform: template
     name: GPIO State Set (NO-NC 33-48)
     icon: "mdi:set-merge"
     on_press:
