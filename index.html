@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V</h1>
+        <h1>IHA Rack System V11</h1>
     </header>
 
     <main>
@@ -168,7 +168,7 @@
             // Create the YAML configuration string based on the selected type
             let yamlConfig = '';
             let additionalConfig = 'substitutions:';
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
   gpio_rack_card_1_device_1: "GPIO 1"
   gpio_rack_card_1_device_2: "GPIO 2"
@@ -188,8 +188,8 @@
   gpio_rack_card_1_device_16: "GPIO 16"  
 
             `;
-        }            
-            if (selectedTypeValue1 === '16 GPIO Rack Card 2') {
+            }            
+            if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2') {
                 additionalConfig += `
   gpio_rack_card_1_device_1: "GPIO 17"
   gpio_rack_card_1_device_2: "GPIO 18"
@@ -210,7 +210,61 @@
 
             `;            
             }
+            if (selectedTypeValue1 === '16 GPIO Rack Card 3') {
+                additionalConfig += `
+  gpio_rack_card_1_device_1: "GPIO 33"
+  gpio_rack_card_1_device_2: "GPIO 34"
+  gpio_rack_card_1_device_3: "GPIO 35"
+  gpio_rack_card_1_device_4: "GPIO 36"
+  gpio_rack_card_1_device_5: "GPIO 37"
+  gpio_rack_card_1_device_6: "GPIO 38"
+  gpio_rack_card_1_device_7: "GPIO 39"
+  gpio_rack_card_1_device_8: "GPIO 40"
+  gpio_rack_card_1_device_9: "GPIO 41"
+  gpio_rack_card_1_device_10: "GPIO 42"
+  gpio_rack_card_1_device_11: "GPIO 43"
+  gpio_rack_card_1_device_12: "GPIO 44"
+  gpio_rack_card_1_device_13: "GPIO 45"
+  gpio_rack_card_1_device_14: "GPIO 46"
+  gpio_rack_card_1_device_15: "GPIO 47"
+  gpio_rack_card_1_device_16: "GPIO 48"  
 
+            `;            
+            }            
+            if (selectedTypeValue1 === '16 GPIO Rack Card 4') {
+                additionalConfig += `
+  gpio_rack_card_1_device_1: "GPIO 49"
+  gpio_rack_card_1_device_2: "GPIO 50"
+  gpio_rack_card_1_device_3: "GPIO 51"
+  gpio_rack_card_1_device_4: "GPIO 52"
+  gpio_rack_card_1_device_5: "GPIO 53"
+  gpio_rack_card_1_device_6: "GPIO 54"
+  gpio_rack_card_1_device_7: "GPIO 55"
+  gpio_rack_card_1_device_8: "GPIO 56"
+  gpio_rack_card_1_device_9: "GPIO 57"
+  gpio_rack_card_1_device_10: "GPIO 58"
+  gpio_rack_card_1_device_11: "GPIO 59"
+  gpio_rack_card_1_device_12: "GPIO 60"
+  gpio_rack_card_1_device_13: "GPIO 61"
+  gpio_rack_card_1_device_14: "GPIO 62"
+  gpio_rack_card_1_device_15: "GPIO 63"
+  gpio_rack_card_1_device_16: "GPIO 64"  
+
+            `;            
+            }
+            if (selectedTypeValue1 === '8 Port Relay Board 1') {
+                additionalConfig += `
+  node_8_relay_board_1_device_1: "Relay 1"
+  node_8_relay_board_1_device_2: "Relay 2"
+  node_8_relay_board_1_device_3: "Relay 3"
+  node_8_relay_board_1_device_4: "Relay 4"
+  node_8_relay_board_1_device_5: "Relay 5"
+  node_8_relay_board_1_device_6: "Relay 6"
+  node_8_relay_board_1_device_7: "Relay 7"
+  node_8_relay_board_1_device_8: "Relay 8"  
+
+            `;            
+            }            
             additionalConfig += `
 
 esphome:
@@ -248,7 +302,181 @@ ethernet:
 api:
   encryption:
     key: "${textEntry6}"
-  reboot_timeout: 0s            
+  reboot_timeout: 0s      
+
+i2c:
+  sda: 14
+  scl: 15
+  scan: true 
+
+display:
+  - platform: ssd1306_i2c
+    model: "SSD1306 128x64"
+    address: 0x3C
+    lambda: |-
+            if (id(system_status).state) {
+              it.print(40, -3, id(my_font_30b), id(my_green), "Online");
+            }
+            else {
+              it.print(40, -5, id(my_font_30b), id(my_yellow), "Offline");
+            }
+            it.printf(it.get_width() / 2, 14, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_name_pressed).state.c_str()); 
+            it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());             
+            it.print(0, 34, id(my_font_20b), id(my_white), "IP");                                              
+            it.printf(it.get_width() / 2, 46, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, " %s",id(uptime_human).state.c_str());   
+   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());      
+text_sensor:
+  - platform: template
+    id: last_state_pressed    
+    name: $display_name State
+    icon: "mdi:state-machine"
+  - platform: template
+    id: last_name_pressed        
+    name: $display_name Device    
+    icon: "mdi:state-machine" 
+  - platform: template
+    id: uptime_human 
+    name: Update    
+    icon: mdi:clock-start
+  - platform: template
+    name: "Device IP"
+    id: ipaddress
+    entity_category: diagnostic
+    icon: "mdi:ip-network"
+    lambda: return { id(eth).get_ip_address().str() };
+    update_interval: 5s  
+
+sensor:
+  - platform: uptime
+    id: uptime_sensor
+    update_interval: 1s
+    on_raw_value:
+      then:
+        - text_sensor.template.publish:
+            id: uptime_human
+            state: !lambda |-
+              int seconds = round(id(uptime_sensor).raw_state);
+              int days = seconds / (24 * 3600);
+              seconds = seconds % (24 * 3600);
+              int hours = seconds / 3600;
+              seconds = seconds % 3600;
+              int minutes = seconds /  60;
+              seconds = seconds % 60;
+              return (
+                (days ? to_string(days) + "d " : "") +
+                (hours ? to_string(hours) + "h " : "") +
+                (minutes ? to_string(minutes) + "m " : "") +
+                (to_string(seconds) + "s")
+              ).c_str();
+
+light:
+  - platform: esp32_rmt_led_strip
+    id: statusledlight
+    name: "Status LED RGB"
+    pin: 33
+    num_leds: 1
+    rmt_channel: 1
+    rgb_order: GRB
+    chipset: ws2812
+    icon: "mdi:led-outline"
+    max_refresh_rate: 500ms
+    
+
+
+switch:
+  - platform: restart
+    id: "restart_system"
+  - platform: gpio
+    pin: GPIO32
+    name: Pico Buzzer
+    inverted: no  
+    id: buzzer
+    icon: "mdi:surround-sound"
+  - platform: gpio
+    pin: GPIO04
+    name: On Board Relay
+    icon: "mdi:electric-switch"
+    inverted: no  
+    id: relay
+
+binary_sensor:
+  - platform: status
+    id: system_status
+    name: status
+    on_press:
+          then:
+            - light.turn_on: 
+                id: statusledlight
+                green: 1.0
+                red: 0.0
+                blue: 0.0
+                brightness: 30%      
+    on_release:
+          then:           
+            - light.turn_on: 
+                id: statusledlight
+                red: 1.0
+                green: 0.0
+                blue: 0.0
+                brightness: 30%     
+color:
+  - id: my_red
+    red: 100%
+    green: 0%
+    blue: 0%
+  - id: my_yellow
+    red: 100%
+    green: 100%
+    blue: 0%
+  - id: my_green
+    red: 0%
+    green: 100%
+    blue: 0%
+  - id: my_blue
+    red: 0%
+    green: 0%
+    blue: 100%
+  - id: my_gray
+    red: 50%
+    green: 50%
+    blue: 50%   
+  - id: my_white
+    red: 100%
+    green: 100%
+    blue: 100%              
+
+font:
+  - file: "_fonts/refsan.ttf"
+    id: my_font_30
+    size: 30
+  - file: "_fonts/refsan.ttf"
+    id: my_font_20
+    size: 20
+  - file: "_fonts/refsan.ttf"
+    id: my_font_13
+    size: 13
+  - file: "_fonts/refsan.ttf"
+    id: my_font_15
+    size: 15    
+  - file: "_fonts/refsan.ttf"
+    id: my_font_10
+    size: 10   
+  - file: "_fonts/refsan.ttf"
+    id: my_font_30b
+    size: 15
+  - file: "_fonts/refsan.ttf"
+    id: my_font_20b
+    size: 10
+  - file: "_fonts/refsan.ttf"
+    id: my_font_13b
+    size: 10  
+  - file: "_fonts/refsan.ttf"
+    id: my_font_15b
+    size: 15    
+  - file: "_fonts/refsan.ttf"
+    id: my_font_10b
+    size: 15 
+
           `;
 
 
