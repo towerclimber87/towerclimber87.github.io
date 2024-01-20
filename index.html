@@ -46,7 +46,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System asdfasdf</h1>
+        <h1>IHA Rack System 444</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -2327,7 +2327,7 @@ binary_sensor:
             id(last_name_pressed).publish_state("$gpio_rack_card_3_device_2");
             id(last_state_pressed).publish_state("OFF");  
   - platform: gpio
-    id: rack_3_device_3
+    id: rack_3_device_2
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 1
@@ -3680,137 +3680,137 @@ button: `;
             id(device_15_set_33_48) = 1;
             id(device_16_set_33_48) = 1;
 
-  - platform: template
+            - platform: template
     name: GPIO State Set (NO-NC 33-48)
     icon: "mdi:set-merge"
     on_press:
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 33") {
-            id(device_1_set_33_49) = 1;
+            id(device_1_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 33") {
-            id(device_1_set_33_49) = 2;
+            id(device_1_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 34") {
-            id(device_2_set_33_49) = 1;
+            id(device_2_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 34") {
-            id(device_2_set_33_49) = 2;
+            id(device_2_set_33_48) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 35") {
-            id(device_3_set_33_49) = 1;
+            id(device_3_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 35") {
-            id(device_3_set_33_49) = 2;
+            id(device_3_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 36") {
-            id(device_4_set_33_49) = 1;
+            id(device_4_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 36") {
-            id(device_4_set_33_49) = 2;
+            id(device_4_set_33_48) = 2;
           }  
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 37") {
-            id(device_5_set_33_49) = 1;
+            id(device_5_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 37") {
-            id(device_5_set_33_49) = 2;
+            id(device_5_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 38") {
-            id(device_6_set_33_49) = 1;
+            id(device_6_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 38") {
-            id(device_6_set_33_49) = 2;
+            id(device_6_set_33_48) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 39") {
-            id(device_7_set_33_49) = 1;
+            id(device_7_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 39") {
-            id(device_7_set_33_49) = 2;
+            id(device_7_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 40") {
-            id(device_8_set_33_49) = 1;
+            id(device_8_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 40") {
-            id(device_8_set_33_49) = 2;
+            id(device_8_set_33_48) = 2;
           }  
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 41") {
-            id(device_9_set_33_49) = 1;
+            id(device_9_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 41") {
-            id(device_9_set_33_49) = 2;
+            id(device_9_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 42") {
-            id(device_10_set_33_49) = 1;
+            id(device_10_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 42") {
-            id(device_10_set_33_49) = 2;
+            id(device_10_set_33_48) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 43") {
-            id(device_11_set_33_49) = 1;
+            id(device_11_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 43") {
-            id(device_11_set_33_49) = 2;
+            id(device_11_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 44") {
-            id(device_12_set_33_49) = 1;
+            id(device_12_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 44") {
-            id(device_12_set_33_49) = 2;
+            id(device_12_set_33_48) = 2;
           }  
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 45") {
-            id(device_13_set_33_49) = 1;
+            id(device_13_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 45") {
-            id(device_13_set_33_49) = 2;
+            id(device_13_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 46") {
-            id(device_14_set_33_49) = 1;
+            id(device_14_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 46") {
-            id(device_14_set_33_49) = 2;
+            id(device_14_set_33_48) = 2;
           }          
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 47") {
-            id(device_15_set_33_49) = 1;
+            id(device_15_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 47") {
-            id(device_15_set_33_49) = 2;
+            id(device_15_set_33_48) = 2;
           }
       - lambda: |-
           if (id(device_select_3).state == "NO" && id(select_gpio_3).state == "GPIO 48") {
-            id(device_16_set_33_49) = 1;
+            id(device_16_set_33_48) = 1;
           } 
       - lambda: |-
           if (id(device_select_3).state == "NC" && id(select_gpio_3).state == "GPIO 48") {
-            id(device_16_set_33_49) = 2;
+            id(device_16_set_33_48) = 2;
           }  
       - select.set:
           id: select_gpio_3
