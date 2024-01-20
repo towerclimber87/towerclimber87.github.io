@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System  </h1>
+        <h1>IHA Rack System JKL </h1>
     </header>
 
     <main>
@@ -1179,12 +1179,12 @@ font:
           `;
             additionalConfig += `
 button: `;        
-if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
-                additionalConfig += `   
+        if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `   
   - platform: template
     name: Reset All GPIO to NO (1-16)          
-    `;
-
+                                   `;
+        } 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
           
