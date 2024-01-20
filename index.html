@@ -53,7 +53,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V1103</h1>
+        <h1>IHA Rack System V1123</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -306,7 +306,16 @@
                     <option value="8 Port Relay Board 3">8 Port Relay Board 3</option>
                     <option value="8 Port Relay Board 4">8 Port Relay Board 4</option>
                     <!-- Add more options for Node Device Type 2 as needed -->
-                </select>                                  
+                </select>   
+      </div>              
+      <main>
+                          <label for="dropdown9">Logger Enabled:</label>
+                          <select id="dropdown9">
+                              <option value="Enabled">Enabled</option>
+                              <option value="Disabled">Disabled</option>
+                              <!-- Add more options for Node Device 2 as needed -->
+                          </select>
+    </main>                                               
     </div>    
     <pre></pre>
     <main>
@@ -349,7 +358,8 @@
         const dropdown5 = document.getElementById('dropdown5');
         const dropdown6 = document.getElementById('dropdown6');
         const dropdown7 = document.getElementById('dropdown7');
-        const dropdown8 = document.getElementById('dropdown8');                
+        const dropdown8 = document.getElementById('dropdown8');
+        const loggerselect = document.getElementById('logger');                        
         const typeDropdown1 = document.getElementById('type1');
         const typeDropdown2 = document.getElementById('type2');
         const typeDropdown3 = document.getElementById('type3');
@@ -412,7 +422,7 @@
             const selectedTypeValue6 = typeDropdown6.value;
             const selectedTypeValue7 = typeDropdown7.value;
             const selectedTypeValue8 = typeDropdown8.value;                        
-
+            const selectedTypeValue9 = typeDropdown9.value;  
             // Get text entry values
             const textEntry1 = document.getElementById('textEntry1').value;
             const textEntry2 = document.getElementById('textEntry2').value;
@@ -422,7 +432,7 @@
             const textEntry6 = document.getElementById('textEntry6').value;
 
             // Create the YAML configuration string based on the selected type
-            let yamlConfig = '';
+            let yamlConfig = ''; 
             let additionalConfig = 'substitutions:';
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
@@ -987,7 +997,13 @@ mcp23017: `;
   - id: 'mcp23017_hub_8_relay_board_4'
     address: ${selectedOptionValue8} 
             `;
-            }                                                     
+            } 
+            if (selectedTypeValue9 === 'Enabled' ) {
+                additionalConfig += `
+logger:" 
+            `;
+            }              
+                                                                 
           additionalConfig += `
 esphome:
   name: ${textEntry1}
@@ -1050,11 +1066,11 @@ display:
 text_sensor:
   - platform: template
     id: last_state_pressed    
-    name: $display_name State
+    name: ${textEntry5} State
     icon: "mdi:state-machine"
   - platform: template
     id: last_name_pressed        
-    name: ${textEntry6} Device    
+    name: ${textEntry5} Device    
     icon: "mdi:state-machine" 
   - platform: template
     id: uptime_human 
