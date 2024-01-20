@@ -40,7 +40,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System BINARY 1/2 WAY V2 </h1>
+        <h1>IHA Rack System BINARY 1/2 WAY </h1>
     </header>
 
     <main>
@@ -1733,7 +1733,7 @@ binary_sensor:
                 additionalConfig += `   
   - platform: template
     name: $gpio_rack_card_2_device_1
-    id: device_2_invert_2
+    id: device_1_invert_2
     lambda: |-
       if ((id(rack_2_device_1).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_1).state == false && id(device_1_set_17_32) == 2))
@@ -1766,7 +1766,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_2
-    id: device_3_invert_2
+    id: device_2_invert_2
     lambda: |-
       if ((id(rack_2_device_2).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_2).state == false && id(device_1_set_17_32) == 2))
@@ -1799,7 +1799,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_3
-    id: device_4_invert_2
+    id: device_3_invert_2
     lambda: |-
       if ((id(rack_2_device_3).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_3).state == false && id(device_1_set_17_32) == 2))
@@ -1832,7 +1832,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_4
-    id: device_5_invert_2
+    id: device_4_invert_2
     lambda: |-
       if ((id(rack_2_device_4).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_4).state == false && id(device_1_set_17_32) == 2))
@@ -1865,7 +1865,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_5
-    id: device_6_invert_2
+    id: device_5_invert_2
     lambda: |-
       if ((id(rack_2_device_5).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_5).state == false && id(device_1_set_17_32) == 2))
@@ -1898,7 +1898,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_6
-    id: device_7_invert_2
+    id: device_6_invert_2
     lambda: |-
       if ((id(rack_2_device_6).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_6).state == false && id(device_1_set_17_32) == 2))
@@ -1931,7 +1931,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_7
-    id: device_8_invert_2
+    id: device_7_invert_2
     lambda: |-
       if ((id(rack_2_device_7).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_7).state == false && id(device_1_set_17_32) == 2))
@@ -1964,7 +1964,7 @@ binary_sensor:
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_8
-    id: device_9_invert_2
+    id: device_8_invert_2
     lambda: |-
       if ((id(rack_2_device_8).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_8).state == false && id(device_1_set_17_32) == 2))
@@ -1997,7 +1997,7 @@ binary_sensor:
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_9
-    id: device_10_invert_2
+    id: device_9_invert_2
     lambda: |-
       if ((id(rack_2_device_9).state == true && id(device_1_set_17_32) == 1) || 
           (id(rack_2_device_9).state == false && id(device_1_set_17_32) == 2))
