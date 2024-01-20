@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V</h1>
+        <h1>IHA Rack System V--</h1>
     </header>
 
     <main>
@@ -309,21 +309,43 @@
     <script>
         const dropdown1 = document.getElementById('dropdown1');
         const dropdown2 = document.getElementById('dropdown2');
+        const dropdown3 = document.getElementById('dropdown3');
+        const dropdown4 = document.getElementById('dropdown4');  
+        const dropdown5 = document.getElementById('dropdown5');
+        const dropdown6 = document.getElementById('dropdown6');
+        const dropdown7 = document.getElementById('dropdown7');
+        const dropdown8 = document.getElementById('dropdown8');                
         const typeDropdown1 = document.getElementById('type1');
         const typeDropdown2 = document.getElementById('type2');
+        const typeDropdown3 = document.getElementById('type3');
+        const typeDropdown4 = document.getElementById('type4'); 
+        const typeDropdown5 = document.getElementById('type5');
+        const typeDropdown6 = document.getElementById('type6');
+        const typeDropdown7 = document.getElementById('type7');
+        const typeDropdown8 = document.getElementById('type8');                
         const subbDiv1 = document.querySelector('.subb');
         const subbDiv2 = document.querySelector('.subb2');
-        const downloadButton = document.getElementById('downloadButton');
+        const subbDiv3 = document.querySelector('.subb3');
+        const subbDiv4 = document.querySelector('.subb4'); 
+        const subbDiv5 = document.querySelector('.subb5');
+        const subbDiv6 = document.querySelector('.subb6');
+        const subbDiv7 = document.querySelector('.subb7');
+        const subbDiv8 = document.querySelector('.subb8');                
+        const downloadButton = document.getElementById('downloadButton');  
 
         function updateSubbVisibility() {
             // Show/hide the subbDiv1 based on the selected value of dropdown1
             subbDiv1.style.display = dropdown1.value === 'none' ? 'none' : 'block';
-
-            // Show/hide the subbDiv2 based on the selected value of dropdown2
             subbDiv2.style.display = dropdown2.value === 'none' ? 'none' : 'block';
+            subbDiv3.style.display = dropdown3.value === 'none' ? 'none' : 'block';
+            subbDiv4.style.display = dropdown4.value === 'none' ? 'none' : 'block';  
+            subbDiv5.style.display = dropdown5.value === 'none' ? 'none' : 'block';
+            subbDiv6.style.display = dropdown6.value === 'none' ? 'none' : 'block';
+            subbDiv7.style.display = dropdown7.value === 'none' ? 'none' : 'block';
+            subbDiv8.style.display = dropdown8.value === 'none' ? 'none' : 'block';                        
 
             // If dropdown1 is set to none and dropdown2 is not set to none, hide subbDiv1
-            if (dropdown1.value === 'none' && dropdown2.value !== 'none') {
+            if (dropdown1.value === 'none' && dropdown2.value !== 'none' && dropdown3.value !== 'none' && dropdown3.value !== 'none'&& dropdown4.value !== 'none' && dropdown5.value !== 'none'&& dropdown6.value !== 'none' && dropdown7.value !== 'none'&& dropdown8.value !== 'none') {
                 subbDiv1.style.display = 'none';
             }
         }
