@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 613</h1>
+        <h1>IHA Rack System 619</h1>
     </header>
 
     <main>
@@ -129,6 +129,47 @@
   show text group
   ${selectedOptionValue1}`;
             }
+            if (selectedTypeValue1 === '16 GPIO Rack Card 3') {
+                additionalConfig += `
+16 GPIO Rack Card 3:
+  show text group
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === '16 GPIO Rack Card 4') {
+                additionalConfig += `
+16 GPIO Rack Card 4:
+  show text group
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === 'Button Controller') {
+                additionalConfig += `
+Button Controller:
+  show text group
+  ${selectedOptionValue1}`;
+            }       
+            if (selectedTypeValue1 === '8 Port Relay Board 1') {
+                additionalConfig += `                 
+8 Port Relay Board 1:
+  show text group
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === '8 Port Relay Board 2') {
+                additionalConfig += `
+8 Port Relay Board 2:
+  show text group
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === '8 Port Relay Board 3') {
+                additionalConfig += `
+8 Port Relay Board 3:
+  show text group
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === '8 Port Relay Board 4') {
+                additionalConfig += `
+8 Port Relay Board 4:
+  show text group
+  ${selectedOptionValue1}`;
 
 
             // Combine the two configurations
