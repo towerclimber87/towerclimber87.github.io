@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V1</h1>
+        <h1>IHA Rack System V10</h1>
     </header>
 
     <main>
@@ -166,13 +166,19 @@
             const textEntry6 = document.getElementById('textEntry6').value;
 
             // Create the YAML configuration string based on the selected type
-            let yamlConfig = 'substitutions:';
-            let additionalConfig = '';
-
-            // Add text entry values to the YAML
-            
+            let yamlConfig = '';
+            let additionalConfig = 'substitutions:';
             additionalConfig += `
-            
+if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+    additionalConfig += \`
+        did it work 
+    \`;
+}
+
+`;
+
+            additionalConfig += `
+
 esphome:
   name: ${textEntry1}
   on_boot:
@@ -384,6 +390,7 @@ font:
     size: 15 
           
           `;
+
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
