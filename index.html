@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V2</h1>
+        <h1>IHA Rack System V1</h1>
     </header>
 
     <main>
@@ -170,9 +170,6 @@
             let additionalConfig = '';
 
             // Add text entry values to the YAML
-            
-            additionalConfig += `
-
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
   gpio_rack_card_1_device_1: "GPIO 1"
@@ -191,8 +188,9 @@
   gpio_rack_card_1_device_14: "GPIO 14"
   gpio_rack_card_1_device_15: "GPIO 15"
   gpio_rack_card_1_device_16: "GPIO 16"  
-  `;            
-
+              `;            
+            additionalConfig += `
+            
 esphome:
   name: ${textEntry1}
   on_boot:
