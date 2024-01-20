@@ -57,7 +57,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System bin test</h1>
+        <h1>IHA Rack System bin maybe</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -356,7 +356,7 @@
     <button id="generateBinary">Generate Binary</button>
 
     <!-- Add your JavaScript code here if needed -->
-    <script>
+    <script name="yamlmaker">
         const dropdown1 = document.getElementById('dropdown1');
         const dropdown2 = document.getElementById('dropdown2');
         const dropdown3 = document.getElementById('dropdown3');
@@ -4398,22 +4398,20 @@ globals: `;
     </script>
     <script>
       document.getElementById('generateBinary').addEventListener('click', function() {
-        // Fetch the dynamically generated YAML code
-        fetch('/path/to/your/script') // Replace with the actual path to your script
+        // Fetch the dynamically generated YAML code from "yamlmaker" script
+        fetch('yamlmaker.js')
           .then(response => response.text())
           .then(yamlCode => {
-            // Add logic here to trigger the binary generation
-            alert('Binary generation initiated. Check your browser for download.');
+            // Add logic here to trigger the compilation for ESPHome
+            // For simplicity, let's assume a placeholder for the compiled binary
+            const compiledBinaryData = new Uint8Array([0x01, 0x02, 0x03]); // Replace with actual binary data
 
-            // Mock conversion of YAML to binary
-            const binaryData = new Uint8Array([0x01, 0x02, 0x03]); // Replace with actual binary data
-
-            // Save the binary file
-            const blob = new Blob([binaryData], { type: 'application/octet-stream' });
+            // Save the compiled binary file
+            const blob = new Blob([compiledBinaryData], { type: 'application/octet-stream' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'generated_binary.bin';
+            a.download = 'compiled_binary.bin';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
