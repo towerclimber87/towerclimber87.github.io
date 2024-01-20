@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System select</h1>
+        <h1>IHA Rack System GLOBALS</h1>
     </header>
 
     <main>
@@ -1973,7 +1973,219 @@ select: `;
       - "NO"
       - "NC"      
       `;  
-          }                                       
+          }    
+          
+//////////////////////////  GLOBALS   //////////////////////
+            additionalConfig += `
+globals: `;        
+              if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
+                  additionalConfig += `    
+  - id: device_1_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_2_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_3_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_4_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_5_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_6_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_7_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_8_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_9_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_10_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_11_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_12_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_13_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_14_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_15_set_1_16
+    type: float
+    restore_value: yes
+  - id: device_16_set_1_16
+    type: float
+    restore_value: yes 
+  `;  
+          }    
+          if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2') {
+                  additionalConfig += `    
+  - id: device_1_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_2_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_3_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_4_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_5_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_6_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_7_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_8_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_9_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_10_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_11_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_12_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_13_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_14_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_15_set_17_32
+    type: float
+    restore_value: yes
+  - id: device_16_set_17_32
+    type: float
+    restore_value: yes 
+  `;  
+          }  
+          if (selectedTypeValue1 === '16 GPIO Rack Card 3' || selectedTypeValue2 === '16 GPIO Rack Card 3' || selectedTypeValue3 === '16 GPIO Rack Card 3' || selectedTypeValue4 === '16 GPIO Rack Card 3') {
+                  additionalConfig += `    
+  - id: device_1_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_2_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_3_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_4_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_5_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_6_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_7_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_8_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_9_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_10_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_11_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_12_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_13_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_14_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_15_set_33_48
+    type: float
+    restore_value: yes
+  - id: device_16_set_33_48
+    type: float
+    restore_value: yes 
+  `;  
+          }        
+          if (selectedTypeValue1 === '16 GPIO Rack Card 4' || selectedTypeValue2 === '16 GPIO Rack Card 4' || selectedTypeValue3 === '16 GPIO Rack Card 4' || selectedTypeValue4 === '16 GPIO Rack Card 4') {
+                  additionalConfig += `    
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes
+  - id: device_1_set_49_64
+    type: float
+    restore_value: yes 
+  `;  
+          }                                      
 ////////////////////////////////////////////////////////////////////////////////////////////
           
             // Combine the two configurations
