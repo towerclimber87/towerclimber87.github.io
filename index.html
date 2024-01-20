@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System dddddd</h1>
+        <h1>IHA Rack System </h1>
     </header>
 
     <main>
@@ -530,26 +530,201 @@
   node_8_relay_board_1_device_8: "Relay 32"  
             `;   
             }
-      additionalConfig += `mcp23017test `;                           
+      additionalConfig += `
+mcp23017test `;                           
                 
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `
   - id: 'mcp23017_hub_16_gpio_rack_card_1'
     address: ${selectedOptionValue1} 
             `;
-            }    
-            if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2' || selectedTypeValue5 === '16 GPIO Rack Card 2' || selectedTypeValue6 === '16 GPIO Rack Card 2' || selectedTypeValue7 === '16 GPIO Rack Card 2' || selectedTypeValue8 === '16 GPIO Rack Card 2') {
+            }  
+            if (selectedTypeValue2 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `
-  - id: 'mcp23017_hub_16_gpio_rack_card_2'
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
     address: ${selectedOptionValue2} 
             `;
-            }  
-            if (selectedTypeValue1 === '16 GPIO Rack Card 3' || selectedTypeValue2 === '16 GPIO Rack Card 3' || selectedTypeValue3 === '16 GPIO Rack Card 3' || selectedTypeValue4 === '16 GPIO Rack Card 3' || selectedTypeValue5 === '16 GPIO Rack Card 3' || selectedTypeValue6 === '16 GPIO Rack Card 3' || selectedTypeValue7 === '16 GPIO Rack Card 3' || selectedTypeValue8 === '16 GPIO Rack Card 3') {
+            }                
+            if (selectedTypeValue3 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `
-  - id: 'mcp23017_hub_16_gpio_rack_card_3'
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
     address: ${selectedOptionValue3} 
             `;
-            }                                                                         
+            }  
+            if (selectedTypeValue4 === '16 GPIO Rack Card 1' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue4} 
+            `;
+            }  
+            if (selectedTypeValue5 === '16 GPIO Rack Card 1' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue5} 
+            `;
+            }                
+            if (selectedTypeValue6 === '16 GPIO Rack Card 1' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue6} 
+            `;
+            }              
+            if (selectedTypeValue7 === '16 GPIO Rack Card 1' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue7} 
+            `;
+            }  
+            if (selectedTypeValue8 === '16 GPIO Rack Card 1' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue8} 
+            `;
+            }   
+            if (selectedTypeValue1 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue1} 
+            `;
+            }  
+            if (selectedTypeValue2 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue2} 
+            `;
+            }                            
+            if (selectedTypeValue3 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue3} 
+            `;
+            }  
+            if (selectedTypeValue4 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue4} 
+            `;
+            }  
+            if (selectedTypeValue5 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue5} 
+            `;
+            }                
+            if (selectedTypeValue6 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue6} 
+            `;
+            }              
+            if (selectedTypeValue7 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue7} 
+            `;
+            }  
+            if (selectedTypeValue8 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue8} 
+            `;
+            }       
+            if (selectedTypeValue1 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue1} 
+            `;
+            }  
+            if (selectedTypeValue2 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue2} 
+            `;
+            }                            
+            if (selectedTypeValue3 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue3} 
+            `;
+            }  
+            if (selectedTypeValue4 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue4} 
+            `;
+            }  
+            if (selectedTypeValue5 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue5} 
+            `;
+            }                
+            if (selectedTypeValue6 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue6} 
+            `;
+            }              
+            if (selectedTypeValue7 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue7} 
+            `;
+            }  
+            if (selectedTypeValue8 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue8} 
+            `;
+            }  
+            if (selectedTypeValue1 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue1} 
+            `;
+            }  
+            if (selectedTypeValue2 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue2} 
+            `;
+            }                            
+            if (selectedTypeValue3 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue3} 
+            `;
+            }  
+            if (selectedTypeValue4 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue4} 
+            `;
+            }  
+            if (selectedTypeValue5 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue5} 
+            `;
+            }                
+            if (selectedTypeValue6 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue6} 
+            `;
+            }              
+            if (selectedTypeValue7 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue7} 
+            `;
+            }  
+            if (selectedTypeValue8 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue8} 
+            `;
+            }                                    
             additionalConfig += `
 esphome:
   name: ${textEntry1}
