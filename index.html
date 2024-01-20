@@ -315,6 +315,7 @@
         <label for="textEntry6">API Key:</label>
         <input type="text" id="textEntry6">
     </div>
+    <pre></pre>  
     <button id="downloadButton">Download YAML File</button>
 
     <!-- Add your JavaScript code here if needed -->
@@ -528,8 +529,8 @@
   node_8_relay_board_1_device_7: "Relay 31"
   node_8_relay_board_1_device_8: "Relay 32"  
             `;   
-            
-            let additionalConfig = 'mcp23017test:';                  
+            }
+      additionalConfig += `mcp23017test `;                           
                 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
