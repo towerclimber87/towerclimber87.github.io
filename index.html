@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V4</h1>
+        <h1>IHA Rack System V2</h1>
     </header>
 
     <main>
@@ -99,7 +99,7 @@
     </div>
     <!-- Add 6 text entry boxes -->
     <div>
-        <label for="textEntry1">Text Entry 1:</label>
+        <label for="textEntry1">ESPHome Name:</label>
         <input type="text" id="textEntry1">
     </div>
     <div>
@@ -290,18 +290,7 @@ Button Controller B:
             }            
             // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
-            let yamlConfig = `
-esphome:
-  name: ${textEntry1Value}
-  on_boot:
-       - delay: 1s
-       - text_sensor.template.publish:
-          id: last_name_pressed
-          state: ""    
-       - text_sensor.template.publish:
-          id: last_state_pressed
-          state: ""              
-`;
+
             // Create a Blob and download link
             const blob = new Blob([combinedConfig], { type: 'text/plain' });
             const downloadLink = document.createElement('a');
