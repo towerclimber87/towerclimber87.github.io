@@ -8,12 +8,12 @@
     <style>
         /* Add your CSS styles here */
         .subb,
-        .subb2
-        .subb3
-        .subb4
-        .subb5
-        .subb6
-        .subb7
+        .subb2,
+        .subb3,
+        .subb4,
+        .subb5,
+        .subb6,
+        .subb7,
         .subb8 {
             margin-left: 1em; /* Adjust the value as needed */
             display: none; /* Hide the divs by default */
@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System ---</h1>
+        <h1>IHA Rack System </h1>
     </header>
 
     <main>
@@ -527,8 +527,9 @@
   node_8_relay_board_1_device_7: "Relay 31"
   node_8_relay_board_1_device_8: "Relay 32"  
             `;   
+            
             additionalConfig += `
-mcp23017:
+mcp23017test:
           `;                     
             }     
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
@@ -763,9 +764,6 @@ font:
           
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
-mcp23017:
-  - id: 'mcp23017_hub_16_gpio_rack_card_1'
-    address: ${selectedOptionValue1}
 button:
   - platform: template
     name: Reset All GPIO to NO (1-16)
@@ -1592,9 +1590,6 @@ RELAY CODE 4
 ////////////////////////////////////////////////////////////////////////////////////////////
 if (selectedTypeValue2 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
-mcp23017:
-  - id: 'mcp23017_hub_16_gpio_rack_card_1'
-    address: ${selectedOptionValue2}
 button:
   - platform: template
     name: Reset All GPIO to NO (1-16)
