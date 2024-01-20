@@ -4398,11 +4398,33 @@ globals: `;
     </script>
     <script>
       document.getElementById('generateBinary').addEventListener('click', function() {
-        // You can add logic here to trigger the Gist update (e.g., using GitHub API)
-        // This will indirectly trigger the GitHub Actions workflow to compile the binary.
-        // For simplicity, you may manually update the Gist URL after making changes.
+        // Fetch the YAML code from your GitHub Pages URL
+        fetch('path/to/your/yaml/file.yaml')
+          .then(response => response.text())
+          .then(yamlCode => {
+            // You can add logic here to trigger the binary generation
+            // This example uses the FileSaver.js library to download the binary
+            // For simplicity, you may manually update the Gist URL after making changes.
 
-        alert('Binary generation initiated. Check your GitHub Actions for progress.');
+            alert('Binary generation initiated. Check your browser for download.');
+
+            // Mock conversion of YAML to binary
+            const binaryData = new Uint8Array([0x01, 0x02, 0x03]); // Replace with actual binary data
+
+            // Save the binary file
+            const blob = new Blob([binaryData], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'generated_binary.bin';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          })
+          .catch(error => {
+            console.error('Error fetching YAML:', error);
+            alert('Error fetching YAML. Check console for details.');
+          });
       });
     </script>    
 </body>
