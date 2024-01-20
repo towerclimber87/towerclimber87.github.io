@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 111 </h1>
+        <h1>IHA Rack System </h1>
     </header>
 
     <main>
@@ -1179,7 +1179,7 @@ font:
           `;
           
 
-          additionalConfig += `
+            additionalConfig += `
 button: `;        
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
@@ -1342,7 +1342,7 @@ button: `;
           option: "None" 
           `;  
           if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2') {
-                additionalConfig += `   
+            additionalConfig += `   
   - platform: template
     name: Reset All GPIO to NO (17-32)
     icon: "mdi:alert"
