@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System 2621 </h1>
+        <h1>IHA Rack System 111 </h1>
     </header>
 
     <main>
@@ -1178,11 +1178,9 @@ font:
     size: 15 
           `;
           
-
-          additionalConfig += `
-button: `;        
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
-                additionalConfig += `   
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+                additionalConfig += `
+button:
   - platform: template
     name: Reset All GPIO to NO (1-16)
     icon: "mdi:alert"
@@ -1205,7 +1203,7 @@ button: `;
             id(device_15_set_1_16) = 1;
             id(device_16_set_1_16) = 1;
 
-              - platform: template
+  - platform: template
     name: GPIO State Set (NO\NC 1-16)
     icon: "mdi:set-merge"
     on_press:
@@ -1340,35 +1338,6 @@ button: `;
       - select.set:
           id: select_gpio
           option: "None" 
-          `;  
-          if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2') {
-                additionalConfig += `   
-  - platform: template
-    name: Reset All GPIO to NO (17-32)
-    icon: "mdi:alert"
-    on_press:
-      - lambda: |-
-            id(device_1_set_1_17) = 1;
-            id(device_2_set_1_18) = 1;
-            id(device_3_set_1_19) = 1;
-            id(device_4_set_1_20) = 1;
-            id(device_5_set_1_21) = 1;
-            id(device_6_set_1_22) = 1;
-            id(device_7_set_1_23) = 1;
-            id(device_8_set_1_24) = 1;
-            id(device_9_set_1_25) = 1;
-            id(device_10_set_1_26) = 1;
-            id(device_11_set_1_27) = 1;
-            id(device_12_set_1_28) = 1;
-            id(device_13_set_1_29) = 1;
-            id(device_14_set_1_30) = 1;
-            id(device_15_set_1_31) = 1;
-            id(device_16_set_1_32) = 1;
-          `;              
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
-                additionalConfig += `
-
-
 
 select:
   - platform: template
