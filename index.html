@@ -57,7 +57,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System bin maybe</h1>
+        <h1>IHA Rack System bin</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -4396,31 +4396,45 @@ globals: `;
         // Initial call to set the initial visibility based on the default values
         updateSubbVisibility();
     </script>
-    <script>
-      document.getElementById('generateBinary').addEventListener('click', function() {
-        // Fetch the dynamically generated YAML code from "yamlmaker" script
-        fetch('yamlmaker.js')
-          .then(response => response.text())
-          .then(yamlCode => {
-            // Add logic here to trigger the compilation for ESPHome
-            // For simplicity, let's assume a placeholder for the compiled binary
-            const compiledBinaryData = new Uint8Array([0x01, 0x02, 0x03]); // Replace with actual binary data
+    <script name="yamlmaker">
+      // Existing code for the "yamlmaker" script
 
-            // Save the compiled binary file
-            const blob = new Blob([compiledBinaryData], { type: 'application/octet-stream' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'compiled_binary.bin';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          })
-          .catch(error => {
-            console.error('Error fetching YAML:', error);
-            alert('Error fetching YAML. Check console for details.');
-          });
-      });
+      // Function to generate YAML configuration
+      function generateYAML() {
+        // Your existing logic for generating YAML
+        // ...
+
+        // Combine the two configurations
+        const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
+
+        // Return the generated YAML
+        return combinedConfig;
+      }
+
+      // Function to handle the button click event
+      function handleButtonClick() {
+        // Generate YAML using the existing logic
+        const generatedYAML = generateYAML();
+
+        // Mock compilation logic (replace with actual ESPHome compilation logic)
+        const compiledBinaryData = new Uint8Array([0x01, 0x02, 0x03]); // Replace with actual binary data
+
+        // Save the compiled binary file
+        const blob = new Blob([compiledBinaryData], { type: 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'compiled_binary.bin';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      // Add an event listener to the button
+      document.getElementById('generateBinary').addEventListener('click', handleButtonClick);
+
+      // Initial call to set the initial visibility based on the default values
+      updateSubbVisibility();
     </script>
     
 </body>
