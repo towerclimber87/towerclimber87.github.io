@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System test</h1>
+        <h1>IHA Rack System select</h1>
     </header>
 
     <main>
@@ -1875,22 +1875,22 @@ select: `;
     initial_option: "None"
     options:
       - "None"
-      - "GPIO 1"
-      - "GPIO 2"
-      - "GPIO 3"
-      - "GPIO 4"  
-      - "GPIO 5"
-      - "GPIO 6"
-      - "GPIO 7"
-      - "GPIO 8"  
-      - "GPIO 9"
-      - "GPIO 10"
-      - "GPIO 11"
-      - "GPIO 12"  
-      - "GPIO 13"
-      - "GPIO 14"
-      - "GPIO 15"
-      - "GPIO 16"     
+      - "GPIO 17"
+      - "GPIO 18"
+      - "GPIO 19"
+      - "GPIO 20"  
+      - "GPIO 21"
+      - "GPIO 22"
+      - "GPIO 23"
+      - "GPIO 24"  
+      - "GPIO 25"
+      - "GPIO 26"
+      - "GPIO 27"
+      - "GPIO 28"  
+      - "GPIO 29"
+      - "GPIO 30"
+      - "GPIO 31"
+      - "GPIO 32"     
 
   - platform: template
     name: GPIO NO\NC (17-32)
@@ -1901,7 +1901,79 @@ select: `;
       - "NO"
       - "NC"      
       `;  
-          }                   
+          } 
+          if (selectedTypeValue1 === '16 GPIO Rack Card 3' || selectedTypeValue2 === '16 GPIO Rack Card 3' || selectedTypeValue3 === '16 GPIO Rack Card 3' || selectedTypeValue4 === '16 GPIO Rack Card 3') {
+                  additionalConfig += `    
+  - platform: template
+    name: Select GPIO (33-48)
+    id: select_gpio_3
+    optimistic: true
+    initial_option: "None"
+    options:
+      - "None"
+      - "GPIO 33"
+      - "GPIO 34"
+      - "GPIO 35"
+      - "GPIO 36"  
+      - "GPIO 37"
+      - "GPIO 38"
+      - "GPIO 39"
+      - "GPIO 40"  
+      - "GPIO 41"
+      - "GPIO 42"
+      - "GPIO 43"
+      - "GPIO 44"  
+      - "GPIO 45"
+      - "GPIO 46"
+      - "GPIO 47"
+      - "GPIO 48"     
+
+  - platform: template
+    name: GPIO NO\NC (33-48)
+    id: device_select_3
+    optimistic: true
+    initial_option: "NO"
+    options:
+      - "NO"
+      - "NC"      
+      `;  
+          }   
+          if (selectedTypeValue1 === '16 GPIO Rack Card 3' || selectedTypeValue2 === '16 GPIO Rack Card 3' || selectedTypeValue3 === '16 GPIO Rack Card 3' || selectedTypeValue4 === '16 GPIO Rack Card 3') {
+                  additionalConfig += `    
+  - platform: template
+    name: Select GPIO (49-64)
+    id: select_gpio_4
+    optimistic: true
+    initial_option: "None"
+    options:
+      - "None"
+      - "GPIO 49"
+      - "GPIO 50"
+      - "GPIO 51"
+      - "GPIO 52"  
+      - "GPIO 53"
+      - "GPIO 54"
+      - "GPIO 55"
+      - "GPIO 56"  
+      - "GPIO 57"
+      - "GPIO 58"
+      - "GPIO 59"
+      - "GPIO 60"  
+      - "GPIO 61"
+      - "GPIO 62"
+      - "GPIO 63"
+      - "GPIO 64"     
+
+  - platform: template
+    name: GPIO NO\NC (49-64)
+    id: device_select_4
+    optimistic: true
+    initial_option: "NO"
+    options:
+      - "NO"
+      - "NC"      
+      `;  
+          }                                       
 ////////////////////////////////////////////////////////////////////////////////////////////
           
             // Combine the two configurations
