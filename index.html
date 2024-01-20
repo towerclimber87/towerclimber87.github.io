@@ -1010,6 +1010,7 @@ mcp23017: `;
           additionalConfig += `
 esphome:
   name: ${textEntry1}
+  friendly_name: ${textEntry5}
   on_boot:
        - delay: 1s
        - text_sensor.template.publish:
@@ -4425,17 +4426,30 @@ globals: `;
       });
     </script>
     <main>
-      <h7>Getting started with ESPhome add-on for Home Assistant guide https://esphome.io/guides/getting_started_hassio.html. </h7>
+      <h7>Getting started with ESPhome add-on for Home Assistant guide <a href="https://esphome.io/guides/getting_started_hassio.html" target="_blank">https://esphome.io/guides/getting_started_hassio.html</a>.</h7>
     </main> 
+    <pre></pre>      
     <main>
-      <h7>Once ESPhome has been set up, following the steps below. </h7>
+      <h7>When ESPhome has been set up, following the steps below. </h7>
     </main>   
     <main>
-      <h7>Step 1: Click New Device and then click continue. </h7>
+      <h7>  Step 1: Click New Device and then click continue. </h7>
     </main>     
     <main>
-      <h7>Step 2: Give it a name, and then copy the name exactly and paste it into the ESPhome Name in box in IHA Rack System web page. </h7>
-    </main>                
+      <h7>  Step 2: Give it a name and click Next and click on any of the ESP32 options (it will be changed later). </h7>
+    </main>  
+    <main>
+      <h7>  Step 3: Copy the Encryption key that is provided and paste it into the API Key box in IHA Rack System web page . </h7>
+    </main>
+    <main>
+      <h7>  Step 4: Now click skip and find the new device and click edit. </h7>
+    </main> 
+    <main>
+      <h7>  Step 5: Around the second line you should see (name:) copy the name given and past it into the ESPHome Name box in IHA Rack System web page. </h7>
+    </main>   
+    <main>
+      <h7>  Step 6: . </h7>
+    </main>                                  
 </body>
 
 </html>
