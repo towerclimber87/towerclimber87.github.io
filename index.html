@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V--</h1>
+        <h1>IHA Rack System V2</h1>
     </header>
 
     <main>
@@ -352,13 +352,31 @@
 
         dropdown1.addEventListener('change', updateSubbVisibility);
         dropdown2.addEventListener('change', updateSubbVisibility);
+        dropdown3.addEventListener('change', updateSubbVisibility);
+        dropdown4.addEventListener('change', updateSubbVisibility);    
+        dropdown5.addEventListener('change', updateSubbVisibility);
+        dropdown6.addEventListener('change', updateSubbVisibility);
+        dropdown7.addEventListener('change', updateSubbVisibility);
+        dropdown8.addEventListener('change', updateSubbVisibility);                
 
         downloadButton.addEventListener('click', function () {
             // Get the selected values
             const selectedOptionValue1 = dropdown1.value;
             const selectedOptionValue2 = dropdown2.value;
+            const selectedOptionValue3 = dropdown3.value;
+            const selectedOptionValue4 = dropdown4.value; 
+            const selectedOptionValue5 = dropdown5.value;
+            const selectedOptionValue6 = dropdown6.value;
+            const selectedOptionValue7 = dropdown7.value;
+            const selectedOptionValue8 = dropdown8.value;                        
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
+            const selectedTypeValue3 = typeDropdown3.value;
+            const selectedTypeValue4 = typeDropdown4.value; 
+            const selectedTypeValue5 = typeDropdown5.value;
+            const selectedTypeValue6 = typeDropdown6.value;
+            const selectedTypeValue7 = typeDropdown7.value;
+            const selectedTypeValue8 = typeDropdown8.value;                        
 
             // Get text entry values
             const textEntry1 = document.getElementById('textEntry1').value;
