@@ -1178,9 +1178,11 @@ font:
     size: 15 
           `;
           
-            if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
-                additionalConfig += `
-button:
+
+          additionalConfig += `
+button: `;        
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
+                additionalConfig += `   
   - platform: template
     name: Reset All GPIO to NO (1-16)
     icon: "mdi:alert"
@@ -1336,8 +1338,174 @@ button:
             id(device_16_set_1_16) = 2;
           }  
       - select.set:
-          id: select_gpio
+          id: select_gpio_1
           option: "None" 
+          `;  
+          if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2') {
+                additionalConfig += `   
+  - platform: template
+    name: Reset All GPIO to NO (17-32)
+    icon: "mdi:alert"
+    on_press:
+      - lambda: |-
+            id(device_1_set_1_17) = 1;
+            id(device_2_set_1_18) = 1;
+            id(device_3_set_1_19) = 1;
+            id(device_4_set_1_20) = 1;
+            id(device_5_set_1_21) = 1;
+            id(device_6_set_1_22) = 1;
+            id(device_7_set_1_23) = 1;
+            id(device_8_set_1_24) = 1;
+            id(device_9_set_1_25) = 1;
+            id(device_10_set_1_26) = 1;
+            id(device_11_set_1_27) = 1;
+            id(device_12_set_1_28) = 1;
+            id(device_13_set_1_29) = 1;
+            id(device_14_set_1_30) = 1;
+            id(device_15_set_1_31) = 1;
+            id(device_16_set_1_32) = 1;
+
+  - platform: template
+    name: GPIO State Set (NO\NC 17-32)
+    icon: "mdi:set-merge"
+    on_press:
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 17") {
+            id(device_1_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 17") {
+            id(device_1_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 18") {
+            id(device_2_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 18") {
+            id(device_2_set_17_32) = 2;
+          }          
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 19") {
+            id(device_3_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 19") {
+            id(device_3_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 20") {
+            id(device_4_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 20") {
+            id(device_4_set_17_32) = 2;
+          }  
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 21") {
+            id(device_5_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 21") {
+            id(device_5_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 22") {
+            id(device_6_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 22") {
+            id(device_6_set_17_32) = 2;
+          }          
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 23") {
+            id(device_7_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 23") {
+            id(device_7_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 24") {
+            id(device_8_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 24") {
+            id(device_8_set_17_32) = 2;
+          }  
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 25") {
+            id(device_9_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 25") {
+            id(device_9_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 26") {
+            id(device_10_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 26") {
+            id(device_10_set_17_32) = 2;
+          }          
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 27") {
+            id(device_11_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 27") {
+            id(device_11_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 28") {
+            id(device_12_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 28") {
+            id(device_12_set_17_32) = 2;
+          }  
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 29") {
+            id(device_13_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 29") {
+            id(device_13_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 30") {
+            id(device_14_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 30") {
+            id(device_14_set_17_32) = 2;
+          }          
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 31") {
+            id(device_15_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 31") {
+            id(device_15_set_17_32) = 2;
+          }
+      - lambda: |-
+          if (id(device_select).state == "NO" && id(select_gpio).state == "GPIO 32") {
+            id(device_16_set_17_32) = 1;
+          } 
+      - lambda: |-
+          if (id(device_select).state == "NC" && id(select_gpio).state == "GPIO 32") {
+            id(device_16_set_17_32) = 2;
+          }  
+      - select.set:
+          id: select_gpio_2
+          option: "None" 
+
+          `;              
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+                additionalConfig += `
+
+
 
 select:
   - platform: template
