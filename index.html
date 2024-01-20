@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>IHA Code Generator</title>
     <style>
         /* Add your CSS styles here */
@@ -352,6 +353,7 @@
     </div>
     <pre></pre>  
     <button id="downloadButton">Download YAML File</button>
+    <button id="generateBinary">Generate Binary</button>
 
     <!-- Add your JavaScript code here if needed -->
     <script>
@@ -4394,6 +4396,15 @@ globals: `;
         // Initial call to set the initial visibility based on the default values
         updateSubbVisibility();
     </script>
+    <script>
+      document.getElementById('generateBinary').addEventListener('click', function() {
+        // You can add logic here to trigger the Gist update (e.g., using GitHub API)
+        // This will indirectly trigger the GitHub Actions workflow to compile the binary.
+        // For simplicity, you may manually update the Gist URL after making changes.
+
+        alert('Binary generation initiated. Check your GitHub Actions for progress.');
+      });
+    </script>    
 </body>
 
 </html>
