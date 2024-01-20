@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System</h1>
+        <h1>IHA Rack System ---</h1>
     </header>
 
     <main>
@@ -526,10 +526,30 @@
   node_8_relay_board_1_device_6: "Relay 30"
   node_8_relay_board_1_device_7: "Relay 31"
   node_8_relay_board_1_device_8: "Relay 32"  
-            `;            
-            }                                               
+            `;   
             additionalConfig += `
-
+mcp23017:
+          `;                     
+            }     
+            if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_1'
+    address: ${selectedOptionValue1} 
+            `;
+            }    
+            if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2' || selectedTypeValue5 === '16 GPIO Rack Card 2' || selectedTypeValue6 === '16 GPIO Rack Card 2' || selectedTypeValue7 === '16 GPIO Rack Card 2' || selectedTypeValue8 === '16 GPIO Rack Card 2') {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_2'
+    address: ${selectedOptionValue2} 
+            `;
+            }  
+            if (selectedTypeValue1 === '16 GPIO Rack Card 3' || selectedTypeValue2 === '16 GPIO Rack Card 3' || selectedTypeValue3 === '16 GPIO Rack Card 3' || selectedTypeValue4 === '16 GPIO Rack Card 3' || selectedTypeValue5 === '16 GPIO Rack Card 3' || selectedTypeValue6 === '16 GPIO Rack Card 3' || selectedTypeValue7 === '16 GPIO Rack Card 3' || selectedTypeValue8 === '16 GPIO Rack Card 3') {
+                additionalConfig += `
+  - id: 'mcp23017_hub_16_gpio_rack_card_3'
+    address: ${selectedOptionValue3} 
+            `;
+            }                                                                         
+            additionalConfig += `
 esphome:
   name: ${textEntry1}
   on_boot:
@@ -740,6 +760,7 @@ font:
     id: my_font_10b
     size: 15 
           `;
+          
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
 mcp23017:
