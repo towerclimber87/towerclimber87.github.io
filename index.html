@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V2</h1>
+        <h1>IHA Rack System V5</h1>
     </header>
 
     <main>
@@ -103,23 +103,23 @@
         <input type="text" id="textEntry1">
     </div>
     <div>
-        <label for="textEntry2">Text Entry 2:</label>
+        <label for="textEntry2">OTA Password:</label>
         <input type="text" id="textEntry2">
     </div>
     <div>
-        <label for="textEntry3">Text Entry 3:</label>
+        <label for="textEntry3">Web Portal Username:</label>
         <input type="text" id="textEntry3">
     </div>
     <div>
-        <label for="textEntry4">Text Entry 4:</label>
+        <label for="textEntry4">Web Portal Password:</label>
         <input type="text" id="textEntry4">
     </div>
     <div>
-        <label for="textEntry5">Text Entry 5:</label>
+        <label for="textEntry5">Display Name:</label>
         <input type="text" id="textEntry5">
     </div>
     <div>
-        <label for="textEntry6">Text Entry 6:</label>
+        <label for="textEntry6">API Key:</label>
         <input type="text" id="textEntry6">
     </div>
     <button id="downloadButton">Download YAML File</button>
@@ -171,12 +171,16 @@
 
             // Add text entry values to the YAML
             additionalConfig += `
-textEntry1: ${textEntry1}
-textEntry2: ${textEntry2}
-textEntry3: ${textEntry3}
-textEntry4: ${textEntry4}
-textEntry5: ${textEntry5}
-textEntry6: ${textEntry6}`;
+esphome:
+  name: ${textEntry1}
+  on_boot:
+       - delay: 1s
+       - text_sensor.template.publish:
+          id: last_name_pressed
+          state: ""    
+       - text_sensor.template.publish:
+          id: last_state_pressed
+          state: ""  `;
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
