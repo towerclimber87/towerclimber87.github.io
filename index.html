@@ -119,17 +119,17 @@
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
-substitutions 1:
+16 GPIO Rack Card 1:
   show text group
-  111"`;
+  ${selectedOptionValue1}`;
+            }
+            if (selectedTypeValue1 === '16 GPIO Rack Card 2') {
+                additionalConfig += `
+16 GPIO Rack Card 2:
+  show text group
+  ${selectedOptionValue1}`;
             }
 
-            if (selectedTypeValue2 === '16 GPIO Rack Card 1' && selectedTypeValue1 !== '16 GPIO Rack Card 1') {
-                additionalConfig += `
-substitutions 2:
-  show text group
-  222"`;
-            }
 
             // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
