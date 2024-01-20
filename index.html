@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V3</h1>
+        <h1>IHA Rack System V4</h1>
     </header>
 
     <main>
@@ -99,7 +99,7 @@
     </div>
     <!-- Add 6 text entry boxes -->
     <div>
-        <label for="textEntry1">ESPHome Name:</label>
+        <label for="textEntry1">Text Entry 1:</label>
         <input type="text" id="textEntry1">
     </div>
     <div>
@@ -170,235 +170,13 @@
             let additionalConfig = '';
 
             // Add text entry values to the YAML
-            let yamlConfig = `
-esphome:
-  name: textEntry1Value
-  on_boot:
-       - delay: 1s
-       - text_sensor.template.publish:
-          id: last_name_pressed
-          state: ""    
-       - text_sensor.template.publish:
-          id: last_state_pressed
-          state: ""  
-esp32:
-  board: esp-wrover-kit
-  framework: 
-    type: esp-idf
-       
-       
-web_server:
-  port: 80
-  auth:
-    username: admin
-    password: Dm.376223
-                                 
-ota:  
-  password: $ota_password  
-ethernet:
-  id: eth
-  type: LAN8720
-  mdc_pin: GPIO23
-  mdio_pin: GPIO18
-  clk_mode: GPIO0_IN
-  phy_addr: 1
-  power_pin: GPIO16
-api:
-  encryption:
-    key: "$api_key"
-  reboot_timeout: 0s  
-
-i2c:
-  sda: 14
-  scl: 15
-  scan: true 
-
-display:
-  - platform: ssd1306_i2c
-    model: "SSD1306 128x64"
-    address: 0x3C
-    lambda: |-
-            if (id(system_status).state) {
-              it.print(40, -3, id(my_font_30b), id(my_green), "Online");
-            }
-            else {
-              it.print(40, -5, id(my_font_30b), id(my_yellow), "Offline");
-            }
-            it.printf(it.get_width() / 2, 14, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_name_pressed).state.c_str()); 
-            it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());             
-            it.print(0, 34, id(my_font_20b), id(my_white), "IP");                                              
-            it.printf(it.get_width() / 2, 46, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, " %s",id(uptime_human).state.c_str());   
-   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());      
-text_sensor:
-  - platform: template
-    id: last_state_pressed    
-    name: $display_name State
-    icon: "mdi:state-machine"
-  - platform: template
-    id: last_name_pressed        
-    name: $display_name Device    
-    icon: "mdi:state-machine" 
-  - platform: template
-    id: uptime_human 
-    name: Update    
-    icon: mdi:clock-start
-  - platform: template
-    name: "Device IP"
-    id: ipaddress
-    entity_category: diagnostic
-    icon: "mdi:ip-network"
-    lambda: return { id(eth).get_ip_address().str() };
-    update_interval: 5s  
-
-sensor:
-  - platform: uptime
-    id: uptime_sensor
-    update_interval: 1s
-    on_raw_value:
-      then:
-        - text_sensor.template.publish:
-            id: uptime_human
-            state: !lambda |-
-              int seconds = round(id(uptime_sensor).raw_state);
-              int days = seconds / (24 * 3600);
-              seconds = seconds % (24 * 3600);
-              int hours = seconds / 3600;
-              seconds = seconds % 3600;
-              int minutes = seconds /  60;
-              seconds = seconds % 60;
-              return (
-                (days ? to_string(days) + "d " : "") +
-                (hours ? to_string(hours) + "h " : "") +
-                (minutes ? to_string(minutes) + "m " : "") +
-                (to_string(seconds) + "s")
-              ).c_str();
-
-light:
-  - platform: esp32_rmt_led_strip
-    id: statusledlight
-    name: "Status LED RGB"
-    pin: 33
-    num_leds: 1
-    rmt_channel: 1
-    rgb_order: GRB
-    chipset: ws2812
-    icon: "mdi:led-outline"
-    max_refresh_rate: 500ms
-    
-
-
-switch:
-  - platform: restart
-    id: "restart_system"
-  - platform: gpio
-    pin: GPIO32
-    name: Pico Buzzer
-    inverted: no  
-    id: buzzer
-    icon: "mdi:surround-sound"
-  - platform: gpio
-    pin: GPIO04
-    name: On Board Relay
-    icon: "mdi:electric-switch"
-    inverted: no  
-    id: relay
-
-binary_sensor:
-  - platform: status
-    id: system_status
-    name: status
-    on_press:
-          then:
-            - light.turn_on: 
-                id: statusledlight
-                green: 1.0
-                red: 0.0
-                blue: 0.0
-                brightness: 30%      
-    on_release:
-          then:           
-            - light.turn_on: 
-                id: statusledlight
-                red: 1.0
-                green: 0.0
-                blue: 0.0
-                brightness: 30%     
-color:
-  - id: my_red
-    red: 100%
-    green: 0%
-    blue: 0%
-  - id: my_yellow
-    red: 100%
-    green: 100%
-    blue: 0%
-  - id: my_green
-    red: 0%
-    green: 100%
-    blue: 0%
-  - id: my_blue
-    red: 0%
-    green: 0%
-    blue: 100%
-  - id: my_gray
-    red: 50%
-    green: 50%
-    blue: 50%   
-  - id: my_white
-    red: 100%
-    green: 100%
-    blue: 100%              
-
-font:
-  - file: "_fonts/refsan.ttf"
-    id: my_font_30
-    size: 30
-  - file: "_fonts/refsan.ttf"
-    id: my_font_20
-    size: 20
-  - file: "_fonts/refsan.ttf"
-    id: my_font_13
-    size: 13
-  - file: "_fonts/refsan.ttf"
-    id: my_font_15
-    size: 15    
-  - file: "_fonts/refsan.ttf"
-    id: my_font_10
-    size: 10   
-  - file: "_fonts/refsan.ttf"
-    id: my_font_30b
-    size: 15
-  - file: "_fonts/refsan.ttf"
-    id: my_font_20b
-    size: 10
-  - file: "_fonts/refsan.ttf"
-    id: my_font_13b
-    size: 10  
-  - file: "_fonts/refsan.ttf"
-    id: my_font_15b
-    size: 15    
-  - file: "_fonts/refsan.ttf"
-    id: my_font_10b
-    size: 15 
-
-${textEntry1Value}:
-  show text group
-  ${dropdown1.value}
-${textEntry2Value}:
-  show text group
-  ${dropdown2.value}
-${textEntry3Value}:
-  show text group
-  ${typeDropdown1.value}
-${textEntry4Value}:
-  show text group
-  ${typeDropdown2.value}
-${textEntry5Value}:
-  show text group
-  ${typeDropdown2.value}
-${textEntry6Value}:
-  show text group
-  ${typeDropdown2.value}`;
+            additionalConfig += `
+textEntry1: ${textEntry1}
+textEntry2: ${textEntry2}
+textEntry3: ${textEntry3}
+textEntry4: ${textEntry4}
+textEntry5: ${textEntry5}
+textEntry6: ${textEntry6}`;
 
             if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
@@ -512,7 +290,18 @@ Button Controller B:
             }            
             // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
-
+            let yamlConfig = `
+esphome:
+  name: ${textEntry1Value}
+  on_boot:
+       - delay: 1s
+       - text_sensor.template.publish:
+          id: last_name_pressed
+          state: ""    
+       - text_sensor.template.publish:
+          id: last_state_pressed
+          state: ""              
+`;
             // Create a Blob and download link
             const blob = new Blob([combinedConfig], { type: 'text/plain' });
             const downloadLink = document.createElement('a');
