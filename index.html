@@ -1651,8 +1651,8 @@ binary_sensor:
     name: $gpio_rack_card_1_device_14
     id: device_14_invert
     lambda: |-
-      if ((id(rack_6_device).state == true && id(device_6_set_1_16) == 1) || 
-          (id(rack_6_device).state == false && id(device_6_set_1_16) == 2))
+      if ((id(rack_14_device).state == true && id(device_14_set_1_16) == 1) || 
+          (id(rack_14_device).state == false && id(device_14_set_1_16) == 2))
       {
         return true;
       } else {
