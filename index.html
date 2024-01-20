@@ -46,7 +46,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System BINARY dfgdfg </h1>
+        <h1>IHA Rack System</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -2267,7 +2267,1069 @@ binary_sensor:
         pullup: True          
       inverted: True
   `;  
-          }                                 
+          }       
+          if (selectedTypeValue1 === '16 GPIO Rack Card 3' || selectedTypeValue2 === '16 GPIO Rack Card 3' || selectedTypeValue3 === '16 GPIO Rack Card 3' || selectedTypeValue4 === '16 GPIO Rack Card 3') {
+                additionalConfig += `   
+  - platform: template
+    name: $gpio_rack_card_3_device_1
+    id: device_1_invert_2
+    lambda: |-
+      if ((id(rack_3_device_1).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_1).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_1");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_1");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_1
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 0
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_2
+    id: device_2_invert_2
+    lambda: |-
+      if ((id(rack_3_device_2).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_2).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_2");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_2");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_2
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 1
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_3
+    id: device_3_invert_2
+    lambda: |-
+      if ((id(rack_3_device_3).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_3).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_3");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_3");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_3
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 2
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_4
+    id: device_4_invert_2
+    lambda: |-
+      if ((id(rack_3_device_4).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_4).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_4");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_4");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_4
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 3
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_5
+    id: device_5_invert_2
+    lambda: |-
+      if ((id(rack_3_device_5).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_5).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_5");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_5");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_5
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 4
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_6
+    id: device_6_invert_2
+    lambda: |-
+      if ((id(rack_3_device_6).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_6).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_6");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_6");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_6
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 5
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_7
+    id: device_7_invert_2
+    lambda: |-
+      if ((id(rack_3_device_7).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_7).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_7");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_7");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_7
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 6
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_8
+    id: device_8_invert_2
+    lambda: |-
+      if ((id(rack_3_device_8).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_8).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_8");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_8");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_8
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 7
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_9
+    id: device_9_invert_2
+    lambda: |-
+      if ((id(rack_3_device_9).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_9).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_9");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_9");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_9
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 8
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_10
+    id: device_10_invert_2
+    lambda: |-
+      if ((id(rack_3_device_10).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_10).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_10");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_10");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_10
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 9
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_11
+    id: device_11_invert_2
+    lambda: |-
+      if ((id(rack_3_device_11).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_11).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_11");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_11");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_11
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 10
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_12
+    id: device_12_invert_2
+    lambda: |-
+      if ((id(rack_3_device_12).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_12).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_12");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_12");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_12
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 11
+      mode:
+        input: True
+        pullup: True          
+      inverted: True      
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_13
+    id: device_13_invert_2
+    lambda: |-
+      if ((id(rack_3_device_13).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_13).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_13");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_13");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_13
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 12
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_14
+    id: device_14_invert_2
+    lambda: |-
+      if ((id(rack_3_device_14).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_14).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_14");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_14");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_14
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 13
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_15
+    id: device_15_invert_2
+    lambda: |-
+      if ((id(rack_3_device_15).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_15).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_15");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_15");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_15
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 14
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_3_device_16
+    id: device_16_invert_2
+    lambda: |-
+      if ((id(rack_3_device_16).state == true && id(device_1_set_33_48) == 1) || 
+          (id(rack_3_device_16).state == false && id(device_1_set_33_48) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_16");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_3_device_16");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_3_device_16
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
+      number: 15
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  `;  
+          }           
+          if (selectedTypeValue1 === '16 GPIO Rack Card 4' || selectedTypeValue2 === '16 GPIO Rack Card 4' || selectedTypeValue3 === '16 GPIO Rack Card 4' || selectedTypeValue4 === '16 GPIO Rack Card 4') {
+                additionalConfig += `   
+  - platform: template
+    name: $gpio_rack_card_4_device_1
+    id: device_1_invert_2
+    lambda: |-
+      if ((id(rack_4_device_1).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_1).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_1");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_1");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_1
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 0
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_2
+    id: device_2_invert_2
+    lambda: |-
+      if ((id(rack_4_device_2).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_2).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_2");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_2");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_2
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 1
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_3
+    id: device_3_invert_2
+    lambda: |-
+      if ((id(rack_4_device_3).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_3).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_3");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_3");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_3
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 2
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_4
+    id: device_4_invert_2
+    lambda: |-
+      if ((id(rack_4_device_4).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_4).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_4");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_4");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_4
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 3
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_5
+    id: device_5_invert_2
+    lambda: |-
+      if ((id(rack_4_device_5).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_5).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_5");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_5");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_5
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 4
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_6
+    id: device_6_invert_2
+    lambda: |-
+      if ((id(rack_4_device_6).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_6).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_6");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_6");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_6
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 5
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_7
+    id: device_7_invert_2
+    lambda: |-
+      if ((id(rack_4_device_7).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_7).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_7");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_7");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_7
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 6
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_8
+    id: device_8_invert_2
+    lambda: |-
+      if ((id(rack_4_device_8).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_8).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_8");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_8");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_8
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 7
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_9
+    id: device_9_invert_2
+    lambda: |-
+      if ((id(rack_4_device_9).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_9).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_9");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_9");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_9
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 8
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_10
+    id: device_10_invert_2
+    lambda: |-
+      if ((id(rack_4_device_10).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_10).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_10");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_10");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_10
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 9
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_11
+    id: device_11_invert_2
+    lambda: |-
+      if ((id(rack_4_device_11).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_11).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_11");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_11");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_11
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 10
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_12
+    id: device_12_invert_2
+    lambda: |-
+      if ((id(rack_4_device_12).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_12).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_12");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_12");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_12
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 11
+      mode:
+        input: True
+        pullup: True          
+      inverted: True      
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_13
+    id: device_13_invert_2
+    lambda: |-
+      if ((id(rack_4_device_13).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_13).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_13");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_13");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_13
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 12
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_14
+    id: device_14_invert_2
+    lambda: |-
+      if ((id(rack_4_device_14).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_14).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_14");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_14");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_14
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 13
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_15
+    id: device_15_invert_2
+    lambda: |-
+      if ((id(rack_4_device_15).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_15).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_15");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_15");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_15
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 14
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+      #########################################################################
+  - platform: template
+    name: $gpio_rack_card_4_device_16
+    id: device_16_invert_2
+    lambda: |-
+      if ((id(rack_4_device_16).state == true && id(device_1_set_49_64) == 1) || 
+          (id(rack_4_device_16).state == false && id(device_1_set_49_64) == 2))
+      {
+        return true;
+      } else {
+        return false;
+      }
+    on_press:
+      then: 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_16");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:   
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("$gpio_rack_card_4_device_16");
+            id(last_state_pressed).publish_state("OFF");  
+  - platform: gpio
+    id: rack_4_device_16
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
+      number: 15
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+  `;  
+          }                                               
 //////////////////////////  BUTTON   //////////////////////
           additionalConfig += `
 button: `;        
