@@ -966,7 +966,7 @@ mcp23017test `;
     address: ${selectedOptionValue8} 
             `;
             }                                                     
-            additionalConfig += `
+      additionalConfig += `
 esphome:
   name: ${textEntry1}
   on_boot:
@@ -1179,7 +1179,7 @@ font:
           `;
           
 
-            additionalConfig += `
+      additionalConfig += `
 button: `;        
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
@@ -1342,7 +1342,7 @@ button: `;
           option: "None" 
           `;  
           if (selectedTypeValue1 === '16 GPIO Rack Card 2' || selectedTypeValue2 === '16 GPIO Rack Card 2' || selectedTypeValue3 === '16 GPIO Rack Card 2' || selectedTypeValue4 === '16 GPIO Rack Card 2') {
-            additionalConfig += `   
+      additionalConfig += `   
   - platform: template
     name: Reset All GPIO to NO (17-32)
     icon: "mdi:alert"
@@ -2173,7 +2173,7 @@ RELAY CODE 4
             }
 ////////////////////////////////////////////////////////////////////////////////////////////
 if (selectedTypeValue2 === '16 GPIO Rack Card 1') {
-                additionalConfig += `
+      additionalConfig += `
 button:
   - platform: template
     name: Reset All GPIO to NO (1-16)
@@ -2958,7 +2958,7 @@ binary_sensor:
       inverted: True`;
             }
             if (selectedTypeValue2 === '16 GPIO Rack Card 2') {
-                additionalConfig += `
+      additionalConfig += `
 RACK CARD 2
  MCP ${selectedOptionValue2}`;
             }            
