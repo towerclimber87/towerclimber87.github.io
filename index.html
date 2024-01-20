@@ -57,7 +57,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System</h1>
+        <h1>IHA Rack System bin test</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -4398,14 +4398,11 @@ globals: `;
     </script>
     <script>
       document.getElementById('generateBinary').addEventListener('click', function() {
-        // Fetch the YAML code from your GitHub Pages URL
-        fetch('path/to/your/yaml/file.yaml')
+        // Fetch the dynamically generated YAML code
+        fetch('/path/to/your/script') // Replace with the actual path to your script
           .then(response => response.text())
           .then(yamlCode => {
-            // You can add logic here to trigger the binary generation
-            // This example uses the FileSaver.js library to download the binary
-            // For simplicity, you may manually update the Gist URL after making changes.
-
+            // Add logic here to trigger the binary generation
             alert('Binary generation initiated. Check your browser for download.');
 
             // Mock conversion of YAML to binary
@@ -4426,7 +4423,8 @@ globals: `;
             alert('Error fetching YAML. Check console for details.');
           });
       });
-    </script>    
+    </script>
+    
 </body>
 
 </html>
