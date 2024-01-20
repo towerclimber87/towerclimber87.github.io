@@ -38,7 +38,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System BUTTON</h1>
+        <h1>IHA Rack System select</h1>
     </header>
 
     <main>
@@ -1825,7 +1825,45 @@ button: `;
           id: select_gpio_4
           option: "None" 
           `;  
-          }              
+          }    
+          
+//////////////////////////  SELECET   //////////////////////
+            additionalConfig += `
+select: `;        
+              if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
+                  additionalConfig += `    
+  - platform: template
+    name: Select GPIO (1-16)
+    id: select_gpio
+    optimistic: true
+    initial_option: "None"
+    options:
+      - "None"
+      - "GPIO 1"
+      - "GPIO 2"
+      - "GPIO 3"
+      - "GPIO 4"  
+      - "GPIO 5"
+      - "GPIO 6"
+      - "GPIO 7"
+      - "GPIO 8"  
+      - "GPIO 9"
+      - "GPIO 10"
+      - "GPIO 11"
+      - "GPIO 12"  
+      - "GPIO 13"
+      - "GPIO 14"
+      - "GPIO 15"
+      - "GPIO 16"     
+
+  - platform: template
+    name: GPIO NO\NC (1-16)
+    id: device_select
+    optimistic: true
+    initial_option: "NO"
+    options:
+      - "NO"
+      - "NC"         
 ////////////////////////////////////////////////////////////////////////////////////////////
           
             // Combine the two configurations
