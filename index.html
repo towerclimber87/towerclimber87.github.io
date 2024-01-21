@@ -4449,29 +4449,30 @@ globals:
           })
           .catch(error => {
             console.error('Error fetching YAML:', error);
-            alert('Error fetching YAML. Check console for details.');
-          });
-          document.addEventListener('DOMContentLoaded', function() {
-                var dropdown = document.getElementById('dropdown10');
-                var content = document.getElementById('contentToHide');
-
-                // Function to toggle the visibility
-                function toggleVisibility() {
-                    if (dropdown.value === 'none') {
-                        content.classList.add('hidden');
-                    } else {
-                        content.classList.remove('hidden');
-                    }
-                }
-
-                // Event listener for dropdown changes
-                dropdown.addEventListener('change', toggleVisibility);
-
-                // Initial check
-                toggleVisibility();
-            });             
+            alert('Error fetching YAML. Check console for details.');           
       });
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var dropdown = document.getElementById('dropdown10');
+          var content = document.getElementById('contentToHide');
+
+          // Function to toggle the visibility
+          function toggleVisibility() {
+              if (dropdown.value === 'none') {
+                  content.style.display = 'none';
+              } else {
+                  content.style.display = 'block'; // Or 'flex', 'grid', etc., depending on your layout
+              }
+          }
+
+          // Event listener for dropdown changes
+          dropdown.addEventListener('change', toggleVisibility);
+
+          // Initial check
+          toggleVisibility();
+  });
+  </script>    
     <pre></pre>      
     <main>
       <h7>Getting started with ESPhome add-on for Home Assistant guide <a href="https://esphome.io/guides/getting_started_hassio.html" target="_blank">https://esphome.io/guides/getting_started_hassio.html</a>.</h7>
