@@ -2834,7 +2834,7 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
-  `;  
+         `;  
           }           
           if (selectedTypeValue1 === '16 GPIO Rack Card 4' || selectedTypeValue2 === '16 GPIO Rack Card 4' || selectedTypeValue3 === '16 GPIO Rack Card 4' || selectedTypeValue4 === '16 GPIO Rack Card 4') {
                 additionalConfig += `   
@@ -3369,7 +3369,10 @@ binary_sensor:
           }                                               
 //////////////////////////  BUTTON   //////////////////////
           additionalConfig += `
-button: `;        
+button:
+- platform: template
+  name: button placeholder
+  internal: true   `;        
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
   - platform: template
@@ -4018,7 +4021,16 @@ button: `;
           
 //////////////////////////  SELECET   //////////////////////
             additionalConfig += `
-select: `;        
+select:
+  - platform: template
+    id: select_placeholder
+    optimistic: true
+    initial_option: "None"
+    internal: true 
+    options:
+      - "None"
+    
+`;        
               if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                   additionalConfig += `    
   - platform: template
@@ -4166,7 +4178,10 @@ select: `;
           
 //////////////////////////  GLOBALS   //////////////////////
             additionalConfig += `
-globals: `;        
+globals: 
+  - id: global_placeholder
+    type: float
+    restore_value: no`;        
               if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                   additionalConfig += `    
   - id: device_1_set_1_16
