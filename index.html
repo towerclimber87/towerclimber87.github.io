@@ -103,7 +103,7 @@
 </main>
 <body>
     <header>
-        <h1>IHA Rack System V1</h1>
+        <h1>IHA Rack System V2</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -369,27 +369,6 @@
 
 
     <!-- Add your JavaScript code here if needed -->
-    <script name="yamlmaker">
-            document.addEventListener('DOMContentLoaded', function() {
-                var dropdown = document.getElementById('dropdown10');
-                var content = document.getElementById('contentToHide');
-
-                // Function to toggle the visibility
-                function toggleVisibility() {
-                    if (dropdown.value === 'none') {
-                        content.classList.add('hidden');
-                    } else {
-                        content.classList.remove('hidden');
-                    }
-                }
-
-                // Event listener for dropdown changes
-                dropdown.addEventListener('change', toggleVisibility);
-
-                // Initial check
-                toggleVisibility();
-            });      
-    </script>
 
     <script name="yamlmaker">
         const dropdown1 = document.getElementById('dropdown1');
@@ -4471,6 +4450,25 @@ globals:
             console.error('Error fetching YAML:', error);
             alert('Error fetching YAML. Check console for details.');
           });
+          document.addEventListener('DOMContentLoaded', function() {
+                var dropdown = document.getElementById('dropdown10');
+                var content = document.getElementById('contentToHide');
+
+                // Function to toggle the visibility
+                function toggleVisibility() {
+                    if (dropdown.value === 'none') {
+                        content.classList.add('hidden');
+                    } else {
+                        content.classList.remove('hidden');
+                    }
+                }
+
+                // Event listener for dropdown changes
+                dropdown.addEventListener('change', toggleVisibility);
+
+                // Initial check
+                toggleVisibility();
+            });             
       });
     </script>
     <pre></pre>      
