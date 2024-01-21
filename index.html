@@ -103,7 +103,7 @@
 </main>
 <body>
     <header>
-        <h1>IHA Rack System V1</h1>
+        <h1>IHA Rack System V4</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -418,6 +418,8 @@
     <!-- Add your JavaScript code here if needed -->
 
     <script name="yamlmaker">
+        var dropdown10 = document.getElementById('dropdown10');
+        var content = document.getElementById('contentToHide');
         const dropdown1 = document.getElementById('dropdown1');
         const dropdown2 = document.getElementById('dropdown2');
         const dropdown3 = document.getElementById('dropdown3');
@@ -471,7 +473,7 @@
         dropdown7.addEventListener('change', updateSubbVisibility);
         dropdown8.addEventListener('change', updateSubbVisibility); 
         dropdown10.addEventListener('change', updateSubbVisibility);         
-                      
+        dropdown10.addEventListener('change', toggleVisibility);              
 
         downloadButton.addEventListener('click', function () {
             // Get the selected values
@@ -4470,6 +4472,15 @@ globals:
 
             // Remove the link from the body
             document.body.removeChild(downloadLink);
+            toggleVisibility();
+            // Function to toggle the visibility
+        function toggleVisibility() {
+            if (dropdown.value === 'none') {
+                content.classList.add('hidden');
+            } else {
+                content.classList.remove('hidden');
+            }
+        }    
         });
 
         // Initial call to set the initial visibility based on the default values
