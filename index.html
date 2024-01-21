@@ -60,7 +60,7 @@
 
 <body>
     <header>
-        <h1>IHA Rack System V1</h1>
+        <h1>IHA Rack System V2</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -3370,9 +3370,9 @@ binary_sensor:
 //////////////////////////  BUTTON   //////////////////////
           additionalConfig += `
 button:
-- platform: template
-  name: button placeholder
-  internal: true   `;        
+  - platform: template
+    name: button placeholder
+    internal: true   `;        
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
   - platform: template
