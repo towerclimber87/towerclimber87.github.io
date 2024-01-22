@@ -51,7 +51,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 4444</h1>
+  <h1>IHA Code Generator Beta 55555</h1>
 </header>
 <pre></pre>
 <main>
@@ -460,6 +460,14 @@
         <main>
           <h7>Enter Names To Be Used </h7>                       
         <main>
+          <div>
+            <label for="textEntry14">Wifi SSiD</label>
+            <input type="text" id="textEntry14" value="Enter Your Wifi SSid">
+        </div> 
+        <div>
+          <label for="textEntry15">Wifi Password</label>
+          <input type="text" id="textEntry15" value="Enter Your Wifi Password">
+      </div>                  
       <div>
           <label for="textEntry7">Window 1</label>
           <input type="text" id="textEntry7" value="Blind 1">
@@ -593,7 +601,9 @@
             const textEntry10 = document.getElementById('textEntry10').value;
             const textEntry11 = document.getElementById('textEntry11').value;
             const textEntry12 = document.getElementById('textEntry12').value;  
-            const textEntry13 = document.getElementById('textEntry13').value;                        
+            const textEntry13 = document.getElementById('textEntry13').value;  
+            const textEntry14 = document.getElementById('textEntry14').value;  
+            const textEntry15 = document.getElementById('textEntry15').value;                                                
 
             // Create the YAML configuration string based on the selected type
             let yamlConfig = '';
@@ -1171,13 +1181,15 @@ mcp23017:
     address: ${selectedOptionValue8} 
             `;
             }                                                                                                       
-          additionalConfig += `
+            if (selectedOptionValue14 === 'Enabled' ) {
+                additionalConfig += `   
 esphome:
   name: ${textEntry1}
   friendly_name: ${textEntry5}  
   on_boot:
-       - delay: 1s
-       `;
+       - delay: 1s           
+                `;
+            }
        if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
                 additionalConfig += `   
        - text_sensor.template.publish:
@@ -1197,7 +1209,6 @@ esp32:
     type: esp-idf       
                 `;
             }
-
     if (selectedOptionValue14 === 'Enabled' ) {
                 additionalConfig += `   
 web_server:
@@ -4896,22 +4907,20 @@ if (selectedOptionValue16 === 'iha_blinds' ) {
                 additionalConfig += `   
 substitutions:
   name: "livingroom-blinds"  
-  cover_1_name: Livingroom Blind 1
-  cover_2_name: Livingroom Blind 2
-  cover_3_name: Livingroom Blind 3
-  cover_4_name: Livingroom Blind 4  
-  group_name_1: West Blinds
-  group_name_2: North Blinds
-  group_name_3: Livingroom Blinds   
+  cover_1_name: ${textEntry7}
+  cover_2_name: ${textEntry8}
+  cover_3_name: ${textEntry9}
+  cover_4_name: ${textEntry10} 
+  group_name_1: ${textEntry11}
+  group_name_2: ${textEntry12}
+  group_name_3: ${textEntry13}  
   software: V5.0 (12/8/2023)
-
-
 
 esphome:
   project:
     name: "David Morris.IHA Blinds"
     version: IHA "$software ESP32"  
-  name: $name
+  name: ${textEntry1} 
   on_boot:
     - delay: 10s
     - stepper.report_position:
@@ -5190,13 +5199,14 @@ esp32:
 
 
 wifi:
-  ssid: Morris
-  password: DDm376223
+  ssid: ${textEntry14} 
+  password: ${textEntry15} 
   reboot_timeout: 0s
   ap:
     ssid: "IHA Blinds"
     password: password1234
     ap_timeout: 10s  
+captive_portal:    
 
 
 
@@ -6455,13 +6465,7 @@ binary_sensor:
           condition:
             - lambda: 'return id(remote_window_3).state == "Button 2";' 
           then:
-            - cover.toggle: my_blind4         
-    
-
-
-          
-
-
+            - cover.toggle: my_blind4        
                 `;
             }                                        
 ////////////////////////////////////////////////////////////////////////////////////////////
