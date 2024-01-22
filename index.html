@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System 1111</h1>
+        <h1>IHA Rack System 654654</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -488,7 +488,14 @@
 
             // Create the YAML configuration string based on the selected type
             let yamlConfig = '';
-            let additionalConfig = 'substitutions:';
+            let additionalConfig = '';
+            
+            if (selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
+                additionalConfig += `   
+substitutions:           
+                `;
+            }  
+            
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1' || selectedTypeValue5 === '16 GPIO Rack Card 1' || selectedTypeValue6 === '16 GPIO Rack Card 1' || selectedTypeValue7 === '16 GPIO Rack Card 1' || selectedTypeValue8 === '16 GPIO Rack Card 1') {
                 additionalConfig += `
   gpio_rack_card_1_device_1: "GPIO 1"
@@ -616,10 +623,14 @@
   node_8_relay_board_1_device_7: "Relay 31"
   node_8_relay_board_1_device_8: "Relay 32"  
             `;   
-            }
-          additionalConfig += `
-mcp23017: `;                           
-                
+            }                        
+ 
+            if (selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
+                additionalConfig += `   
+mcp23017:           
+            `;
+            }  
+
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `
   - id: 'mcp23017_hub_16_gpio_rack_card_1'
