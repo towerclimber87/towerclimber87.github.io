@@ -51,7 +51,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 333</h1>
+  <h1>IHA Code Generator Beta 4444</h1>
 </header>
 <pre></pre>
 <main>
@@ -455,7 +455,9 @@
       <main>
           <h3>IHA Blinds </h3>
       <main>  
-      </main>  
+        <main>
+          <h7>Enter Names To Be Used </h7>                       
+        <main>
       <div>
           <label for="textEntry7">Window 1</label>
           <input type="text" id="textEntry7" value="Blind 1">
@@ -583,6 +585,13 @@
             const textEntry4 = document.getElementById('textEntry4').value;
             const textEntry5 = document.getElementById('textEntry5').value;
             const textEntry6 = document.getElementById('textEntry6').value;
+            const textEntry7 = document.getElementById('textEntry7').value;
+            const textEntry8 = document.getElementById('textEntry8').value;
+            const textEntry9 = document.getElementById('textEntry9').value;
+            const textEntry10 = document.getElementById('textEntry10').value;
+            const textEntry11 = document.getElementById('textEntry11').value;
+            const textEntry12 = document.getElementById('textEntry12').value;  
+            const textEntry13 = document.getElementById('textEntry13').value;                        
 
             // Create the YAML configuration string based on the selected type
             let yamlConfig = '';
@@ -4873,7 +4882,1589 @@ globals:
     type: float
     restore_value: yes 
   `;  
-          }                                      
+}    
+////////////////////////////////////  Blinds  ////////////////////////////////////////////////////////
+if (selectedOptionValue16 === 'iha_blinds' ) {
+                additionalConfig += `   
+substitutions:
+  name: "livingroom-blinds"  
+  cover_1_name: Livingroom Blind 1
+  cover_2_name: Livingroom Blind 2
+  cover_3_name: Livingroom Blind 3
+  cover_4_name: Livingroom Blind 4  
+  group_name_1: West Blinds
+  group_name_2: North Blinds
+  group_name_3: Livingroom Blinds   
+  software: V5.0 (12/8/2023)
+
+
+
+esphome:
+  project:
+    name: "David Morris.IHA Blinds"
+    version: IHA "$software ESP32"  
+  name: $name
+  on_boot:
+    - delay: 10s
+    - stepper.report_position:
+        id: my_stepper
+        position: !lambda 'return id(stored_step);'
+    - stepper.set_target:
+         id: my_stepper
+         target: !lambda 'return id(stored_step);' 
+    - stepper.report_position:
+        id: my_stepper_2
+        position: !lambda 'return id(stored_step_2);'
+    - stepper.set_target:
+         id: my_stepper_2
+         target: !lambda 'return id(stored_step_2);' 
+    - stepper.report_position:
+        id: my_stepper_3
+        position: !lambda 'return id(stored_step_3);'         
+    - stepper.set_target:
+         id: my_stepper_3
+         target: !lambda 'return id(stored_step_3);' 
+    - stepper.report_position:
+        id: my_stepper_4
+        position: !lambda 'return id(stored_step_4);'       
+    - stepper.set_target:
+         id: my_stepper_4
+         target: !lambda 'return id(stored_step_4);'                   
+    - number.set:
+        id: open_close_time
+        value: !lambda 'return id(closing_time);' 
+    - number.set:
+        id: open_close_time_2
+        value: !lambda 'return id(closing_time_2);' 
+    - number.set:
+        id: open_close_time_3
+        value: !lambda 'return id(closing_time_3);' 
+    - number.set:
+        id: open_close_time_4
+        value: !lambda 'return id(closing_time_4);'  
+    - number.set:
+        id: group_delay_s
+        value: !lambda 'return id(group_delay);'                                        
+    - switch.turn_off: ontimeout
+    - delay: 5s
+    - switch.turn_on: ontimeout 
+    - lambda: |-
+        if (id(r_window_1) == 0.0) {
+          auto call = id(remote_window_1).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(r_window_1) == 1.0) {
+          auto call = id(remote_window_1).make_call();
+          call.set_option("Button 1");
+          call.perform();
+        } else if (id(r_window_1) == 2.0) {
+          auto call = id(remote_window_1).make_call();
+          call.set_option("Button 2");
+          call.perform();
+        }                  
+    - lambda: |-
+        if (id(g_window_1) == 0.0) {
+          auto call = id(group_window_1a).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_1) == 1.0) {
+          auto call = id(group_window_1a).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_1) == 2.0) {
+          auto call = id(group_window_1a).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_1) == 3.0) {
+          auto call = id(group_window_1a).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }   
+    - lambda: |-
+        if (id(g_window_1b) == 0.0) {
+          auto call = id(group_window_1b).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_1b) == 1.0) {
+          auto call = id(group_window_1b).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_1b) == 2.0) {
+          auto call = id(group_window_1b).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_1b) == 3.0) {
+          auto call = id(group_window_1b).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }                          
+    - lambda: |-
+        if (id(r_window_2) == 0.0) {
+          auto call = id(remote_window_2).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(r_window_2) == 1.0) {
+          auto call = id(remote_window_2).make_call();
+          call.set_option("Button 1");
+          call.perform();
+        } else if (id(r_window_2) == 2.0) {
+          auto call = id(remote_window_2).make_call();
+          call.set_option("Button 2");
+          call.perform();
+        }          
+    - lambda: |-
+        if (id(g_window_2) == 0.0) {
+          auto call = id(group_window_2a).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_2) == 1.0) {
+          auto call = id(group_window_2a).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_2) == 2.0) {
+          auto call = id(group_window_2a).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_2) == 3.0) {
+          auto call = id(group_window_2a).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }     
+    - lambda: |-
+        if (id(g_window_2b) == 0.0) {
+          auto call = id(group_window_2b).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_2b) == 1.0) {
+          auto call = id(group_window_2b).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_2b) == 2.0) {
+          auto call = id(group_window_2b).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_2b) == 3.0) {
+          auto call = id(group_window_2b).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }             
+    - lambda: |-
+        if (id(r_window_3) == 0.0) {
+          auto call = id(remote_window_3).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(r_window_3) == 1.0) {
+          auto call = id(remote_window_3).make_call();
+          call.set_option("Button 1");
+          call.perform();
+        } else if (id(r_window_3) == 2.0) {
+          auto call = id(remote_window_3).make_call();
+          call.set_option("Button 2");
+          call.perform();
+        }          
+    - lambda: |-
+        if (id(g_window_3) == 0.0) {
+          auto call = id(group_window_3a).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_3) == 1.0) {
+          auto call = id(group_window_3a).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_3) == 2.0) {
+          auto call = id(group_window_3a).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_3) == 3.0) {
+          auto call = id(group_window_3a).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        } 
+    - lambda: |-
+        if (id(g_window_3b) == 0.0) {
+          auto call = id(group_window_3b).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_3b) == 1.0) {
+          auto call = id(group_window_3b).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_3b) == 2.0) {
+          auto call = id(group_window_3b).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_3b) == 3.0) {
+          auto call = id(group_window_3b).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }           
+    - lambda: |-
+        if (id(r_window_4) == 0.0) {
+          auto call = id(remote_window_4).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(r_window_4) == 1.0) {
+          auto call = id(remote_window_4).make_call();
+          call.set_option("Button 1");
+          call.perform();
+        } else if (id(r_window_4) == 2.0) {
+          auto call = id(remote_window_4).make_call();
+          call.set_option("Button 2");
+          call.perform();
+        }          
+    - lambda: |-
+        if (id(g_window_4) == 0.0) {
+          auto call = id(group_window_4a).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_4) == 1.0) {
+          auto call = id(group_window_4a).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_4) == 2.0) {
+          auto call = id(group_window_4a).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_4) == 3.0) {
+          auto call = id(group_window_4a).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }    
+    - lambda: |-
+        if (id(g_window_4b) == 0.0) {
+          auto call = id(group_window_4b).make_call();
+          call.set_option("None");
+          call.perform();
+        } else if (id(g_window_4b) == 1.0) {
+          auto call = id(group_window_4b).make_call();
+          call.set_option("Group 1");
+          call.perform();
+        } else if (id(g_window_4b) == 2.0) {
+          auto call = id(group_window_4b).make_call();
+          call.set_option("Group 2");
+          call.perform();
+        } else if (id(g_window_4b) == 3.0) {
+          auto call = id(group_window_4b).make_call();
+          call.set_option("Group 3");
+          call.perform();
+        }                              
+    - stepper.set_speed:
+            id: my_stepper
+            speed: !lambda 'return id(driver_helper);'
+    - stepper.set_speed:
+            id: my_stepper_2
+            speed: !lambda 'return id(driver_helper);'
+    - stepper.set_speed:
+            id: my_stepper_3
+            speed: !lambda 'return id(driver_helper);'
+    - stepper.set_speed:
+            id: my_stepper_4
+            speed: !lambda 'return id(driver_helper);'       
+    - lambda: |-
+        if (id(driver_helper) == 3) {
+          auto call = id(driver_select).make_call();
+          call.set_option("None");
+          call.perform();    
+        } else if (id(driver_helper) == 700) {
+          auto call = id(driver_select).make_call();
+          call.set_option("A4988");
+          call.perform();
+        } else if (id(driver_helper) == 3000) {
+          auto call = id(driver_select).make_call();
+          call.set_option("TMC2208");
+          call.perform(); 
+        }
+
+esp32:
+  board: wemos_d1_mini32
+  framework:
+    type: arduino
+
+
+wifi:
+  ssid: Morris
+  password: DDm376223
+  reboot_timeout: 0s
+  ap:
+    ssid: "IHA Blinds"
+    password: password1234
+    ap_timeout: 10s  
+
+api:
+  reboot_timeout: 0s    
+ota:  
+
+web_server:
+  port: 80
+  auth:
+    username: admin
+    password: password1234
+captive_portal:
+
+globals: 
+  - id: driver_helper
+    type: float
+    restore_value: yes
+
+  - id: group_delay
+    type: float
+    restore_value: yes
+  - id: stored_step
+    type: float
+    restore_value: yes
+  - id: closing_time
+    type: float
+    restore_value: yes
+  - id: stored_step_2
+    type: float
+    restore_value: yes
+  - id: stored_step_3
+    type: float
+    restore_value: yes
+  - id: stored_step_4
+    type: float
+    restore_value: yes        
+  - id: closing_time_2
+    type: float
+    restore_value: yes
+  - id: closing_time_3
+    type: float
+    restore_value: yes
+  - id: closing_time_4
+    type: float
+    restore_value: yes    
+  - id: r_window_1
+    type: float
+    restore_value: yes  
+  - id: r_window_2
+    type: float
+    restore_value: yes
+  - id: r_window_3
+    type: float
+    restore_value: yes
+  - id: r_window_4
+    type: float
+    restore_value: yes 
+  - id: g_window_1
+    type: float
+    restore_value: yes     
+  - id: g_window_2
+    type: float
+    restore_value: yes   
+  - id: g_window_3
+    type: float
+    restore_value: yes   
+  - id: g_window_4
+    type: float
+    restore_value: yes   
+  - id: g_window_1b
+    type: float
+    restore_value: yes     
+  - id: g_window_2b
+    type: float
+    restore_value: yes   
+  - id: g_window_3b
+    type: float
+    restore_value: yes   
+  - id: g_window_4b
+    type: float
+    restore_value: yes       
+
+select:
+  - platform: template
+    name: Drive Select
+    id: driver_select
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - A4988
+      - TMC2208
+    on_value:
+      - lambda: |-
+          if (id(driver_select).state == "A4988") {
+            id(driver_helper) = 700;
+          }
+      - lambda: |-
+          if (id(driver_select).state == "TMC2208") {
+            id(driver_helper) = 3000;
+          }
+      - lambda: |-
+          if (id(driver_select).state == "None") {
+            id(driver_helper) = 3;
+          }          
+      - stepper.set_speed:
+            id: my_stepper
+            speed: !lambda 'return id(driver_helper);'
+      - stepper.set_speed:
+            id: my_stepper_2
+            speed: !lambda 'return id(driver_helper);'
+      - stepper.set_speed:
+            id: my_stepper_3
+            speed: !lambda 'return id(driver_helper);'
+      - stepper.set_speed:
+            id: my_stepper_4
+            speed: !lambda 'return id(driver_helper);'                                    
+
+  - platform: template
+    name: Window 1 Group Option 1
+    id: group_window_1a
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2
+      - Group 3      
+    on_value:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_1a).state == "None") {
+                          id(g_window_1) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_1a).state == "Group 1") {
+                          id(g_window_1) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_1a).state == "Group 2") {
+                          id(g_window_1) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_1a).state == "Group 3") {
+                          id(g_window_1) = 3;
+                        }                        
+
+          
+
+  - platform: template
+    name: Window 2 Group Option 1
+    id: group_window_2a
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2
+      - Group 3       
+    on_value:
+      then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_2a).state == "None") {
+                          id(g_window_2) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_2a).state == "Group 1") {
+                          id(g_window_2) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_2a).state == "Group 2") {
+                          id(g_window_2) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_2a).state == "Group 3") {
+                          id(g_window_2) = 3;
+                        }  
+
+  - platform: template
+    name: Window 3 Group Option 1
+    id: group_window_3a
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2
+      - Group 3       
+    on_value:
+      then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_3a).state == "None") {
+                          id(g_window_3) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_3a).state == "Group 1") {
+                          id(g_window_3) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_3a).state == "Group 2") {
+                          id(g_window_3) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_3a).state == "Group 3") {
+                          id(g_window_3) = 3;
+                        }  
+
+  - platform: template
+    name: Window 4 Group Option 1
+    id: group_window_4a
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2  
+      - Group 3                 
+    on_value:
+      then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_4a).state == "None") {
+                          id(g_window_4) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_4a).state == "Group 1") {
+                          id(g_window_4) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_4a).state == "Group 2") {
+                          id(g_window_4) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_4a).state == "Group 3") {
+                          id(g_window_4) = 3;
+                        }  
+
+  - platform: template
+    name: Window 1 Group Option 2
+    id: group_window_1b
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2
+      - Group 3      
+    on_value:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_1b).state == "None") {
+                          id(g_window_1b) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_1b).state == "Group 1") {
+                          id(g_window_1b) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_1b).state == "Group 2") {
+                          id(g_window_1b) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_1b).state == "Group 3") {
+                          id(g_window_1b) = 3;
+                        }                        
+
+          
+
+  - platform: template
+    name: Window 2 Group Option 2
+    id: group_window_2b
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2
+      - Group 3       
+    on_value:
+      then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_2b).state == "None") {
+                          id(g_window_2b) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_2b).state == "Group 1") {
+                          id(g_window_2b) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_2b).state == "Group 2") {
+                          id(g_window_2b) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_2b).state == "Group 3") {
+                          id(g_window_2b) = 3;
+                        }  
+
+  - platform: template
+    name: Window 3 Group Option 2
+    id: group_window_3b
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2
+      - Group 3       
+    on_value:
+      then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_3b).state == "None") {
+                          id(g_window_3b) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_3b).state == "Group 1") {
+                          id(g_window_3b) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_3b).state == "Group 2") {
+                          id(g_window_3b) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_3b).state == "Group 3") {
+                          id(g_window_3b) = 3;
+                        }  
+
+  - platform: template
+    name: Window 4 Group Option 2
+    id: group_window_4b
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Group 1
+      - Group 2  
+      - Group 3                 
+    on_value:
+      then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(group_window_4b).state == "None") {
+                          id(g_window_4b) = 0;
+                        }
+                    - lambda: |-
+                        if (id(group_window_4b).state == "Group 1") {
+                          id(g_window_4b) = 1;
+                        }
+                    - lambda: |-
+                        if (id(group_window_4b).state == "Group 2") {
+                          id(g_window_4b) = 2;
+                        }
+                    - lambda: |-
+                        if (id(group_window_4b).state == "Group 3") {
+                          id(g_window_4b) = 3;
+                        }  
+
+  - platform: template
+    name: Window 1 Button Assign
+    id: remote_window_1
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Button 1
+      - Button 2
+    on_value:
+       then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(remote_window_1).state == "None") {
+                          id(r_window_1) = 0;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_1).state == "Button 1") {
+                          id(r_window_1) = 1;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_1).state == "Button 2") {
+                          id(r_window_1) = 2;
+                        }    
+
+                                               
+  - platform: template
+    name: Window 2 Button Assign
+    id: remote_window_2
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Button 1
+      - Button 2
+    on_value:
+       then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(remote_window_2).state == "None") {
+                          id(r_window_2) = 0;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_2).state == "Button 1") {
+                          id(r_window_2) = 1;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_2).state == "Button 2") {
+                          id(r_window_2) = 2;
+                        }     
+  - platform: template
+    name: Window 3 Button Assign
+    id: remote_window_3
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Button 1
+      - Button 2
+    on_value:
+       then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(remote_window_3).state == "None") {
+                          id(r_window_3) = 0;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_3).state == "Button 1") {
+                          id(r_window_3) = 1;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_3).state == "Button 2") {
+                          id(r_window_3) = 2;
+                        }    
+  - platform: template
+    name: Window 4 Button Assign
+    id: remote_window_4
+    optimistic: true
+    initial_option: "None"
+    options:
+      - None
+      - Button 1
+      - Button 2 
+    on_value:
+       then:
+              - if:
+                  condition:
+                    - for:
+                        time: 30s
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:               
+                    - lambda: |-
+                        if (id(remote_window_4).state == "None") {
+                          id(r_window_4) = 0;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_4).state == "Button 1") {
+                          id(r_window_4) = 1;
+                        }
+                    - lambda: |-
+                        if (id(remote_window_4).state == "Button 2") {
+                          id(r_window_4) = 2;
+                        }   
+number:
+  - platform: template
+    icon: "mdi:timer"
+    name: Group Delay
+    mode: box
+    id: group_delay_s
+    optimistic: true
+    min_value: 0
+    max_value: .5
+    step: .05
+    on_value: 
+      - lambda: id(group_delay) = id(group_delay_s).state; 
+
+  - platform: template
+    icon: "mdi:timer"
+    name: Duration $cover_1_name
+    mode: box
+    id: open_close_time
+    optimistic: true
+    min_value: 200
+    max_value: 10000
+    step: 1
+    on_value: 
+      - lambda: id(closing_time) = id(open_close_time).state; 
+
+  - platform: template
+    icon: "mdi:timer"
+    name: Duration $cover_2_name
+    mode: box
+    id: open_close_time_2
+    optimistic: true
+    min_value: 200
+    max_value: 10000
+    step: 1
+    on_value: 
+      - lambda: id(closing_time_2) = id(open_close_time_2).state;       
+
+  - platform: template
+    icon: "mdi:timer"
+    name: Duration $cover_3_name
+    mode: box
+    id: open_close_time_3
+    optimistic: true
+    min_value: 200
+    max_value: 10000
+    step: 1
+    on_value: 
+      - lambda: id(closing_time_3) = id(open_close_time_3).state;     
+
+  - platform: template
+    icon: "mdi:timer"
+    name: Duration $cover_4_name
+    mode: box
+    id: open_close_time_4
+    optimistic: true
+    min_value: 200
+    max_value: 10000
+    step: 1
+    on_value: 
+      - lambda: id(closing_time_4) = id(open_close_time_4).state;  
+
+cover:
+  - platform: template
+    name: "$group_name_1"
+    id: cover_window_1
+    device_class: blind
+    open_action: 
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 1") {
+            auto call = id(my_blind).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 1") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 1") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 1") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+               
+    close_action:   
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 1") {
+            auto call = id(my_blind).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 1") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 1") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 1") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+    stop_action:
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 1") {
+            auto call = id(my_blind).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 1") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 1") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 1") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action:    
+      - delay: 1s
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 1") {
+            auto call = id(my_blind).make_call();
+            call.set_position(id(cover_window_1).position);
+            call.perform();
+          }
+      - lambda: id(group_delay);
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 1") {
+            id(my_stepper).set_target(pos * id(closing_time));
+          }
+      - lambda: |-
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 1") {
+            auto call = id(my_blind2).make_call();
+            call.set_position(id(cover_window_1).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 1") {
+            id(my_stepper_2).set_target(pos * id(closing_time_2));
+          }
+      - lambda: |-
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 1") {
+            auto call = id(my_blind3).make_call();
+            call.set_position(id(cover_window_1).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 1") {
+            id(my_stepper_3).set_target(pos * id(closing_time_3));
+          }
+      - lambda: |-
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 1") {
+            auto call = id(my_blind4).make_call();
+            call.set_position(id(cover_window_1).position);
+            call.perform();
+          }
+      - lambda: id(group_delay);  
+      - lambda: |-
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 1") {
+            id(my_stepper_4).set_target(pos * id(closing_time_4));
+          }
+                      
+
+
+  - platform: template
+    name: "$group_name_2"
+    id: cover_window_2
+    device_class: blind
+    open_action: 
+     - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 2") {
+            auto call = id(my_blind).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 2") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 2") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 2") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+               
+    close_action:   
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 2") {
+            auto call = id(my_blind).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 2") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 2") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 2") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+    stop_action:
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 2" || id(group_window_1b).state == "Group 2") {
+            auto call = id(my_blind).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 2" || id(group_window_2b).state == "Group 2") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 2" || id(group_window_3b).state == "Group 2") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 2" || id(group_window_4b).state == "Group 2") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_stop();
+            call.perform();
+          }     
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action:  
+############## AAAA##############   
+      - delay: 1s
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 2" || id(group_window_1b).state == "Group 2") {
+            auto call = id(my_blind).make_call();
+            call.set_position(id(cover_window_2).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 2" || id(group_window_1b).state == "Group 2") {
+            id(my_stepper).set_target(pos * id(closing_time));
+          }
+      - lambda: |-
+          if (id(group_window_2a).state == "Group 2" || id(group_window_2b).state == "Group 2") {
+            auto call = id(my_blind2).make_call();
+            call.set_position(id(cover_window_2).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_2a).state == "Group 2" || id(group_window_2b).state == "Group 2") {
+            id(my_stepper_2).set_target(pos * id(closing_time_2));
+          }
+      - lambda: |-
+          if (id(group_window_3a).state == "Group 2" || id(group_window_3b).state == "Group 2") {
+            auto call = id(my_blind3).make_call();
+            call.set_position(id(cover_window_2).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_3a).state == "Group 2" || id(group_window_3b).state == "Group 2") {
+            id(my_stepper_3).set_target(pos * id(closing_time_3));
+          }
+      - lambda: |-
+          if (id(group_window_4a).state == "Group 2" || id(group_window_4b).state == "Group 2") {
+            auto call = id(my_blind4).make_call();
+            call.set_position(id(cover_window_2).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_4a).state == "Group 2" || id(group_window_4b).state == "Group 2") {
+            id(my_stepper_4).set_target(pos * id(closing_time_4));
+          }
+                          
+############## AAAA##############           
+
+
+  - platform: template
+    name: "$group_name_3"
+    id: cover_window_3
+    device_class: blind
+    open_action: 
+     - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 3") {
+            auto call = id(my_blind).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 3") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 3") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 3") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_open();
+            call.perform();
+          }
+               
+    close_action:   
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 1" || id(group_window_1b).state == "Group 3") {
+            auto call = id(my_blind).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 1" || id(group_window_2b).state == "Group 3") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 1" || id(group_window_3b).state == "Group 3") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 1" || id(group_window_4b).state == "Group 3") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_close();
+            call.perform();
+          }
+    stop_action:
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 3" || id(group_window_1b).state == "Group 3") {
+            auto call = id(my_blind).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_2a).state == "Group 3" || id(group_window_2b).state == "Group 3") {
+            auto call = id(my_blind2).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_3a).state == "Group 3" || id(group_window_3b).state == "Group 3") {
+            auto call = id(my_blind3).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+          if (id(group_window_4a).state == "Group 3" || id(group_window_4b).state == "Group 3") {
+            auto call = id(my_blind4).make_call();
+            call.set_command_stop();
+            call.perform();
+          }
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action:  
+############## AAAA##############   
+      - delay: 1s              
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 3" || id(group_window_1b).state == "Group 3") {
+            auto call = id(my_blind).make_call();
+            call.set_position(id(cover_window_3).position);
+            call.perform();
+          }
+      - lambda: id(group_delay); 
+      - lambda: |-
+          if (id(group_window_1a).state == "Group 3" || id(group_window_1b).state == "Group 3") {
+            id(my_stepper).set_target(pos * id(closing_time));
+          }   
+      - lambda: |-
+          if (id(group_window_2a).state == "Group 3" || id(group_window_2b).state == "Group 3") {
+            auto call = id(my_blind2).make_call();
+            call.set_position(id(cover_window_3).position);
+            call.perform();
+          }
+      - lambda: id(group_delay);       
+      - lambda: |-
+          if (id(group_window_2a).state == "Group 3" || id(group_window_2b).state == "Group 3") {
+            id(my_stepper_2).set_target(pos * id(closing_time_2));
+          }    
+      - lambda: |-
+          if (id(group_window_3a).state == "Group 3" || id(group_window_3b).state == "Group 3") {
+            auto call = id(my_blind3).make_call();
+            call.set_position(id(cover_window_3).position);
+            call.perform();
+          }
+      - lambda: id(group_delay);   
+      - lambda: |-
+          if (id(group_window_3a).state == "Group 3" || id(group_window_3b).state == "Group 3") {
+            id(my_stepper_3).set_target(pos * id(closing_time_3));
+          }                       
+      - lambda: |-
+          if (id(group_window_4a).state == "Group 3" || id(group_window_4b).state == "Group 3") {
+            auto call = id(my_blind4).make_call();
+            call.set_position(id(cover_window_3).position);
+            call.perform();
+          }
+      - lambda: id(group_delay);      
+      - lambda: |-
+          if (id(group_window_4a).state == "Group 3" || id(group_window_4b).state == "Group 3") {
+            id(my_stepper_4).set_target(pos * id(closing_time_4));
+          }                       
+############## AAAA##############                      
+
+  - platform: template              
+    name: "$cover_1_name"
+    id: my_blind
+    device_class: blind
+    open_action:
+      - lambda: |-
+          id(my_stepper).set_target(id(closing_time));
+    close_action:
+      - lambda: |-
+          id(my_stepper).set_target(0);
+    stop_action:
+      - lambda: |-
+          id(my_stepper).set_target(id(my_stepper).current_position);   
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action: 
+      - lambda: |-
+          id(my_stepper).set_target(pos * id(closing_time));
+
+
+  - platform: template
+    name: "$cover_2_name"
+    id: my_blind2
+    device_class: blind
+    open_action:
+      - lambda: |-
+          id(my_stepper_2).set_target(id(closing_time_2));
+    close_action:
+      - lambda: |-
+          id(my_stepper_2).set_target(0);
+    stop_action:
+      - lambda: |-
+          id(my_stepper_2).set_target(id(my_stepper_2).current_position);   
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action: 
+      - lambda: |-
+          id(my_stepper_2).set_target(pos * id(closing_time_2));        
+
+  - platform: template
+    name: "$cover_3_name"
+    id: my_blind3
+    device_class: blind
+    open_action:
+      - lambda: |-
+          id(my_stepper_3).set_target(id(closing_time_3));
+    close_action:
+      - lambda: |-
+          id(my_stepper_3).set_target(0);
+    stop_action:
+      - lambda: |-
+          id(my_stepper_3).set_target(id(my_stepper_3).current_position);   
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action: 
+      - lambda: |-
+          id(my_stepper_3).set_target(pos * id(closing_time_3));
+
+  - platform: template
+    name: "$cover_4_name"
+    id: my_blind4
+    device_class: blind
+    open_action:
+      - lambda: |-
+          id(my_stepper_4).set_target(id(closing_time_4));
+    close_action:
+      - lambda: |-
+          id(my_stepper_4).set_target(0);
+    stop_action:
+      - lambda: |-
+          id(my_stepper_4).set_target(id(my_stepper_4).current_position);   
+    optimistic: true
+    assumed_state: true
+    has_position: true
+    position_action: 
+      - lambda: |-
+          id(my_stepper_4).set_target(pos * id(closing_time_4));
+
+stepper:
+  - platform: a4988
+    id: my_stepper
+    step_pin: D3
+    dir_pin:
+      number: D2
+      inverted: true
+    sleep_pin:
+      number: D1
+      inverted: true
+    max_speed: 700
+      #Optional:
+    acceleration: inf
+    deceleration: inf
+
+  - platform: a4988
+    id: my_stepper_2
+    step_pin: D7
+    dir_pin:
+      number: D6
+      inverted: true
+    sleep_pin:
+      number: D5
+      inverted: true
+    max_speed: 700
+      #Optional:
+    acceleration: inf
+    deceleration: inf       
+
+  - platform: a4988
+    id: my_stepper_3
+    step_pin: GPIO15
+    dir_pin:
+      number: GPIO14
+      inverted: true
+    sleep_pin:
+      number: GPIO13
+      inverted: true
+    max_speed: 700
+      #Optional:
+    acceleration: inf
+    deceleration: inf 
+
+  - platform: a4988
+    id: my_stepper_4
+    step_pin: GPIO27
+    dir_pin:
+      number: GPIO32
+      inverted: true
+    sleep_pin:
+      number: GPIO33
+      inverted: true
+    max_speed: 700
+      #Optional:
+    acceleration: inf
+    deceleration: inf 
+
+sensor:            
+  - platform: template
+    id: asdfasdf
+    update_interval: 1s
+    lambda: |-
+      return id(driver_helper);
+
+  - platform: template
+    id: stepper_save
+    update_interval: 1s
+    lambda: |-
+      return id(my_stepper).current_position;
+    on_value: 
+              - if:
+                  condition:
+                     - lambda: return id(stepper_save).state != id(stored_step);
+                     - for:
+                        time: 1min
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:      
+                    - lambda: id(stored_step) = id(my_stepper).current_position; 
+
+  - platform: template
+    id: stepper_save_2
+    update_interval: 1s
+    lambda: |-
+      return id(my_stepper_2).current_position;
+    on_value: 
+              - if:
+                  condition:
+                    - lambda: return id(stepper_save_2).state != id(stored_step_2);
+                    - for:
+                        time: 1min
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:      
+                    - lambda: id(stored_step_2) = id(my_stepper_2).current_position;                     
+
+  - platform: template
+    id: stepper_save_3
+    update_interval: 1s
+    lambda: |-
+      return id(my_stepper_3).current_position;
+    on_value: 
+              - if:
+                  condition:
+                    - lambda: return id(stepper_save_3).state != id(stored_step_3);
+                    - for:
+                        time: 1min
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:      
+                    - lambda: id(stored_step_3) = id(my_stepper_3).current_position;       
+
+  - platform: template
+    id: stepper_save_4
+    update_interval: 1s
+    lambda: |-
+      return id(my_stepper_4).current_position;
+    on_value:            
+              - if:
+                  condition:
+                    - lambda: return id(stepper_save_4).state != id(stored_step_4);
+                    - for:
+                        time: 1min
+                        condition:
+                          switch.is_on: ontimeout                             
+                  then:      
+                    - lambda: id(stored_step_4) = id(my_stepper_4).current_position;     
+
+switch:
+  - platform: template
+    id: ontimeout 
+    optimistic: True
+
+  - platform: gpio
+    pin:
+      number: GPIO02
+      inverted: false
+    id: learna
+    on_turn_on:
+      - delay: 100ms
+      - switch.turn_off: learna
+
+  - platform: gpio
+    pin:
+      number: GPIO04
+      inverted: false
+    id: learnb
+    on_turn_on:
+      - delay: 100ms
+      - switch.turn_off: learnb     
+
+  - platform: gpio
+    pin:
+      number: GPIO02
+      inverted: false
+    id: cleara       
+
+  - platform: gpio
+    pin:
+      number: GPIO04
+      inverted: false
+    id: clearb  
+
+binary_sensor:
+- platform: status
+  id: keypad_status 
+- platform: gpio
+  pin:
+    number: GPIO26
+    mode: INPUT_PULLUP
+  name: Button 1
+  filters:
+   - invert:
+  id: remote_trigger_1
+  on_press:
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_1).state == "Button 1";' 
+          then:
+            - cover.toggle: my_blind
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_2).state == "Button 1";' 
+          then:
+             - cover.toggle: my_blind2
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_3).state == "Button 1";' 
+          then:
+             - cover.toggle: my_blind3
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_3).state == "Button 1";' 
+          then:
+            - cover.toggle: my_blind4
+
+- platform: gpio
+  pin:
+    number: D4
+    mode: INPUT_PULLUP
+  name: Button 2
+  filters:
+   - invert:
+  id: remote_trigger_2
+  on_press:
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_1).state == "Button 2";' 
+          then:
+            - cover.toggle: my_blind
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_2).state == "Button 2";' 
+          then:
+            - cover.toggle: my_blind2
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_3).state == "Button 2";' 
+          then:
+            - cover.toggle: my_blind3
+      - if:
+          condition:
+            - lambda: 'return id(remote_window_3).state == "Button 2";' 
+          then:
+            - cover.toggle: my_blind4         
+    
+
+
+          
+
+
+                `;
+            }                                        
 ////////////////////////////////////////////////////////////////////////////////////////////
           
             // Combine the two configurations
