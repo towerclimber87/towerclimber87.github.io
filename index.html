@@ -51,7 +51,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta</h1>
+  <h1>IHA Code Generator Beta ggggg</h1>
 </header>
 <pre></pre>
 <main>
@@ -1113,8 +1113,7 @@ web_server:
     password: ${textEntry4}           
                 `;
             }
-            additionalConfig += `  
-                                 
+            additionalConfig += `                          
 ota:  
 `; 
     if (selectedOptionValue11 === 'Enabled' ) {
@@ -1122,9 +1121,8 @@ ota:
   password: ${textEntry2}             
                 `;
             }
-            
             if (selectedOptionValue16 === 'home_automation_system' ) {
-                additionalConfig += `   
+                additionalConfig += `
 ethernet:
   id: eth
   type: LAN8720
@@ -1146,11 +1144,15 @@ api:
             }
             additionalConfig += `  
   reboot_timeout: 0s      
+  `;
+  if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `   
 i2c:
   sda: 14
   scl: 15
   scan: true 
-  `;
+                `;
+            }
     if (selectedOptionValue10 === 'Enabled' ) {
                 additionalConfig += `   
 display:
@@ -1227,9 +1229,6 @@ font:
     size: 15 
                 `;
               }            
-              additionalConfig += `   
-text_sensor:
-`;
     if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
                 additionalConfig += `   
   - platform: template
@@ -1250,7 +1249,9 @@ text_sensor:
     icon: mdi:clock-start              
                 `;
             }   
-            additionalConfig += ` 
+    if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `   
+text_sensor:
   - platform: template
     name: "Device IP"
     id: ipaddress
@@ -1258,7 +1259,8 @@ text_sensor:
     icon: "mdi:ip-network"
     lambda: return { id(eth).get_ip_address().str() };
     update_interval: 5s  
-    `;  
+                `;
+            }    
     if (selectedOptionValue11 === 'Enabled' ) {
                 additionalConfig += `   
 sensor:
@@ -1433,7 +1435,7 @@ binary_sensor:
                 brightness: 30%          
                 `;
             }       
-            if (typeDropdown1 !== 'Button Controller' || typeDropdown2 !== 'Button Controller' || typeDropdown3 !== 'Button Controller' || typeDropdown4 !== 'Button Controller' || typeDropdown5 !== 'Button Controller' || typeDropdown6 !== 'Button Controller' || typeDropdown7 !== 'Button Controller' || typeDropdown8 !== 'Button Controller') {
+            if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
     name: Key 1
