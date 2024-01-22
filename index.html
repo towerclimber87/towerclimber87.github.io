@@ -1181,7 +1181,7 @@ mcp23017:
     address: ${selectedOptionValue8} 
             `;
             }                                                                                                       
-            if (selectedOptionValue14 === 'Enabled' ) {
+            if (selectedOptionValue16 === 'home_automation_system' ) {
                 additionalConfig += `   
 esphome:
   name: ${textEntry1}
@@ -4906,7 +4906,7 @@ globals:
 if (selectedOptionValue16 === 'iha_blinds' ) {
                 additionalConfig += `   
 substitutions:
-  name: "livingroom-blinds"  
+  name: "${textEntry5}"  
   cover_1_name: ${textEntry7}
   cover_2_name: ${textEntry8}
   cover_3_name: ${textEntry9}
