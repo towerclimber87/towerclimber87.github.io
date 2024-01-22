@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System asdfasdf</h1>
+        <h1>IHA Rack System eee</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -1048,15 +1048,21 @@ mcp23017: `;
           additionalConfig += `
 esphome:
   name: ${textEntry1}
-  friendly_name: ${textEntry5}
+  friendly_name: ${textEntry5}  
   on_boot:
        - delay: 1s
+       `;
+       if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
+                additionalConfig += `   
        - text_sensor.template.publish:
           id: last_name_pressed
           state: ""    
        - text_sensor.template.publish:
           id: last_state_pressed
-          state: ""  
+          state: ""              
+                `;
+            }       
+            additionalConfig += `               
 esp32:
   board: esp-wrover-kit
   framework: 
@@ -1172,7 +1178,11 @@ font:
     id: my_font_10b
     size: 15 
                 `;
-              }                    
+              }            
+              
+              additionalConfig += `   
+text_sensor:
+`;
     if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
                 additionalConfig += `   
 text_sensor:
