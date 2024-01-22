@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System V2</h1>
+        <h1>IHA Rack System Uptime</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -355,6 +355,18 @@
                               <option value="Enabled">Enabled</option>
                               <!-- Add more options for Node Device 2 as needed -->
                           </select> 
+                          <label for="dropdown10">Display:</label>
+                          <select id="dropdown10">
+                              <option value="Disabled">Disabled</option>
+                              <option value="Enabled">Enabled</option>
+                              <!-- Add more options for Node Device 2 as needed -->
+                          </select>    
+                          <label for="dropdown11">Uptime Sensor:</label>
+                          <select id="dropdown11">
+                              <option value="Disabled">Disabled</option>
+                              <option value="Enabled">Enabled</option>
+                              <!-- Add more options for Node Device 2 as needed -->
+                          </select>                                                     
 
 
     <!-- Add your JavaScript code here if needed -->
@@ -422,7 +434,9 @@
             const selectedOptionValue6 = dropdown6.value;
             const selectedOptionValue7 = dropdown7.value;
             const selectedOptionValue8 = dropdown8.value;  
-            const selectedOptionValue9 = dropdown9.value;                                    
+            const selectedOptionValue9 = dropdown9.value;    
+            const selectedOptionValue10 = dropdown10.value;    
+            const selectedOptionValue11 = dropdown11.value;                                                            
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -1051,6 +1065,9 @@ i2c:
   scl: 15
   scan: true 
 
+  `;
+    if (selectedOptionValue10 === 'Enabled' ) {
+                additionalConfig += `   
 display:
   - platform: ssd1306_i2c
     model: "SSD1306 128x64"
@@ -1066,7 +1083,11 @@ display:
             it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());             
             it.print(0, 34, id(my_font_20b), id(my_white), "IP");                                              
             it.printf(it.get_width() / 2, 46, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, " %s",id(uptime_human).state.c_str());   
-   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());      
+   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());                   
+                `;
+            }   
+   
+   additionalConfig += `   
 text_sensor:
   - platform: template
     id: last_state_pressed    
@@ -1076,10 +1097,20 @@ text_sensor:
     id: last_name_pressed        
     name: ${textEntry5} Device    
     icon: "mdi:state-machine" 
+
+
+    `;
+    if (selectedOptionValue11 === 'Enabled' ) {
+                additionalConfig += `   
   - platform: template
     id: uptime_human 
     name: Update    
-    icon: mdi:clock-start
+    icon: mdi:clock-start              
+                `;
+            }   
+   
+   additionalConfig += `
+    
   - platform: template
     name: "Device IP"
     id: ipaddress
@@ -1088,6 +1119,9 @@ text_sensor:
     lambda: return { id(eth).get_ip_address().str() };
     update_interval: 5s  
 
+    `;
+    if (selectedOptionValue11 === 'Enabled' ) {
+                additionalConfig += `   
 sensor:
   - platform: uptime
     id: uptime_sensor
@@ -1109,7 +1143,11 @@ sensor:
                 (hours ? to_string(hours) + "h " : "") +
                 (minutes ? to_string(minutes) + "m " : "") +
                 (to_string(seconds) + "s")
-              ).c_str();
+              ).c_str();               
+                `;
+            }   
+   
+   additionalConfig += ` 
 
 light:
   - platform: esp32_rmt_led_strip
