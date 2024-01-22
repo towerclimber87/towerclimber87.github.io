@@ -1,8 +1,5 @@
- 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +18,9 @@
             margin-left: 1em; /* Adjust the value as needed */
             display: none; /* Hide the divs by default */
         }
-
         header h1 {
             margin-left: 1em; /* Adjust the value as needed */
             color: blue; /* Set the color to blue */
-            
         }
         main h3 {
             margin-left: 2em; /* Adjust the value as needed */
@@ -42,10 +37,7 @@
           }
         main h7 {
             color: black; /* Set the color to blue */                                              
-            
-    
 }        
-
         #downloadButton {
             margin-left: 2em; /* Adjust the value as needed */
             background-color: green; /* Set the background color to green */
@@ -55,12 +47,11 @@
             cursor: pointer; /* Add cursor pointer for user interaction */
         }
     </style>
-
 </head>
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Rack System 111</h1>
+  <h1>IHA Code Generator</h1>
 </header>
 <pre></pre>
 <main>
@@ -108,7 +99,15 @@
         <option value="Enabled">Enabled</option>
         <!-- Add more options for Node Device 2 as needed -->
     </select>                                                                               
-    <main>        
+    <main>  
+      <main>
+        <label for="dropdown15">API Password:</label>
+        <select id="dropdown15">
+            <option value="Disabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
+            <!-- Add more options for Node Device 2 as needed -->
+        </select>                                                                               
+        <main>              
   <main>
   <label for="dropdown10">Display:</label>
   <select id="dropdown10">
@@ -139,12 +138,11 @@
           <!-- Add more options for Node Device 2 as needed -->
       </select>                                                                               
       <main>  
-<pre></pre>  
+<pre></pre>
 <button id="downloadButton">Download YAML File</button>
 <body>
     <main>
       <h3>Node Attached Devices </h3>
- 
     <main>
       <h4>Address Assigned on board </h4>  
         <label for="dropdown1">Device 1 Address:</label>
@@ -1115,15 +1113,19 @@ ethernet:
   phy_addr: 1
   power_pin: GPIO16
 api:
-  encryption:
-    key: "${textEntry6}"
+`; 
+    if (selectedOptionValue15 === 'Enabled' ) {
+                additionalConfig += `   
+                encryption:
+    key: "${textEntry6}"           
+                `;
+            }
+            additionalConfig += `  
   reboot_timeout: 0s      
-
 i2c:
   sda: 14
   scl: 15
   scan: true 
-
   `;
     if (selectedOptionValue10 === 'Enabled' ) {
                 additionalConfig += `   
@@ -1168,7 +1170,6 @@ color:
     red: 100%
     green: 100%
     blue: 100%              
-
 font:
   - file: "_fonts/refsan.ttf"
     id: my_font_30
@@ -1202,7 +1203,6 @@ font:
     size: 15 
                 `;
               }            
-              
               additionalConfig += `   
 text_sensor:
 `;
@@ -1595,8 +1595,7 @@ binary_sensor:
         input: True
         pullup: True           
       inverted: True
-  
-            
+   
   - platform: template
     name: $gpio_rack_card_1_device_9
     id: device_9_invert
