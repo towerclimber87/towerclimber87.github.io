@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System V1</h1>
+        <h1>IHA Rack System V3</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -449,7 +449,9 @@
             const selectedOptionValue7 = dropdown7.value;
             const selectedOptionValue8 = dropdown8.value;  
             const selectedOptionValue9 = dropdown9.value;    
-            const selectedOptionValue10 = dropdown10.value;                                                
+            const selectedOptionValue10 = dropdown10.value;    
+            const selectedOptionValue11 = dropdown11.value;    
+            const selectedOptionValue12 = dropdown12.value;                                                                        
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -1242,6 +1244,9 @@ binary_sensor:
   - platform: status
     id: system_status
     name: status
+    `;
+    if (selectedOptionValue12 === 'Enabled' ) {
+                additionalConfig += `    
     on_press:
           then:
             - light.turn_on: 
@@ -1257,8 +1262,9 @@ binary_sensor:
                 red: 1.0
                 green: 0.0
                 blue: 0.0
-                brightness: 30%    
-                `;            
+                brightness: 30%          
+                `;
+            }            
                 if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
   - platform: template
