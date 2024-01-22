@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System eee</h1>
+        <h1>IHA Rack System 1111</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -350,8 +350,7 @@
       <pre></pre>     
       <main>
         <h4>Options </h4>
-      </main>    
-      <pre></pre>                         
+      </main>                          
       <main>
         <label for="dropdown9">Logger:</label>
         <select id="dropdown9">
@@ -388,7 +387,15 @@
             <option value="Disabled">Disabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>                                                                               
-        <main>                         
+        <main>    
+          <main>
+            <label for="dropdown14">Web Server:</label>
+            <select id="dropdown14">
+                <option value="Enabled">Enabled</option>
+                <option value="Disabled">Disabled</option>
+                <!-- Add more options for Node Device 2 as needed -->
+            </select>                                                                               
+            <main>                                   
 
 
     <!-- Add your JavaScript code here if needed -->
@@ -460,7 +467,8 @@
             const selectedOptionValue10 = dropdown10.value;    
             const selectedOptionValue11 = dropdown11.value;    
             const selectedOptionValue12 = dropdown12.value;   
-            const selectedOptionValue13 = dropdown13.value;                                                                                    
+            const selectedOptionValue13 = dropdown13.value;  
+            const selectedOptionValue14 = dropdown14.value;                                                                                                
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -1067,13 +1075,18 @@ esp32:
   board: esp-wrover-kit
   framework: 
     type: esp-idf
-       
-       
-web_server:
+
+    `; 
+    if (selectedOptionValue14 === 'Enabled' ) {
+                additionalConfig += `   
+                web_server:
   port: 80
   auth:
     username: ${textEntry3}
-    password: ${textEntry4}
+    password: ${textEntry4}           
+                `;
+            }
+            additionalConfig += `  
                                  
 ota:  
 `; 
