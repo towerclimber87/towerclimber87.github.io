@@ -88,11 +88,59 @@
     <label for="textEntry6">API Key:</label>
     <input type="text" id="textEntry6" value="AS2li9nZ3SakmvEWO4QWJQVuAwCUAdO38RPUG7MUNmA=">
 </div>
+<pre></pre>     
+<main>
+  <h4>Options </h4>                       
+<main>
+  <label for="dropdown9">Logger:</label>
+  <select id="dropdown9">
+      <option value="Disabled">Disabled</option>
+      <option value="Enabled">Enabled</option>
+      <!-- Add more options for Node Device 2 as needed -->
+  </select> 
+  <main>
+    <label for="dropdown13">OTA Password:</label>
+    <select id="dropdown13">
+        <option value="Disabled">Disabled</option>
+        <option value="Enabled">Enabled</option>
+        <!-- Add more options for Node Device 2 as needed -->
+    </select>                                                                               
+    <main>        
+  <main>
+  <label for="dropdown10">Display:</label>
+  <select id="dropdown10">
+      <option value="Enabled">Enabled</option>
+      <option value="Disabled">Disabled</option>
+      <!-- Add more options for Node Device 2 as needed -->
+  </select>    
+  <main>
+  <label for="dropdown11">Uptime Sensor:</label>
+  <select id="dropdown11">
+      <option value="Enabled">Enabled</option>
+      <option value="Disabled">Disabled</option>
+      <!-- Add more options for Node Device 2 as needed -->
+  </select>  
+  <main>
+  <label for="dropdown12">Status RGB:</label>
+  <select id="dropdown12">
+      <option value="Enabled">Enabled</option>
+      <option value="Disabled">Disabled</option>
+      <!-- Add more options for Node Device 2 as needed -->
+  </select>                                                                               
+  <main>    
+    <main>
+      <label for="dropdown14">Web Server:</label>
+      <select id="dropdown14">
+          <option value="Enabled">Enabled</option>
+          <option value="Disabled">Disabled</option>
+          <!-- Add more options for Node Device 2 as needed -->
+      </select>                                                                               
+      <main>  
 <pre></pre>  
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System 654654</h1>
+        <h1>IHA Rack System 111</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -345,54 +393,7 @@
                     <option value="8 Port Relay Board 4">8 Port Relay Board 4</option>
                     <!-- Add more options for Node Device Type 2 as needed -->
                 </select>    
-      </div>   
-      <pre></pre>     
-      <main>
-        <h4>Options </h4>                       
-      <main>
-        <label for="dropdown9">Logger:</label>
-        <select id="dropdown9">
-            <option value="Disabled">Disabled</option>
-            <option value="Enabled">Enabled</option>
-            <!-- Add more options for Node Device 2 as needed -->
-        </select> 
-        <main>
-          <label for="dropdown13">OTA Password:</label>
-          <select id="dropdown13">
-              <option value="Disabled">Disabled</option>
-              <option value="Enabled">Enabled</option>
-              <!-- Add more options for Node Device 2 as needed -->
-          </select>                                                                               
-          <main>        
-        <main>
-        <label for="dropdown10">Display:</label>
-        <select id="dropdown10">
-            <option value="Enabled">Enabled</option>
-            <option value="Disabled">Disabled</option>
-            <!-- Add more options for Node Device 2 as needed -->
-        </select>    
-        <main>
-        <label for="dropdown11">Uptime Sensor:</label>
-        <select id="dropdown11">
-            <option value="Enabled">Enabled</option>
-            <option value="Disabled">Disabled</option>
-            <!-- Add more options for Node Device 2 as needed -->
-        </select>  
-        <main>
-        <label for="dropdown12">Status RGB:</label>
-        <select id="dropdown12">
-            <option value="Enabled">Enabled</option>
-            <option value="Disabled">Disabled</option>
-            <!-- Add more options for Node Device 2 as needed -->
-        </select>                                                                               
-        <main>    
-          <main>
-            <label for="dropdown14">Web Server:</label>
-            <select id="dropdown14">
-                <option value="Enabled">Enabled</option>
-                <option value="Disabled">Disabled</option>
-                <!-- Add more options for Node Device 2 as needed -->
-            </select>                                                                               
+      </div>                                                                            
             <main>                                   
 
 
@@ -1088,7 +1089,7 @@ esp32:
     `; 
     if (selectedOptionValue14 === 'Enabled' ) {
                 additionalConfig += `   
-                web_server:
+web_server:
   port: 80
   auth:
     username: ${textEntry3}
@@ -1207,7 +1208,6 @@ text_sensor:
 `;
     if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
                 additionalConfig += `   
-text_sensor:
   - platform: template
     id: last_state_pressed    
     name: ${textEntry5} State
