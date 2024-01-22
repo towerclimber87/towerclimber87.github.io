@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System aaa</h1>
+        <h1>IHA Rack System asdfasdf</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -360,6 +360,14 @@
             <!-- Add more options for Node Device 2 as needed -->
         </select> 
         <main>
+          <label for="dropdown13">OTA Password:</label>
+          <select id="dropdown13">
+              <option value="Disabled">Disabled</option>
+              <option value="Enabled">Enabled</option>
+              <!-- Add more options for Node Device 2 as needed -->
+          </select>                                                                               
+          <main>        
+        <main>
         <label for="dropdown10">Display:</label>
         <select id="dropdown10">
             <option value="Enabled">Enabled</option>
@@ -451,7 +459,8 @@
             const selectedOptionValue9 = dropdown9.value;    
             const selectedOptionValue10 = dropdown10.value;    
             const selectedOptionValue11 = dropdown11.value;    
-            const selectedOptionValue12 = dropdown12.value;                                                                        
+            const selectedOptionValue12 = dropdown12.value;   
+            const selectedOptionValue13 = dropdown13.value;                                                                                    
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -1061,7 +1070,13 @@ web_server:
     password: ${textEntry4}
                                  
 ota:  
-  password: ${textEntry2} 
+`; 
+    if (selectedOptionValue11 === 'Enabled' ) {
+                additionalConfig += `   
+  password: ${textEntry2}             
+                `;
+            }
+            additionalConfig += `              
 ethernet:
   id: eth
   type: LAN8720
@@ -1157,9 +1172,8 @@ font:
     id: my_font_10b
     size: 15 
                 `;
-              }       
-                                       
-    if (selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
+              }                    
+    if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
                 additionalConfig += `   
 text_sensor:
   - platform: template
