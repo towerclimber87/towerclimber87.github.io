@@ -23,7 +23,7 @@
             color: blue; /* Set the color to blue */
         }
         main h3 {
-            margin-left: 2em; /* Adjust the value as needed */
+            margin-left: 0em; /* Adjust the value as needed */
             color: blue; /* Set the color to blue */
           }
         main h4 {
@@ -51,7 +51,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator  ddd</h1>
+  <h1>IHA Code Generator Beta</h1>
 </header>
 <pre></pre>
 <main>
@@ -139,9 +139,20 @@
       <main>  
 <pre></pre>
 <button id="downloadButton">Download YAML File</button>
+<main>
+  <h3>IHA Projects </h3>
+<main>
+<main>
+  <label for="dropdown16">Pick Project:</label>
+  <select id="dropdown16">
+      <option value="ESP32 Blinds">ESP32 Blinds</option>
+      <option value="Placeholder">Placeholder</option>
+      <!-- Add more options for Node Device 2 as needed -->
+  </select>                                                                               
+  <main> 
 <body>
     <main>
-      <h3>Node Attached Devices </h3>
+      <h3>GPIO Rack System (Node Attached Devices) </h3>
     <main>
       <h4>Address Assigned on board </h4>  
         <label for="dropdown1">Device 1 Address:</label>
@@ -465,7 +476,8 @@
             const selectedOptionValue12 = dropdown12.value;   
             const selectedOptionValue13 = dropdown13.value;  
             const selectedOptionValue14 = dropdown14.value; 
-            const selectedOptionValue15 = dropdown15.value;                                                                                                            
+            const selectedOptionValue15 = dropdown15.value;       
+            const selectedOptionValue16 = dropdown16.value;                                                                                                                        
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -627,7 +639,6 @@ substitutions:
 mcp23017:           
             `;
             }  
-
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `
   - id: 'mcp23017_hub_16_gpio_rack_card_1'
@@ -1411,7 +1422,7 @@ binary_sensor:
             if (typeDropdown1 !== 'Button Controller' || typeDropdown2 !== 'Button Controller' || typeDropdown3 !== 'Button Controller' || typeDropdown4 !== 'Button Controller' || typeDropdown5 !== 'Button Controller' || typeDropdown6 !== 'Button Controller' || typeDropdown7 !== 'Button Controller' || typeDropdown8 !== 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
-    name: $device_1
+    name: Key 1
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 0
@@ -1433,10 +1444,9 @@ binary_sensor:
         - lambda: |-
             id(last_name_pressed).publish_state("Key 1");
             id(last_state_pressed).publish_state("OFF");  
-         
       
   - platform: gpio
-    name: $device_2
+    name: Key 2
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 1
@@ -1460,7 +1470,7 @@ binary_sensor:
             id(last_state_pressed).publish_state("OFF");    
       
   - platform: gpio
-    name: $device_3
+    name: Key 3
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 2
@@ -1484,7 +1494,7 @@ binary_sensor:
             id(last_state_pressed).publish_state("OFF");          
       
   - platform: gpio
-    name: $device_4
+    name: Key 4
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 3
@@ -1508,7 +1518,7 @@ binary_sensor:
             id(last_state_pressed).publish_state("OFF");                 
 
   - platform: gpio
-    name: $device_5
+    name: Key 5
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 4
@@ -1532,7 +1542,7 @@ binary_sensor:
             id(last_state_pressed).publish_state("OFF");       
           
   - platform: gpio
-    name: $device_6
+    name: Key 6
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 5
@@ -1556,7 +1566,7 @@ binary_sensor:
             id(last_state_pressed).publish_state("OFF");          
       
   - platform: gpio
-    name: $device_7
+    name: Key 7
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 6
@@ -1580,7 +1590,7 @@ binary_sensor:
             id(last_state_pressed).publish_state("OFF");  
 
   - platform: gpio
-    name: $device_8
+    name: Key 8
     pin:
       mcp23xxx: mcp23017_hub_8_button_keypad
       number: 7
@@ -1602,8 +1612,6 @@ binary_sensor:
         - lambda: |-
             id(last_name_pressed).publish_state("Key 8");
             id(last_state_pressed).publish_state("OFF");    
-            
-
                 `;
             }                                       
                 if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
