@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System V3</h1>
+        <h1>IHA Rack System V3dd</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -1179,7 +1179,9 @@ text_sensor:
     icon: "mdi:ip-network"
     lambda: return { id(eth).get_ip_address().str() };
     update_interval: 5s  
-
+    `;
+    if (selectedOptionValue11 === 'Enabled' ) {
+                additionalConfig += `   
 sensor:
   - platform: uptime
     id: uptime_sensor
@@ -1201,8 +1203,11 @@ sensor:
                 (hours ? to_string(hours) + "h " : "") +
                 (minutes ? to_string(minutes) + "m " : "") +
                 (to_string(seconds) + "s")
-              ).c_str();
-
+              ).c_str();               
+                `;
+            }   
+    if (selectedOptionValue12 === 'Enabled' ) {
+                additionalConfig += `   
 light:
   - platform: esp32_rmt_led_strip
     id: statusledlight
@@ -1213,10 +1218,10 @@ light:
     rgb_order: GRB
     chipset: ws2812
     icon: "mdi:led-outline"
-    max_refresh_rate: 500ms
-    
-
-
+    max_refresh_rate: 500ms           
+                `;
+            }   
+            additionalConfig += `
 switch:
   - platform: restart
     id: "restart_system"
