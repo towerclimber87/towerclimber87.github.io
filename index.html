@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System asdfasdf</h1>
+        <h1>IHA Rack System aaa</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -1158,7 +1158,9 @@ font:
     size: 15 
                 `;
               }       
-              additionalConfig += `                           
+                                       
+    if (selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
+                additionalConfig += `   
 text_sensor:
   - platform: template
     id: last_state_pressed    
@@ -1169,6 +1171,7 @@ text_sensor:
     name: ${textEntry5} Device    
     icon: "mdi:state-machine"            
                 `;
+            }   
     if (selectedOptionValue11 === 'Enabled' ) {
                 additionalConfig += `   
   - platform: template
