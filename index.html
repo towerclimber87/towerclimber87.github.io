@@ -54,7 +54,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 999</h1>
+  <h1>IHA Code Generator Beta 1111</h1>
 </header>
 <pre></pre>
 <main>
@@ -1348,14 +1348,6 @@ font:
     size: 15 
                 `;
               }              
-    if (selectedOptionValue11 === 'Enabled' ) {
-                additionalConfig += `   
-  - platform: template
-    id: uptime_human 
-    name: Update    
-    icon: mdi:clock-start              
-                `;
-            }   
     if (selectedOptionValue16 === 'home_automation_system' ) {
                 additionalConfig += `   
 text_sensor:
@@ -1375,7 +1367,15 @@ text_sensor:
     name: ${textEntry5} Device    
     icon: "mdi:state-machine"     
                 `;
-            }    
+            }   
+            if (selectedOptionValue11 === 'Enabled' ) {
+                additionalConfig += `   
+  - platform: template
+    id: uptime_human 
+    name: Update    
+    icon: mdi:clock-start              
+                `;
+            }                
     if (selectedOptionValue11 === 'Enabled' ) {
                 additionalConfig += `   
 sensor:
@@ -6388,35 +6388,6 @@ switch:
     id: ontimeout 
     optimistic: True
 
-  - platform: gpio
-    pin:
-      number: GPIO02
-      inverted: false
-    id: learna
-    on_turn_on:
-      - delay: 100ms
-      - switch.turn_off: learna
-
-  - platform: gpio
-    pin:
-      number: GPIO04
-      inverted: false
-    id: learnb
-    on_turn_on:
-      - delay: 100ms
-      - switch.turn_off: learnb     
-
-  - platform: gpio
-    pin:
-      number: GPIO02
-      inverted: false
-    id: cleara       
-
-  - platform: gpio
-    pin:
-      number: GPIO04
-      inverted: false
-    id: clearb  
 
 binary_sensor:
 - platform: status
