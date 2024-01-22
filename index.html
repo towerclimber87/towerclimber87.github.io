@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System V5</h1>
+        <h1>IHA Rack System V1</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -362,22 +362,22 @@
         <main>
         <label for="dropdown10">Display:</label>
         <select id="dropdown10">
-            <option value="Disabled">Enabled</option>
-            <option value="Enabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
+            <option value="Disabled">Disabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>    
         <main>
         <label for="dropdown11">Uptime Sensor:</label>
         <select id="dropdown11">
-            <option value="Disabled">Enabled</option>
-            <option value="Enabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
+            <option value="Disabled">Disabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>  
         <main>
         <label for="dropdown12">Status RGB:</label>
-        <select id="dropdown11">
-            <option value="Disabled">Enabled</option>
-            <option value="Enabled">Disabled</option>
+        <select id="dropdown12">
+            <option value="Enabled">Enabled</option>
+            <option value="Disabled">Disabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>                                                                               
         <main>                         
@@ -1230,65 +1230,6 @@ switch:
     icon: "mdi:electric-switch"
     inverted: no  
     id: relay
-
-                   
-color:
-  - id: my_red
-    red: 100%
-    green: 0%
-    blue: 0%
-  - id: my_yellow
-    red: 100%
-    green: 100%
-    blue: 0%
-  - id: my_green
-    red: 0%
-    green: 100%
-    blue: 0%
-  - id: my_blue
-    red: 0%
-    green: 0%
-    blue: 100%
-  - id: my_gray
-    red: 50%
-    green: 50%
-    blue: 50%   
-  - id: my_white
-    red: 100%
-    green: 100%
-    blue: 100%              
-
-font:
-  - file: "_fonts/refsan.ttf"
-    id: my_font_30
-    size: 30
-  - file: "_fonts/refsan.ttf"
-    id: my_font_20
-    size: 20
-  - file: "_fonts/refsan.ttf"
-    id: my_font_13
-    size: 13
-  - file: "_fonts/refsan.ttf"
-    id: my_font_15
-    size: 15    
-  - file: "_fonts/refsan.ttf"
-    id: my_font_10
-    size: 10   
-  - file: "_fonts/refsan.ttf"
-    id: my_font_30b
-    size: 15
-  - file: "_fonts/refsan.ttf"
-    id: my_font_20b
-    size: 10
-  - file: "_fonts/refsan.ttf"
-    id: my_font_13b
-    size: 10  
-  - file: "_fonts/refsan.ttf"
-    id: my_font_15b
-    size: 15    
-  - file: "_fonts/refsan.ttf"
-    id: my_font_10b
-    size: 15 
     `;
     if (selectedOptionValue9 === 'Enabled' ) {
                 additionalConfig += `   
