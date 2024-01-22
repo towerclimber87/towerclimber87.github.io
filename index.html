@@ -92,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System V2</h1>
+        <h1>IHA Rack System V5</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -347,7 +347,11 @@
                     <!-- Add more options for Node Device Type 2 as needed -->
                 </select>    
       </div>   
-      <pre></pre>                 
+      <pre></pre>     
+      <main>
+        <h4>Options </h4>
+      </main>    
+      <pre></pre>                         
       <main>
         <label for="dropdown9">Logger:</label>
         <select id="dropdown9">
@@ -444,7 +448,8 @@
             const selectedOptionValue6 = dropdown6.value;
             const selectedOptionValue7 = dropdown7.value;
             const selectedOptionValue8 = dropdown8.value;  
-            const selectedOptionValue9 = dropdown9.value;                                    
+            const selectedOptionValue9 = dropdown9.value;    
+            const selectedOptionValue10 = dropdown10.value;                                                
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -1073,6 +1078,9 @@ i2c:
   scl: 15
   scan: true 
 
+  `;
+    if (selectedOptionValue10 === 'Enabled' ) {
+                additionalConfig += `   
 display:
   - platform: ssd1306_i2c
     model: "SSD1306 128x64"
@@ -1088,7 +1096,67 @@ display:
             it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());             
             it.print(0, 34, id(my_font_20b), id(my_white), "IP");                                              
             it.printf(it.get_width() / 2, 46, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, " %s",id(uptime_human).state.c_str());   
-   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());      
+   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());           
+color:
+  - id: my_red
+    red: 100%
+    green: 0%
+    blue: 0%
+  - id: my_yellow
+    red: 100%
+    green: 100%
+    blue: 0%
+  - id: my_green
+    red: 0%
+    green: 100%
+    blue: 0%
+  - id: my_blue
+    red: 0%
+    green: 0%
+    blue: 100%
+  - id: my_gray
+    red: 50%
+    green: 50%
+    blue: 50%   
+  - id: my_white
+    red: 100%
+    green: 100%
+    blue: 100%              
+
+font:
+  - file: "_fonts/refsan.ttf"
+    id: my_font_30
+    size: 30
+  - file: "_fonts/refsan.ttf"
+    id: my_font_20
+    size: 20
+  - file: "_fonts/refsan.ttf"
+    id: my_font_13
+    size: 13
+  - file: "_fonts/refsan.ttf"
+    id: my_font_15
+    size: 15    
+  - file: "_fonts/refsan.ttf"
+    id: my_font_10
+    size: 10   
+  - file: "_fonts/refsan.ttf"
+    id: my_font_30b
+    size: 15
+  - file: "_fonts/refsan.ttf"
+    id: my_font_20b
+    size: 10
+  - file: "_fonts/refsan.ttf"
+    id: my_font_13b
+    size: 10  
+  - file: "_fonts/refsan.ttf"
+    id: my_font_15b
+    size: 15    
+  - file: "_fonts/refsan.ttf"
+    id: my_font_10b
+    size: 15 
+                `;
+              }       
+              additionalConfig += `                           
 text_sensor:
   - platform: template
     id: last_state_pressed    
