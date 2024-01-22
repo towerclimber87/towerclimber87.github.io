@@ -21,9 +21,11 @@
             margin-left: 1em; /* Adjust the value as needed */
             display: none; /* Hide the divs by default */
         }
+
         header h1 {
             margin-left: 1em; /* Adjust the value as needed */
             color: blue; /* Set the color to blue */
+            
         }
         main h3 {
             margin-left: 2em; /* Adjust the value as needed */
@@ -40,7 +42,10 @@
           }
         main h7 {
             color: black; /* Set the color to blue */                                              
+            
+    
 }        
+
         #downloadButton {
             margin-left: 2em; /* Adjust the value as needed */
             background-color: green; /* Set the background color to green */
@@ -50,6 +55,7 @@
             cursor: pointer; /* Add cursor pointer for user interaction */
         }
     </style>
+
 </head>
 </main>                                              
 </div>    
@@ -86,7 +92,7 @@
 <button id="downloadButton">Download YAML File</button>
 <body>
     <header>
-        <h1>IHA Rack System hhi</h1>
+        <h1>IHA Rack System V2</h1>
     </header>
     <main>
       <h3>Node Attached Devices </h3>
@@ -343,34 +349,35 @@
       </div>   
       <pre></pre>                 
       <main>
-                          <label for="dropdown9">Logger:</label>
-                          <select id="dropdown9">
-                              <option value="Disabled">Disabled</option>
-                              <option value="Enabled">Enabled</option>
-                              <!-- Add more options for Node Device 2 as needed -->
-                          </select> 
-                          <main>
-                          <label for="dropdown10">Display:</label>
-                          <select id="dropdown10">
-                              <option value="Disabled">Enabled</option>
-                              <option value="Enabled">Disabled</option>
-                              <!-- Add more options for Node Device 2 as needed -->
-                          </select>    
-                          <main>
-                          <label for="dropdown11">Uptime Sensor:</label>
-                          <select id="dropdown11">
-                              <option value="Disabled">Enabled</option>
-                              <option value="Enabled">Disabled</option>
-                              <!-- Add more options for Node Device 2 as needed -->
-                          </select>  
-                          <main>
-                          <label for="dropdown12">Status RGB:</label>
-                          <select id="dropdown11">
-                              <option value="Disabled">Enabled</option>
-                              <option value="Enabled">Disabled</option>
-                              <!-- Add more options for Node Device 2 as needed -->
-                          </select>                                                                               
-                          <main>
+        <label for="dropdown9">Logger:</label>
+        <select id="dropdown9">
+            <option value="Disabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
+            <!-- Add more options for Node Device 2 as needed -->
+        </select> 
+        <main>
+        <label for="dropdown10">Display:</label>
+        <select id="dropdown10">
+            <option value="Disabled">Enabled</option>
+            <option value="Enabled">Disabled</option>
+            <!-- Add more options for Node Device 2 as needed -->
+        </select>    
+        <main>
+        <label for="dropdown11">Uptime Sensor:</label>
+        <select id="dropdown11">
+            <option value="Disabled">Enabled</option>
+            <option value="Enabled">Disabled</option>
+            <!-- Add more options for Node Device 2 as needed -->
+        </select>  
+        <main>
+        <label for="dropdown12">Status RGB:</label>
+        <select id="dropdown11">
+            <option value="Disabled">Enabled</option>
+            <option value="Enabled">Disabled</option>
+            <!-- Add more options for Node Device 2 as needed -->
+        </select>                                                                               
+        <main>                         
+
 
     <!-- Add your JavaScript code here if needed -->
     <script name="yamlmaker">
@@ -437,10 +444,7 @@
             const selectedOptionValue6 = dropdown6.value;
             const selectedOptionValue7 = dropdown7.value;
             const selectedOptionValue8 = dropdown8.value;  
-            const selectedOptionValue9 = dropdown9.value;    
-            const selectedOptionValue10 = dropdown10.value;    
-            const selectedOptionValue11 = dropdown11.value;    
-            const selectedOptionValue12 = dropdown12.value;                                                                        
+            const selectedOptionValue9 = dropdown9.value;                                    
             const selectedTypeValue1 = typeDropdown1.value;
             const selectedTypeValue2 = typeDropdown2.value;
             const selectedTypeValue3 = typeDropdown3.value;
@@ -1068,9 +1072,7 @@ i2c:
   sda: 14
   scl: 15
   scan: true 
-  `;
-    if (selectedOptionValue10 === 'Enabled' ) {
-                additionalConfig += `   
+
 display:
   - platform: ssd1306_i2c
     model: "SSD1306 128x64"
@@ -1086,7 +1088,82 @@ display:
             it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());             
             it.print(0, 34, id(my_font_20b), id(my_white), "IP");                                              
             it.printf(it.get_width() / 2, 46, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, " %s",id(uptime_human).state.c_str());   
-   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());           
+   #         it.printf(it.get_width() / 2,34, id(my_font_20b), id(my_white), TextAlign::CENTER_HORIZONTAL, " %s",id(ipaddress).state.c_str());      
+text_sensor:
+  - platform: template
+    id: last_state_pressed    
+    name: ${textEntry5} State
+    icon: "mdi:state-machine"
+  - platform: template
+    id: last_name_pressed        
+    name: ${textEntry5} Device    
+    icon: "mdi:state-machine" 
+  - platform: template
+    id: uptime_human 
+    name: Update    
+    icon: mdi:clock-start
+  - platform: template
+    name: "Device IP"
+    id: ipaddress
+    entity_category: diagnostic
+    icon: "mdi:ip-network"
+    lambda: return { id(eth).get_ip_address().str() };
+    update_interval: 5s  
+
+sensor:
+  - platform: uptime
+    id: uptime_sensor
+    update_interval: 1s
+    on_raw_value:
+      then:
+        - text_sensor.template.publish:
+            id: uptime_human
+            state: !lambda |-
+              int seconds = round(id(uptime_sensor).raw_state);
+              int days = seconds / (24 * 3600);
+              seconds = seconds % (24 * 3600);
+              int hours = seconds / 3600;
+              seconds = seconds % 3600;
+              int minutes = seconds /  60;
+              seconds = seconds % 60;
+              return (
+                (days ? to_string(days) + "d " : "") +
+                (hours ? to_string(hours) + "h " : "") +
+                (minutes ? to_string(minutes) + "m " : "") +
+                (to_string(seconds) + "s")
+              ).c_str();
+
+light:
+  - platform: esp32_rmt_led_strip
+    id: statusledlight
+    name: "Status LED RGB"
+    pin: 33
+    num_leds: 1
+    rmt_channel: 1
+    rgb_order: GRB
+    chipset: ws2812
+    icon: "mdi:led-outline"
+    max_refresh_rate: 500ms
+    
+
+
+switch:
+  - platform: restart
+    id: "restart_system"
+  - platform: gpio
+    pin: GPIO32
+    name: Pico Buzzer
+    inverted: no  
+    id: buzzer
+    icon: "mdi:surround-sound"
+  - platform: gpio
+    pin: GPIO04
+    name: On Board Relay
+    icon: "mdi:electric-switch"
+    inverted: no  
+    id: relay
+
+                   
 color:
   - id: my_red
     red: 100%
@@ -1144,110 +1221,18 @@ font:
   - file: "_fonts/refsan.ttf"
     id: my_font_10b
     size: 15 
-                `;
-            }   
-    if (selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
-                additionalConfig += `   
-text_sensor:
-  - platform: template
-    id: last_state_pressed    
-    name: ${textEntry5} State
-    icon: "mdi:state-machine"
-  - platform: template
-    id: last_name_pressed        
-    name: ${textEntry5} Device    
-    icon: "mdi:state-machine"            
-                `;
-            }      
-    if (selectedOptionValue11 === 'Enabled' ) {
-                additionalConfig += `   
-  - platform: template
-    id: uptime_human 
-    name: Update    
-    icon: mdi:clock-start              
-                `;
-            }   
-            additionalConfig += ` 
-  - platform: template
-    name: "Device IP"
-    id: ipaddress
-    entity_category: diagnostic
-    icon: "mdi:ip-network"
-    lambda: return { id(eth).get_ip_address().str() };
-    update_interval: 5s  
-    `;  
-    if (selectedOptionValue11 === 'Enabled' ) {
-                additionalConfig += `   
-sensor:
-  - platform: uptime
-    id: uptime_sensor
-    update_interval: 1s
-    on_raw_value:
-      then:
-        - text_sensor.template.publish:
-            id: uptime_human
-            state: !lambda |-
-              int seconds = round(id(uptime_sensor).raw_state);
-              int days = seconds / (24 * 3600);
-              seconds = seconds % (24 * 3600);
-              int hours = seconds / 3600;
-              seconds = seconds % 3600;
-              int minutes = seconds /  60;
-              seconds = seconds % 60;
-              return (
-                (days ? to_string(days) + "d " : "") +
-                (hours ? to_string(hours) + "h " : "") +
-                (minutes ? to_string(minutes) + "m " : "") +
-                (to_string(seconds) + "s")
-              ).c_str();               
-                `;
-            }   
-    if (selectedOptionValue12 === 'Enabled' ) {
-                additionalConfig += `   
-light:
-  - platform: esp32_rmt_led_strip
-    id: statusledlight
-    name: "Status LED RGB"
-    pin: 33
-    num_leds: 1
-    rmt_channel: 1
-    rgb_order: GRB
-    chipset: ws2812
-    icon: "mdi:led-outline"
-    max_refresh_rate: 500ms           
-                `;
-            }   
-            additionalConfig += `
-switch:
-  - platform: restart
-    id: "restart_system"
-  - platform: gpio
-    pin: GPIO32
-    name: Pico Buzzer
-    inverted: no  
-    id: buzzer
-    icon: "mdi:surround-sound"
-  - platform: gpio
-    pin: GPIO04
-    name: On Board Relay
-    icon: "mdi:electric-switch"
-    inverted: no  
-    id: relay
     `;
     if (selectedOptionValue9 === 'Enabled' ) {
                 additionalConfig += `   
 logger:                
                 `;
             }                     
-//////////////////////////  BINARY SENSOR   //////////////////////       
-          additionalConfig += `                                          
+//////////////////////////  BINARY SENSOR   //////////////////////                                                 
+          additionalConfig += `
 binary_sensor:
   - platform: status
     id: system_status
     name: status
-    `;
-    if (selectedOptionValue12 === 'Enabled' ) {
-                additionalConfig += `    
     on_press:
           then:
             - light.turn_on: 
@@ -1263,10 +1248,9 @@ binary_sensor:
                 red: 1.0
                 green: 0.0
                 blue: 0.0
-                brightness: 30%          
-                `;
-            }                         
-      if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
+                brightness: 30%    
+                `;            
+                if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
   - platform: template
     name: $gpio_rack_card_1_device_1
