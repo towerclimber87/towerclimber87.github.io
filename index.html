@@ -37,7 +37,7 @@
           }
         main h7 {
             color: black; /* Set the color to blue */                                              
-}        
+          }        
         #downloadButton {
             margin-left: 2em; /* Adjust the value as needed */
             background-color: green; /* Set the background color to green */
@@ -51,13 +51,12 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator  ggetger</h1>
+  <h1>IHA Code Generator  ddd</h1>
 </header>
 <pre></pre>
 <main>
   <h4>ENTER YOUR OWN VALUES </h4>
 </main>  
-<!-- Add 6 text entry boxes -->
 <div>
     <label for="textEntry1">ESPHome Name:</label>
     <input type="text" id="textEntry1" value="iha-rack-system">
@@ -1061,7 +1060,55 @@ mcp23017:
   - id: 'mcp23017_hub_8_relay_board_4'
     address: ${selectedOptionValue8} 
             `;
-            }                                                     
+            }    
+            if (selectedTypeValue1 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue1} 
+            `;
+            } 
+            if (selectedTypeValue2 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue2} 
+            `;
+            }   
+            if (selectedTypeValue3 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue3} 
+            `;
+            }     
+            if (selectedTypeValue4 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue4} 
+            `;
+            }    
+            if (selectedTypeValue5 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue5} 
+            `;
+            } 
+            if (selectedTypeValue6 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue6} 
+            `;
+            }   
+            if (selectedTypeValue7 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue7} 
+            `;
+            }     
+            if (selectedTypeValue8 === 'Button Controller' ) {
+                additionalConfig += `
+  - id: 'mcp23017_hub_8_button_keypad'
+    address: ${selectedOptionValue8} 
+            `;
+            }                                                                                                       
           additionalConfig += `
 esphome:
   name: ${textEntry1}
@@ -1294,6 +1341,90 @@ switch:
     inverted: no  
     id: relay
     `;
+    if (typeDropdown1 !== 'Button Controller' || typeDropdown2 !== 'Button Controller' || typeDropdown3 !== 'Button Controller' || typeDropdown4 !== 'Button Controller' || typeDropdown5 !== 'Button Controller' || typeDropdown6 !== 'Button Controller' || typeDropdown7 !== 'Button Controller' || typeDropdown8 !== 'Button Controller') {
+                additionalConfig += `   
+  - platform: gpio
+    name: Key Light 8
+    id: key_light_8
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 15
+      mode:
+       output: true
+      inverted: false           
+      
+  - platform: gpio
+    name: Key Light 7
+    id: key_light_7
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 14
+      mode:
+       output: true
+      inverted: false          
+      
+  - platform: gpio
+    name: Key Light 6
+    id: key_light_6
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 13
+      mode:
+       output: true
+      inverted: false       
+      
+  - platform: gpio
+    name: Key Light 5
+    id: key_light_5
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 12
+      mode:
+       output: true
+      inverted: false         
+
+  - platform: gpio
+    name: Key Light 4
+    id: key_light_4
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 11
+      mode:
+       output: true
+      inverted: false           
+          
+  - platform: gpio
+    name: Key Light 3
+    id: key_light_3
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 10
+      mode:
+       output: true
+      inverted: false  
+       
+      
+  - platform: gpio
+    name: Key Light 2
+    id: key_light_2
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 9
+      mode:
+       output: true
+      inverted: false      
+
+  - platform: gpio
+    name: Key Light 1
+    id: key_light_1
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 8
+      mode:
+       output: true
+      inverted: false          
+                `;
+            }     
     if (selectedOptionValue9 === 'Enabled' ) {
                 additionalConfig += `   
 logger:                
@@ -1325,9 +1456,207 @@ binary_sensor:
                 blue: 0.0
                 brightness: 30%          
                 `;
-            }            
-                if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
+            }       
+            if (typeDropdown1 !== 'Button Controller' || typeDropdown2 !== 'Button Controller' || typeDropdown3 !== 'Button Controller' || typeDropdown4 !== 'Button Controller' || typeDropdown5 !== 'Button Controller' || typeDropdown6 !== 'Button Controller' || typeDropdown7 !== 'Button Controller' || typeDropdown8 !== 'Button Controller') {
                 additionalConfig += `   
+  - platform: gpio
+    name: $device_1
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 0
+      mode:
+        input: True
+        pullup: True          
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_1
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 1");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_1      
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 1");
+            id(last_state_pressed).publish_state("OFF");  
+         
+      
+  - platform: gpio
+    name: $device_2
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 1
+      mode:
+        input: True
+        pullup: True    
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_2      
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 2");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_2        
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 2");
+            id(last_state_pressed).publish_state("OFF");    
+      
+  - platform: gpio
+    name: $device_3
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 2
+      mode:
+        input: True
+        pullup: True           
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_3       
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 3");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_3 
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 3");
+            id(last_state_pressed).publish_state("OFF");          
+      
+  - platform: gpio
+    name: $device_4
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 3
+      mode:
+        input: True
+        pullup: True         
+      inverted: True   
+    on_press:
+      then: 
+        - switch.turn_on: key_light_4
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 4");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_4
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 4");
+            id(last_state_pressed).publish_state("OFF");                 
+
+  - platform: gpio
+    name: $device_5
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 4
+      mode:
+        input: True
+        pullup: True   
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_5
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 5");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_5
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 5");
+            id(last_state_pressed).publish_state("OFF");       
+          
+  - platform: gpio
+    name: $device_6
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 5
+      mode:
+        input: True
+        pullup: True        
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_6
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 6");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_6
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 6");
+            id(last_state_pressed).publish_state("OFF");          
+      
+  - platform: gpio
+    name: $device_7
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 6
+      mode:
+        input: True
+        pullup: True      
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_7
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 7");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_7
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 7");
+            id(last_state_pressed).publish_state("OFF");  
+
+  - platform: gpio
+    name: $device_8
+    pin:
+      mcp23xxx: mcp23017_hub_8_button_keypad
+      number: 7
+      mode:
+        input: True
+        pullup: True           
+      inverted: True
+    on_press:
+      then: 
+        - switch.turn_on: key_light_8
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 8");
+            id(last_state_pressed).publish_state("ON");         
+    on_release:
+      then:  
+        - switch.turn_off: key_light_8
+        - delay: 500ms
+        - lambda: |-
+            id(last_name_pressed).publish_state("Key 8");
+            id(last_state_pressed).publish_state("OFF");    
+            
+
+                `;
+            }                                       
+                if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
+                additionalConfig += `                   
   - platform: template
     name: $gpio_rack_card_1_device_1
     id: device_1_invert
