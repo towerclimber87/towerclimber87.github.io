@@ -1320,19 +1320,7 @@ font:
     id: my_font_10b
     size: 15 
                 `;
-              }            
-    if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
-                additionalConfig += `   
-  - platform: template
-    id: last_state_pressed    
-    name: ${textEntry5} State
-    icon: "mdi:state-machine"
-  - platform: template
-    id: last_name_pressed        
-    name: ${textEntry5} Device    
-    icon: "mdi:state-machine"            
-                `;
-            }   
+              }              
     if (selectedOptionValue11 === 'Enabled' ) {
                 additionalConfig += `   
   - platform: template
@@ -1351,6 +1339,14 @@ text_sensor:
     icon: "mdi:ip-network"
     lambda: return { id(eth).get_ip_address().str() };
     update_interval: 5s  
+  - platform: template
+    id: last_state_pressed    
+    name: ${textEntry5} State
+    icon: "mdi:state-machine"
+  - platform: template
+    id: last_name_pressed        
+    name: ${textEntry5} Device    
+    icon: "mdi:state-machine"     
                 `;
             }    
     if (selectedOptionValue11 === 'Enabled' ) {
@@ -1394,7 +1390,9 @@ light:
     max_refresh_rate: 500ms           
                 `;
             }   
-            additionalConfig += `
+
+            if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `
 switch:
   - platform: restart
     id: "restart_system"
@@ -1409,8 +1407,9 @@ switch:
     name: On Board Relay
     icon: "mdi:electric-switch"
     inverted: no  
-    id: relay
-    `;
+    id: relay       
+                `;
+            }            
     if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
@@ -1501,12 +1500,14 @@ logger:
                 `;
             }                     
 //////////////////////////  BINARY SENSOR   //////////////////////                                                 
-          additionalConfig += `
+          if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `
 binary_sensor:
   - platform: status
     id: system_status
-    name: status
-    `;
+    name: status    
+                `;
+            }          
     if (selectedOptionValue12 === 'Enabled' ) {
                 additionalConfig += `    
     on_press:
@@ -3861,11 +3862,14 @@ binary_sensor:
   `;  
           }                                               
 //////////////////////////  BUTTON   //////////////////////
-          additionalConfig += `
+            if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `
 button:
   - platform: template
     name: button placeholder
-    internal: true   `;        
+    internal: true   
+                `;
+            }           
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                 additionalConfig += `   
   - platform: template
@@ -4511,9 +4515,9 @@ button:
           option: "None" 
           `;  
           }    
-          
 //////////////////////////  SELECET   //////////////////////
-            additionalConfig += `
+            if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `
 select:
   - platform: template
     id: select_placeholder
@@ -4521,9 +4525,9 @@ select:
     initial_option: "None"
     internal: true 
     options:
-      - "None"
-    
-`;        
+      - "None"  
+                `;
+            }       
               if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                   additionalConfig += `    
   - platform: template
@@ -4668,13 +4672,15 @@ select:
       - "NC"      
       `;  
           }    
-          
 //////////////////////////  GLOBALS   //////////////////////
-            additionalConfig += `
+          if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `
 globals: 
   - id: global_placeholder
     type: float
-    restore_value: no`;        
+    restore_value: no
+                `;
+            }       
               if (selectedTypeValue1 === '16 GPIO Rack Card 1' || selectedTypeValue2 === '16 GPIO Rack Card 1' || selectedTypeValue3 === '16 GPIO Rack Card 1' || selectedTypeValue4 === '16 GPIO Rack Card 1') {
                   additionalConfig += `    
   - id: device_1_set_1_16
@@ -5190,16 +5196,7 @@ wifi:
     password: password1234
     ap_timeout: 10s  
 
-api:
-  reboot_timeout: 0s    
-ota:  
 
-web_server:
-  port: 80
-  auth:
-    username: admin
-    password: password1234
-captive_portal:
 
 globals: 
   - id: driver_helper
