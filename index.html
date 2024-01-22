@@ -1150,8 +1150,8 @@ font:
     size: 15 
                 `;
             }   
-   additionalConfig += `   
-    `;
+ 
+
     if (selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
                 additionalConfig += `   
 text_sensor:
@@ -1164,9 +1164,8 @@ text_sensor:
     name: ${textEntry5} Device    
     icon: "mdi:state-machine"            
                 `;
-            }   
-    additionalConfig += `    
-    `;
+            }      
+
     if (selectedOptionValue11 === 'Enabled' ) {
                 additionalConfig += `   
   - platform: template
@@ -1175,8 +1174,7 @@ text_sensor:
     icon: mdi:clock-start              
                 `;
             }   
-   additionalConfig += `
-    
+            additionalConfig += ` 
   - platform: template
     name: "Device IP"
     id: ipaddress
@@ -1211,8 +1209,7 @@ sensor:
               ).c_str();               
                 `;
             }   
-   additionalConfig += ` 
-   `;
+
     if (selectedOptionValue12 === 'Enabled' ) {
                 additionalConfig += `   
 light:
@@ -1228,7 +1225,7 @@ light:
     max_refresh_rate: 500ms           
                 `;
             }   
-   additionalConfig += `    
+            additionalConfig += `
 switch:
   - platform: restart
     id: "restart_system"
@@ -1250,8 +1247,8 @@ switch:
 logger:                
                 `;
             }                     
-//////////////////////////  BINARY SENSOR   //////////////////////                                                 
-          additionalConfig += `
+//////////////////////////  BINARY SENSOR   //////////////////////       
+additionalConfig += `                                          
 binary_sensor:
   - platform: status
     id: system_status
