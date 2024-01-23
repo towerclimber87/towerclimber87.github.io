@@ -54,7 +54,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta</h1>
+  <h1>IHA Code Generator Beta 4444</h1>
 </header>
 <pre></pre>
 <main>
@@ -134,7 +134,6 @@
   </select>                                                                               
   <main> 
    <div class="subb9">  
-        
     <main>
       <h3>GPIO Rack System (Node Attached Devices) </h3>
     <main>
@@ -505,12 +504,25 @@
       <pre></pre>     
       <main>               
    </div>  
-   <div id="section3" class="subb11">             
-    <main>
-        <h3>Place Holder</h3>
-    <main>  
+   <div id="section4" class="subb12">             
+    <div>
+      <label for="textEntry16">Device 1</label>
+      <input type="text" id="textEntry16" value="GPIO 1">
+      <label for="textEntry17">Device 2</label>
+      <input type="text" id="textEntry16" value="GPIO 2">          
+  </div>>  
       <main>               
- </div>                                            
+ </div>       
+   <div id="section3" class="subb11">             
+    <main>                      
+      <main>
+        <h3>Place Holder</h3>
+      <main>      
+      <pre></pre>     
+      <main> 
+      <main>               
+ </div>    
+
 </body>      
     <!-- Add your JavaScript code here if needed -->
     <script name="yamlmaker">
@@ -541,7 +553,8 @@
         const subbDiv8 = document.querySelector('.subb8');  
         const subbDiv9 = document.querySelector('.subb9');    
         const subbDiv10 = document.querySelector('.subb10');
-        const subbDiv11 = document.querySelector('.subb11');                                        
+        const subbDiv11 = document.querySelector('.subb11');   
+        const subbDiv12 = document.querySelector('.subb12');                                                
         const downloadButton = document.getElementById('downloadButton');  
 
         function updateSubbVisibility() {
@@ -556,7 +569,8 @@
             subbDiv8.style.display = dropdown8.value === 'none' ? 'none' : 'block'; 
             subbDiv9.style.display = dropdown16.value !== 'home_automation_system' ? 'None' : 'block';  
             subbDiv10.style.display = dropdown16.value === 'iha_blinds' ? 'block' : 'none';
-            subbDiv11.style.display = dropdown16.value === 'Placeholder' ? 'block' : 'none';                                               
+            subbDiv11.style.display = dropdown16.value === 'Placeholder' ? 'block' : 'none';  
+            subbDiv12.style.display = typeDropdown1.value === '16 GPIO Rack Card 1' ? 'block' : 'none';                                                           
 
             // If dropdown1 is set to none and dropdown2 is not set to none, hide subbDiv1
            // if (dropdown1.value === 'none' && dropdown2.value !== 'none' && dropdown3.value !== 'none' && dropdown3.value !== 'none'&& dropdown4.value !== 'none' && dropdown5.value !== 'none'&& dropdown6.value !== 'none' && dropdown7.value !== 'none'&& dropdown8.value !== 'none') {
