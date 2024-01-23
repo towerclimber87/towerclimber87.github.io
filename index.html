@@ -54,7 +54,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta</h1>
+  <h1>IHA Code Generator Beta  fffff</h1>
 </header>
 <pre></pre>
 <main>
@@ -121,6 +121,17 @@
 <pre></pre>
 <button id="downloadButton">Download YAML File</button>
 <main>
+  <script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module">
+</script>
+<esp-web-install-button id="installButton" manifest="webflash/manifest.json"></esp-web-install-button>
+<br>
+<span>NOTE: Make sure to close anything using your devices com port (e.g. Serial monitor)</span>
+</div>
+<div id="notSupported" style="display: none;">
+            Your browser does not support the Web Serial API. Try Chrome
+</div>  
   <h3>IHA Projects </h3>
 <main>
 <main>
@@ -6472,6 +6483,13 @@ binary_sensor:
 
             // Remove the link from the body
             document.body.removeChild(downloadLink);
+            if(navigator.serial){
+            document.getElementById("notSupported").style.display = 'none';
+            document.getElementById("main").style.display = 'block';
+            } else {
+                document.getElementById("notSupported").style.display = 'block';
+                document.getElementById("main").style.display = 'none';
+            }            
         });
 
         // Initial call to set the initial visibility based on the default values
