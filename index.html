@@ -72,7 +72,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 111</h1>
+  <h1>IHA Code Generator Beta 222</h1>
 </header>
 <pre></pre>
 <main>
@@ -180,6 +180,7 @@
         <pre></pre>        
       <h4>Address Assigned on board </h4>  
       <h7>If 4 Port Rack is used, it must start with Card 1 </h7> 
+      <main> 
         <label for="dropdown1">Device 1 Address:</label>
         <select id="dropdown1">
             <option value="none">None</option>
@@ -4003,28 +4004,6 @@ button:
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `   
   - platform: template
-    name: Reset All GPIO to NO (1-16)
-    icon: "mdi:alert"
-    on_press:
-      - lambda: |-
-            id(device_1_set_1_16) = 1;
-            id(device_2_set_1_16) = 1;
-            id(device_3_set_1_16) = 1;
-            id(device_4_set_1_16) = 1;
-            id(device_5_set_1_16) = 1;
-            id(device_6_set_1_16) = 1;
-            id(device_7_set_1_16) = 1;
-            id(device_8_set_1_16) = 1;
-            id(device_9_set_1_16) = 1;
-            id(device_10_set_1_16) = 1;
-            id(device_11_set_1_16) = 1;
-            id(device_12_set_1_16) = 1;
-            id(device_13_set_1_16) = 1;
-            id(device_14_set_1_16) = 1;
-            id(device_15_set_1_16) = 1;
-            id(device_16_set_1_16) = 1;
-
-  - platform: template
     name: GPIO State Set (NO\NC 1-16)
     icon: "mdi:set-merge"
     on_press:
@@ -4033,127 +4012,127 @@ button:
             id(device_1_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO1}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_1") {
             id(device_1_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO2}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_2") {
             id(device_2_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO2}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_2") {
             id(device_2_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO3}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_3") {
             id(device_3_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO3}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_3") {
             id(device_3_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO4}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_4") {
             id(device_4_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO4}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_4") {
             id(device_4_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO5}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_5") {
             id(device_5_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO5}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_5") {
             id(device_5_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO6}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_6") {
             id(device_6_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO6}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_6") {
             id(device_6_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO7}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_7") {
             id(device_7_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO7}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_7") {
             id(device_7_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO8}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_8") {
             id(device_8_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO8}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_8") {
             id(device_8_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO9}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_9") {
             id(device_9_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO9}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_9") {
             id(device_9_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO10}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_10") {
             id(device_10_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO10}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_10") {
             id(device_10_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO11}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_11") {
             id(device_11_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO11}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_11") {
             id(device_11_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO12}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_12") {
             id(device_12_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO12}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_12") {
             id(device_12_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO13}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_13") {
             id(device_13_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO13}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_13") {
             id(device_13_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO14}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_14") {
             id(device_14_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO14}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_14") {
             id(device_14_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO15}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_15") {
             id(device_15_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO15}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_15") {
             id(device_15_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO16}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_16") {
             id(device_16_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO16}") {
+          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_16") {
             id(device_16_set_1_16) = 2;
           }  
       - select.set:
@@ -4162,411 +4141,420 @@ button:
           `;  
           }    
           if (selectedTypeValue2 === '16 GPIO Rack Card 2') {
-          additionalConfig += `   
-
+          additionalConfig += `  
+  - platform: template
+    name: GPIO State Set (NO\NC 17-32)
+    icon: "mdi:set-merge"
+    on_press:           
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO17}") {
-            id(device_1_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_1") {
+            id(device_1_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO17}") {
-            id(device_1_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_1") {
+            id(device_1_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO18}") {
-            id(device_2_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_2") {
+            id(device_2_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO18}") {
-            id(device_2_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_2") {
+            id(device_2_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO19}") {
-            id(device_3_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_3") {
+            id(device_3_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO19}") {
-            id(device_3_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_3") {
+            id(device_3_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO20}") {
-            id(device_4_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_4") {
+            id(device_4_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO20}") {
-            id(device_4_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_4") {
+            id(device_4_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO21}") {
-            id(device_5_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_5") {
+            id(device_5_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO21}") {
-            id(device_5_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_5") {
+            id(device_5_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO22}") {
-            id(device_6_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_6") {
+            id(device_6_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO22}") {
-            id(device_6_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_6") {
+            id(device_6_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO23}") {
-            id(device_7_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_7") {
+            id(device_7_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO23}") {
-            id(device_7_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_7") {
+            id(device_7_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO24}") {
-            id(device_8_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_8") {
+            id(device_8_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO24}") {
-            id(device_8_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_8") {
+            id(device_8_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO25}") {
-            id(device_9_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_9") {
+            id(device_9_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO25}") {
-            id(device_9_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_9") {
+            id(device_9_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO26}") {
-            id(device_10_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_10") {
+            id(device_10_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO26}") {
-            id(device_10_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_10") {
+            id(device_10_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO27}") {
-            id(device_11_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_11") {
+            id(device_11_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO27}") {
-            id(device_11_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_11") {
+            id(device_11_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO28}") {
-            id(device_12_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_12") {
+            id(device_12_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO28}") {
-            id(device_12_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_12") {
+            id(device_12_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO29}") {
-            id(device_13_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_13") {
+            id(device_13_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO29}") {
-            id(device_13_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_13") {
+            id(device_13_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO30}") {
-            id(device_14_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_14") {
+            id(device_14_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO30}") {
-            id(device_14_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_14") {
+            id(device_14_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO31}") {
-            id(device_15_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_15") {
+            id(device_15_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO31}") {
-            id(device_15_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_15") {
+            id(device_15_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO32}") {
-            id(device_16_set_17_32) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_2).state == "$gpio_rack_card_2_device_16") {
+            id(device_16_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO32}") {
-            id(device_16_set_17_32) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_2).state == "$gpio_rack_card_2_device_16") {
+            id(device_16_set_1_16) = 2;
           }  
       - select.set:
-          id: select_gpio_1
+          id: select_gpio_2
           option: "None" 
-
           `;    
         }                
         if (selectedTypeValue3 === '16 GPIO Rack Card 3' ) {
                 additionalConfig += `   
+  - platform: template
+    name: GPIO State Set (NO\NC 33-48)
+    icon: "mdi:set-merge"
+    on_press:                
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO33}") {
-            id(device_1_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_1") {
+            id(device_1_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO33}") {
-            id(device_1_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_1") {
+            id(device_1_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO34}") {
-            id(device_2_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_2") {
+            id(device_2_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO34}") {
-            id(device_2_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_2") {
+            id(device_2_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO35}") {
-            id(device_3_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_3") {
+            id(device_3_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO35}") {
-            id(device_3_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_3") {
+            id(device_3_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO36}") {
-            id(device_4_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_4") {
+            id(device_4_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO36}") {
-            id(device_4_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_4") {
+            id(device_4_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO37}") {
-            id(device_5_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_5") {
+            id(device_5_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO37}") {
-            id(device_5_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_5") {
+            id(device_5_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO38}") {
-            id(device_6_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_6") {
+            id(device_6_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO38}") {
-            id(device_6_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_6") {
+            id(device_6_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO39}") {
-            id(device_7_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_7") {
+            id(device_7_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO39}") {
-            id(device_7_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_7") {
+            id(device_7_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO40}") {
-            id(device_8_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_8") {
+            id(device_8_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO40}") {
-            id(device_8_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_8") {
+            id(device_8_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO41}") {
-            id(device_9_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_9") {
+            id(device_9_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO41}") {
-            id(device_9_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_9") {
+            id(device_9_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "G${textEntryGPIO42}") {
-            id(device_10_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_10") {
+            id(device_10_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO42}") {
-            id(device_10_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_10") {
+            id(device_10_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO43}") {
-            id(device_11_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_11") {
+            id(device_11_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO43}") {
-            id(device_11_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_11") {
+            id(device_11_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO44}") {
-            id(device_12_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_12") {
+            id(device_12_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO44}") {
-            id(device_12_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_12") {
+            id(device_12_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO45}") {
-            id(device_13_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_13") {
+            id(device_13_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO45}") {
-            id(device_13_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_13") {
+            id(device_13_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO46}") {
-            id(device_14_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_14") {
+            id(device_14_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO46}") {
-            id(device_14_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_14") {
+            id(device_14_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO47}") {
-            id(device_15_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_15") {
+            id(device_15_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO47}") {
-            id(device_15_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_15") {
+            id(device_15_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO48}") {
-            id(device_16_set_33_48) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_3).state == "$gpio_rack_card_3_device_16") {
+            id(device_16_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO48}") {
-            id(device_16_set_33_48) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_3).state == "$gpio_rack_card_3_device_16") {
+            id(device_16_set_1_16) = 2;
           }  
       - select.set:
-          id: select_gpio_1
+          id: select_gpio_3
           option: "None" 
           `;  
           }    
           if (selectedTypeValue4 === '16 GPIO Rack Card 4' ) {
                 additionalConfig += `   
-
+  - platform: template
+    name: GPIO State Set (NO\NC 49-64)
+    icon: "mdi:set-merge"
+    on_press:
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO49}") {
-            id(device_1_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_1") {
+            id(device_1_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO49}") {
-            id(device_1_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_1") {
+            id(device_1_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO50}") {
-            id(device_2_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_2") {
+            id(device_2_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO50}") {
-            id(device_2_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_2") {
+            id(device_2_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO51}") {
-            id(device_3_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_3") {
+            id(device_3_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO51}") {
-            id(device_3_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_3") {
+            id(device_3_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO52}") {
-            id(device_4_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_4") {
+            id(device_4_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO52}") {
-            id(device_4_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_4") {
+            id(device_4_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO53}") {
-            id(device_5_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_5") {
+            id(device_5_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO53}") {
-            id(device_5_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_5") {
+            id(device_5_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO54}") {
-            id(device_6_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_6") {
+            id(device_6_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO54}") {
-            id(device_6_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_6") {
+            id(device_6_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO55}") {
-            id(device_7_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_7") {
+            id(device_7_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO55}") {
-            id(device_7_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_7") {
+            id(device_7_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO56}") {
-            id(device_8_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_8") {
+            id(device_8_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO56}") {
-            id(device_8_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_8") {
+            id(device_8_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO57}") {
-            id(device_9_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_9") {
+            id(device_9_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO57}") {
-            id(device_9_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_9") {
+            id(device_9_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO58}") {
-            id(device_10_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_10") {
+            id(device_10_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO58}") {
-            id(device_10_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_10") {
+            id(device_10_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO59}") {
-            id(device_11_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_11") {
+            id(device_11_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO59}") {
-            id(device_11_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_11") {
+            id(device_11_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO60}") {
-            id(device_12_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_12") {
+            id(device_12_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO60}") {
-            id(device_12_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_12") {
+            id(device_12_set_1_16) = 2;
           }  
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO61}") {
-            id(device_13_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_13") {
+            id(device_13_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO61}") {
-            id(device_13_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_13") {
+            id(device_13_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO62}") {
-            id(device_14_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_14") {
+            id(device_14_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO62}") {
-            id(device_14_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_14") {
+            id(device_14_set_1_16) = 2;
           }          
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO63}") {
-            id(device_15_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_15") {
+            id(device_15_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO63}") {
-            id(device_15_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_15") {
+            id(device_15_set_1_16) = 2;
           }
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO64}") {
-            id(device_16_set_49_64) = 1;
+          if (id(device_select_1).state == "NO" && id(select_gpio_4).state == "$gpio_rack_card_4_device_16") {
+            id(device_16_set_1_16) = 1;
           } 
       - lambda: |-
-          if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "${textEntryGPIO64}") {
-            id(device_16_set_49_64) = 2;
+          if (id(device_select_1).state == "NC" && id(select_gpio_4).state == "$gpio_rack_card_4_device_16") {
+            id(device_16_set_1_16) = 2;
           }  
       - select.set:
-          id: select_gpio_1
-          option: "None" 
+          id: select_gpio_4
+          option: "None"  
           `;  
           }    
 //////////////////////////  SELECET   //////////////////////
@@ -4635,6 +4623,7 @@ select:
     optimistic: true
     initial_option: "None"
     options:
+      - "None"
       - "GPIO 17"
       - "GPIO 18"
       - "GPIO 19"
@@ -4669,6 +4658,7 @@ select:
     optimistic: true
     initial_option: "None"
     options:        
+      - "None"
       - "GPIO 33"
       - "GPIO 34"
       - "GPIO 35"
@@ -4702,7 +4692,8 @@ select:
     id: select_gpio_4
     optimistic: true
     initial_option: "None"
-    options:                  
+    options:        
+      - "None"          
       - "GPIO 49"
       - "GPIO 50"
       - "GPIO 51"
