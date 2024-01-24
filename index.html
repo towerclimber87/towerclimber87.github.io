@@ -72,7 +72,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 111</h1>
+  <h1>IHA Code Generator Beta 222</h1>
 </header>
 <pre></pre>
 <main>
@@ -193,7 +193,6 @@
             <!-- Add more options for Node Device 1 as needed -->
         </select>
     </main>
-    <pre></pre>     
     <div class="subb">
         <label for="type1">Device 1 Type:</label>
         <select id="type1">
@@ -221,8 +220,7 @@
             <option value="0x27">0x27</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>
-    </main>
-    <pre></pre>     
+    </main>  
     <div class="subb2">
         <label for="type2">Device 2 Type:</label>
         <select id="type2">
@@ -250,8 +248,7 @@
           <option value="0x27">0x27</option>
           <!-- Add more options for Node Device 2 as needed -->
       </select>
-    </main>
-    <pre></pre>     
+    </main>  
     <div class="subb3">
       <label for="type3">Device 3 Type:</label>
       <select id="type3">
@@ -279,8 +276,7 @@
             <option value="0x27">0x27</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>
-    </main>
-    <pre></pre>     
+    </main>  
     <div class="subb4">
         <label for="type4">Device 4 Type:</label>
         <select id="type4">
@@ -308,8 +304,7 @@
               <option value="0x27">0x27</option>
               <!-- Add more options for Node Device 2 as needed -->
           </select>
-    </main>
-    <pre></pre>     
+    </main>   
     <div class="subb5">
           <label for="type5">Device 5 Type:</label>
           <select id="type5">
@@ -337,7 +332,6 @@
                 <!-- Add more options for Node Device 2 as needed -->
             </select>
      </main>
-     <pre></pre>     
      <div class="subb6">
             <label for="type6">Device 6 Type:</label>
             <select id="type6">
@@ -365,11 +359,11 @@
                   <option value="0x27">0x27</option>
                   <!-- Add more options for Node Device 2 as needed -->
               </select>
-    </main>
-    <pre></pre>     
+    </main>   
     <div class="subb7">
               <label for="type7">Device 7 Type:</label>
               <select id="type7">
+                <pre></pre>  
                 <option value="none">none</option>
                 <option value="Button Controller">Button Controller</option>
                 <option value="8 Port Relay Board 1">8 Port Relay Board 1</option>
@@ -4493,7 +4487,7 @@ button:
             id(device_16_set_49_64) = 1;
           } 
       - lambda: |-
-          if (id(device_select_4).state == "NC" && id(select_gpio_4).state == "${textEntryGPIO56}64") {
+          if (id(device_select_4).state == "NC" && id(select_gpio_4).state == "${textEntryGPIO64}") {
             id(device_16_set_49_64) = 2;
           }  
       - select.set:
