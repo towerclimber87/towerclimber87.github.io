@@ -72,7 +72,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta</h1>
+  <h1>IHA Code Generator Beta 111</h1>
 </header>
 <pre></pre>
 <main>
@@ -1246,7 +1246,74 @@ esphome:
           state: ""    
        - text_sensor.template.publish:
           id: last_state_pressed
-          state: ""              
+          state: "" 
+       - lambda: |-
+          if (id(set_all_devices_to_no).state != 1) {
+            id(device_1_set_1_16).publish_state(1);
+            id(device_2_set_1_16).publish_state(1);
+            id(device_3_set_1_16).publish_state(1);
+            id(device_4_set_1_16).publish_state(1);
+            id(device_5_set_1_16).publish_state(1);
+            id(device_6_set_1_16).publish_state(1);
+            id(device_7_set_1_16).publish_state(1);
+            id(device_8_set_1_16).publish_state(1);
+            id(device_9_set_1_16).publish_state(1);
+            id(device_10_set_1_16).publish_state(1);
+            id(device_11_set_1_16).publish_state(1);
+            id(device_12_set_1_16).publish_state(1);
+            id(device_13_set_1_16).publish_state(1);
+            id(device_14_set_1_16).publish_state(1);
+            id(device_15_set_1_16).publish_state(1);
+            id(device_16_set_1_16).publish_state(1);
+            id(device_1_set_17_32).publish_state(1);
+            id(device_2_set_17_32).publish_state(1);
+            id(device_3_set_17_32).publish_state(1);
+            id(device_4_set_17_32).publish_state(1);
+            id(device_5_set_17_32).publish_state(1);
+            id(device_6_set_17_32).publish_state(1);
+            id(device_7_set_17_32).publish_state(1);
+            id(device_8_set_17_32).publish_state(1);
+            id(device_9_set_17_32).publish_state(1);
+            id(device_10_set_17_32).publish_state(1);
+            id(device_11_set_17_32).publish_state(1);
+            id(device_12_set_17_32).publish_state(1);
+            id(device_13_set_17_32).publish_state(1);
+            id(device_14_set_17_32).publish_state(1);
+            id(device_15_set_17_32).publish_state(1);
+            id(device_16_set_17_32).publish_state(1);   
+            id(device_1_set_3_48).publish_state(1);
+            id(device_2_set_3_48).publish_state(1);
+            id(device_3_set_3_48).publish_state(1);
+            id(device_4_set_3_48).publish_state(1);
+            id(device_5_set_3_48).publish_state(1);
+            id(device_6_set_3_48).publish_state(1);
+            id(device_7_set_3_48).publish_state(1);
+            id(device_8_set_3_48).publish_state(1);
+            id(device_9_set_3_48).publish_state(1);
+            id(device_10_set_3_48).publish_state(1);
+            id(device_11_set_3_48).publish_state(1);
+            id(device_12_set_3_48).publish_state(1);
+            id(device_13_set_3_48).publish_state(1);
+            id(device_14_set_3_48).publish_state(1);
+            id(device_15_set_3_48).publish_state(1);
+            id(device_16_set_3_48).publish_state(1); 
+            id(device_1_set_49_64).publish_state(1);
+            id(device_2_set_49_64).publish_state(1);
+            id(device_3_set_49_64).publish_state(1);
+            id(device_4_set_49_64).publish_state(1);
+            id(device_5_set_49_64).publish_state(1);
+            id(device_6_set_49_64).publish_state(1);
+            id(device_7_set_49_64).publish_state(1);
+            id(device_8_set_49_64).publish_state(1);
+            id(device_9_set_49_64).publish_state(1);
+            id(device_10_set_49_64).publish_state(1);
+            id(device_11_set_49_64).publish_state(1);
+            id(device_12_set_49_64).publish_state(1);
+            id(device_13_set_49_64).publish_state(1);
+            id(device_14_set_49_64).publish_state(1);
+            id(device_15_set_49_64).publish_state(1);
+            id(device_16_set_49_64).publish_state(1);                                          
+          }                       
                 `;
             }       
 
@@ -4622,6 +4689,11 @@ globals:
             }       
               if (selectedTypeValue1 === '16 GPIO Rack Card 1' ) {
                   additionalConfig += `    
+#########################
+  - id: set_all_devices_to_no
+    type: float
+    restore_value: yes
+#########################                  
   - id: device_1_set_1_16
     type: float
     restore_value: yes
