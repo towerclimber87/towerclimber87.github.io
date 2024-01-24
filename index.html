@@ -56,13 +56,22 @@
             border: none; /* Remove border for a cleaner look */
             padding: 10px 20px; /* Add padding for better appearance */
             cursor: pointer; /* Add cursor pointer for user interaction */
-        }        
+        }   
+        .flex-container {
+            display: flex; /* Enables Flexbox */
+            justify-content: space-between; /* Spreads out the flex items */
+        }
+
+        .flex-item {
+            flex-basis: 48%; /* Each item takes up roughly half the container */
+            /* Add more styling as needed */
+        }             
     </style>
 </head>
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 333</h1>
+  <h1>IHA Code Generator Beta 222</h1>
 </header>
 <pre></pre>
 <main>
@@ -477,9 +486,9 @@
     </div>                      
   </div>   
     <div id="section4" class="subb12">  
-      <div>                                   
-        <main>
-          <div>
+      <div class="flex-container">
+        <div class="flex-item">
+            <!-- Your existing block -->
             <label for="textEntry17">Device 1:</label>
             <input type="text" id="textEntry17" value="GPIO 1">
             <label for="textEntry18">Device 2:</label>
@@ -487,10 +496,18 @@
             <label for="textEntry19">Device 3:</label>
             <input type="text" id="textEntry19" value="GPIO 3">
             <label for="textEntry20">Device 4:</label>
-            <input type="text" id="textEntry20" value="GPIO 4">                                    
-          </div>
-        <main>          
-      </div>                      
+            <input type="text" id="textEntry20" value="GPIO 4">
+        </div>    
+        <div class="flex-item">
+            <label for="textEntry17">Device 5:</label>
+            <input type="text" id="textEntry17" value="GPIO 5">
+            <label for="textEntry18">Device 6:</label>
+            <input type="text" id="textEntry18" value="GPIO 6">
+            <label for="textEntry19">Device 7:</label>
+            <input type="text" id="textEntry19" value="GPIO 7">
+            <label for="textEntry20">Device 8:</label>
+            <input type="text" id="textEntry20" value="GPIO 8">
+        </div>                   
   </div>   
   <div>                                                                  
       <main>     
