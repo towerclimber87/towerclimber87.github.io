@@ -1250,7 +1250,8 @@ esphome:
           id: last_state_pressed
           state: "" 
        - lambda: |-
-          if (id(set_all_devices_to_no) != 1) {
+          if (id(set_all_devices_to_no) == 0) {
+            id(set_all_devices_to_no) = 1;
             id(device_1_set_1_16) = 1;
             id(device_2_set_1_16) = 1;
             id(device_3_set_1_16) = 1;
@@ -1322,9 +1323,10 @@ esphome:
     if (selectedOptionValue16 === 'home_automation_system' ) {
                 additionalConfig += `   
 esp32:
-  board: esp-wrover-kit
-  framework: 
-    type: esp-idf       
+  board: esp-wrover-kit  
+#  board: esp-wrover-kit
+#  framework: 
+#    type: esp-idf       
                 `;
             }
     if (selectedOptionValue14 === 'Enabled' ) {
@@ -1485,7 +1487,7 @@ text_sensor:
 sensor:
   - platform: uptime
     id: uptime_sensor
-    update_interval: 1s
+    update_interval: 10s
     on_raw_value:
       then:
         - text_sensor.template.publish:
