@@ -59,18 +59,20 @@
         }   
         .flex-container {
             display: flex;
-            flex-direction: row; /* This will place the flex items (columns) in a row */
           }
 
           .flex-item {
-            margin-right: 20px; /* Adjust the spacing between the columns */
-          }          
+            /* This ensures that the items within the flex-item are stacked vertically */
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Adjust as needed for spacing between columns */
+          }         
     </style>
 </head>
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 555</h1>
+  <h1>IHA Code Generator Beta 111</h1>
 </header>
 <pre></pre>
 <main>
