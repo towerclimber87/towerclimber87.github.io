@@ -40,10 +40,7 @@
           }  
           main h8 {
             color: red; /* Set the color to blue */                                                
-          }  
-          main h9 {
-            color: black; /* Set the color to blue */                                              
-          }                            
+          }                  
         #downloadButton {
             margin-left: 2em; /* Adjust the value as needed */
             background-color: green; /* Set the background color to green */
@@ -75,7 +72,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta</h1>
+  <h1>IHA Code Generator Beta 111</h1>
 </header>
 <pre></pre>
 <main>
@@ -182,8 +179,7 @@
         <main>   
         <pre></pre>        
       <h4>Address Assigned on board </h4>  
-      <h9>If 4 Port Rack is used, it must start with Card 1 </h9> 
-      <main>         
+      <h7>If 4 Port Rack is used, it must start with Card 1 </h7> 
         <label for="dropdown1">Device 1 Address:</label>
         <select id="dropdown1">
             <option value="none">None</option>
@@ -1317,7 +1313,7 @@ esphome:
             id(device_13_set_49_64) = 1;
             id(device_14_set_49_64) = 1;
             id(device_15_set_49_64) = 1;
-            id(device_16_set_49_64) = 1;                                             
+            id(device_16_set_49_64) = 1;                                                                                    
           }                       
                 `;
             }       
@@ -4007,11 +4003,33 @@ button:
             if (selectedTypeValue1 === '16 GPIO Rack Card 1' ) {
                 additionalConfig += `   
   - platform: template
-    name: GPIO State Set
+    name: Reset All GPIO to NO (1-16)
+    icon: "mdi:alert"
+    on_press:
+      - lambda: |-
+            id(device_1_set_1_16) = 1;
+            id(device_2_set_1_16) = 1;
+            id(device_3_set_1_16) = 1;
+            id(device_4_set_1_16) = 1;
+            id(device_5_set_1_16) = 1;
+            id(device_6_set_1_16) = 1;
+            id(device_7_set_1_16) = 1;
+            id(device_8_set_1_16) = 1;
+            id(device_9_set_1_16) = 1;
+            id(device_10_set_1_16) = 1;
+            id(device_11_set_1_16) = 1;
+            id(device_12_set_1_16) = 1;
+            id(device_13_set_1_16) = 1;
+            id(device_14_set_1_16) = 1;
+            id(device_15_set_1_16) = 1;
+            id(device_16_set_1_16) = 1;
+
+  - platform: template
+    name: GPIO State Set (NO\NC 1-16)
     icon: "mdi:set-merge"
     on_press:
       - lambda: |-
-          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "${textEntryGPIO1}") {
+          if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_1") {
             id(device_1_set_1_16) = 1;
           } 
       - lambda: |-
@@ -4568,7 +4586,7 @@ select:
                   additionalConfig += `    
   
   - platform: template
-    name: GPIO NO\NC
+    name: GPIO NO\NC (1-16)
     id: device_select_1
     optimistic: true
     initial_option: "NO"
@@ -4577,13 +4595,13 @@ select:
       - "NC" 
 
   - platform: template
-    name: Select GPIO 
+    name: Select GPIO (1-16)
     id: select_gpio_1
     optimistic: true
     initial_option: "None"
     options:
       - "None"
-      - "GPIO 1"
+      - "${textEntryGPIO1}"
       - "GPIO 2"
       - "GPIO 3"
       - "GPIO 4"  
@@ -4603,6 +4621,20 @@ select:
           }    
           if (selectedTypeValue2 === '16 GPIO Rack Card 2' ) {
                   additionalConfig += `    
+  - platform: template
+    name: GPIO NO\NC (17-32)
+    id: device_select_2
+    optimistic: true
+    initial_option: "NO"
+    options:
+      - "NO"
+      - "NC" 
+  - platform: template
+    name: Select GPIO (17-32)
+    id: select_gpio_2
+    optimistic: true
+    initial_option: "None"
+    options:
       - "GPIO 17"
       - "GPIO 18"
       - "GPIO 19"
@@ -4623,6 +4655,20 @@ select:
           } 
           if (selectedTypeValue3 === '16 GPIO Rack Card 3' ) {
                   additionalConfig += `    
+  - platform: template
+    name: GPIO NO\NC (33-48)
+    id: device_select_3
+    optimistic: true
+    initial_option: "NO"
+    options:
+      - "NO"
+      - "NC" 
+  - platform: template
+    name: Select GPIO (33-48)
+    id: select_gpio_3
+    optimistic: true
+    initial_option: "None"
+    options:        
       - "GPIO 33"
       - "GPIO 34"
       - "GPIO 35"
@@ -4643,6 +4689,20 @@ select:
           }   
           if (selectedTypeValue4 === '16 GPIO Rack Card 4' ) {
                   additionalConfig += `    
+  - platform: template
+    name: GPIO NO\NC (49-64)
+    id: device_select_4
+    optimistic: true
+    initial_option: "NO"
+    options:
+      - "NO"
+      - "NC" 
+  - platform: template
+    name: Select GPIO (49-64)
+    id: select_gpio_4
+    optimistic: true
+    initial_option: "None"
+    options:                  
       - "GPIO 49"
       - "GPIO 50"
       - "GPIO 51"
