@@ -39,7 +39,7 @@
             color: black; /* Set the color to blue */                                              
           }  
           main h8 {
-            color: red; /* Set the color to blue */                                              
+            color: red; /* Set the color to blue */                                                
           }                  
         #downloadButton {
             margin-left: 2em; /* Adjust the value as needed */
@@ -49,12 +49,20 @@
             padding: 10px 20px; /* Add padding for better appearance */
             cursor: pointer; /* Add cursor pointer for user interaction */
         }
+        #downloadGuideButton {
+            margin-left: 2em; /* Adjust the value as needed */
+            background-color: green; /* Set the background color to green */
+            color: white; /* Set the text color to white */
+            border: none; /* Remove border for a cleaner look */
+            padding: 10px 20px; /* Add padding for better appearance */
+            cursor: pointer; /* Add cursor pointer for user interaction */
+        }        
     </style>
 </head>
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 2222</h1>
+  <h1>IHA Code Generator Beta 333</h1>
 </header>
 <pre></pre>
 <main>
@@ -474,6 +482,12 @@
           <div>
             <label for="textEntry17">Device 1:</label>
             <input type="text" id="textEntry17" value="GPIO 1">
+            <label for="textEntry18">Device 2:</label>
+            <input type="text" id="textEntry18" value="GPIO 2">
+            <label for="textEntry19">Device 3:</label>
+            <input type="text" id="textEntry19" value="GPIO 3">
+            <label for="textEntry20">Device 4:</label>
+            <input type="text" id="textEntry20" value="GPIO 4">                                    
           </div>
         <main>          
       </div>                      
@@ -481,52 +495,7 @@
   <div>                                                                  
       <main>     
         <pre></pre>      
-        <main>
-          <h7>Getting started with ESPhome add-on for Home Assistant guide <a href="https://esphome.io/guides/getting_started_hassio.html" target="_blank">https://esphome.io/guides/getting_started_hassio.html</a>.</h7>
-        </main> 
-        <pre></pre>      
-        <main>
-          <h7>When ESPhome has been set up, following the steps below. </h7>
-        </main>   
-        <main>
-          <h7>  Step 1: Click New Device and then click continue. </h7>
-        </main>     
-        <main>
-          <h7>  Step 2: Give it a name and copy the name into the Display Name box in IHA Rack System web page. </h7>
-        </main>  
-        <main>
-          <h7>  Step 3: Now Click Next and click on any of the ESP32 options (it will be changed later). </h7>
-        </main>
-        <main>
-          <h7>  Step 4: Copy the Encryption key that is provided and paste it into the API Key box in IHA Rack System web page. </h7>
-        </main>
-        <main>
-          <h7>  Step 5: Now click skip and find the new device and click edit. </h7>
-        </main> 
-        <main>
-          <h7>  Step 6: Around the second line you should see (name:) copy the name given and past it into the ESPHome Name box in IHA Rack System web page. </h7>
-        </main>   
-        <main>
-          <h7>  Step 7: Now go to IHA Rack System web page and select the board address and the device type. Fill out the remaing boxes. </h7>
-        </main>  
-        <main>
-          <h7>  Step 8: Click Download YAML File. it will now download. Open the new downloaded file and select all the text and copy it.  </h7>
-        </main>    
-        <main>
-          <h7>  Step 9: Now go back to the new device configuration page and replace all the exisitng text with the copy text.  </h7>
-        </main>                
-        <main>
-          <h7>  Step 10: Now Click Manual download and if and when prompted, click modern format and it should give you a new downloaded Bin file.  </h7>
-        </main>      
-        <main>
-          <h7>  Step 11: You should alrady have access to your defualt IHA Rack System Device Page. go to the update at the bottom, select the bin file that was downloaded and hit update.  </h7>
-        </main> 
-        <main>
-          <h7>  Step 12: Steps 10 & 11 can only be done once as it adds an update password. once you completed step 11, you can now update with esphome. </h7>
-        </main>                
-        <main> 
-        <button id="downloadGuideButton">Download Guide YAML File</button>
-
+        <button id="downloadGuideButton">Download Update Guide</button>
     </div>                
 </body>      
     <!-- Add your JavaScript code here if needed -->
@@ -6498,8 +6467,12 @@ binary_sensor:
             document.getElementById('downloadGuideButton').addEventListener('click', function() {
             // YAML content
             const yamlGuideContent = `
-        Getting started with ESPhome add-on for Home Assistant guide https://esphome.io/guides/getting_started_hassio.html.
+        Getting started with ESPhome add-on for Home Assistant guide 
+        
+                        https://esphome.io/guides/getting_started_hassio.html.
+
         When ESPhome has been set up, following the steps below.
+
         Step 1: Click New Device and then click continue.
         Step 2: Give it a name and copy the name into the Display Name box in IHA Rack System web page.
         Step 3: Now Click Next and click on any of the ESP32 options (it will be changed later).
