@@ -60,7 +60,12 @@
         .flex-container {
             display: flex;
           }
-
+        .centered-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh; /* This makes the div take the full height of the viewport */
+        }        
           .flex-item {
             /* This ensures that the items within the flex-item are stacked vertically */
             display: flex;
@@ -69,11 +74,13 @@
           }         
     </style>
 </head>
-<img src="Logo No Water Mark no Background.png" alt="Your Logo Description">
+<div class="centered-logo">
+  <img src="Logo No Water Mark no Background.png" alt="Logo Description" style="width: 200px;"> <!-- Adjust width as needed -->
+</div>
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator Beta 222</h1>
+  <h1>IHA Code Generator Beta</h1>
 </header>
 <pre></pre>
 <main>
