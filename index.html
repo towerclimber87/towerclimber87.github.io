@@ -1318,6 +1318,10 @@ esphome:
        - text_sensor.template.publish:
           id: last_state_pressed
           state: "" 
+          `;
+            }                                       
+                if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+                additionalConfig += `            
        - lambda: |-
           if (id(set_all_devices_to_no) == 0) {
             id(set_all_devices_to_no) = 1;
@@ -1337,6 +1341,10 @@ esphome:
             id(device_14_set_1_16) = 1;
             id(device_15_set_1_16) = 1;
             id(device_16_set_1_16) = 1;
+            `;
+            }                                       
+                if (selectedTypeValue2 === '16 GPIO Rack Card 2') {
+                additionalConfig += `             
             id(device_1_set_17_32) = 1;
             id(device_2_set_17_32) = 1;
             id(device_3_set_17_32) = 1;
@@ -1352,7 +1360,11 @@ esphome:
             id(device_13_set_17_32) = 1;
             id(device_14_set_17_32) = 1;
             id(device_15_set_17_32) = 1;
-            id(device_16_set_17_32) = 1;   
+            id(device_16_set_17_32) = 1;  
+            `;
+            }                                       
+                if (selectedTypeValue3 === '16 GPIO Rack Card 3') {
+                additionalConfig += `              
             id(device_1_set_33_48) = 1;
             id(device_2_set_33_48) = 1;
             id(device_3_set_33_48) = 1;
@@ -1369,6 +1381,10 @@ esphome:
             id(device_14_set_33_48) = 1;
             id(device_15_set_33_48) = 1;
             id(device_16_set_33_48) = 1; 
+            `;
+            }                                       
+                if (selectedTypeValue4 === '16 GPIO Rack Card 4') {
+                additionalConfig += `             
             id(device_1_set_49_64) = 1;
             id(device_2_set_49_64) = 1;
             id(device_3_set_49_64) = 1;
