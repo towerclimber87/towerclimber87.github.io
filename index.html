@@ -1471,10 +1471,10 @@ display:
     address: 0x3C
     lambda: |-
             if (id(system_status).state) {
-              it.print(40, -3, id(my_font_30b), id(my_green), "Online");
+              it.print(40, 0, id(my_font_30b), id(my_green), "Online");
             }
             else {
-              it.print(40, -5, id(my_font_30b), id(my_yellow), "Offline");
+              it.print(40, -1, id(my_font_30b), id(my_yellow), "Offline");
             }
             it.printf(it.get_width() / 2, 14, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_name_pressed).state.c_str()); 
             it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());             
@@ -2098,7 +2098,7 @@ binary_sensor:
       then:  
         - delay: 500ms
         - lambda: |-
-            id(last_name_pressed).publish_state("K$gpio_rack_card_1_device_5");
+            id(last_name_pressed).publish_state("$gpio_rack_card_1_device_5");
             id(last_state_pressed).publish_state("OFF");           
   - platform: gpio
     id: rack_5_device
@@ -2371,7 +2371,7 @@ binary_sensor:
       then:  
         - delay: 500ms
         - lambda: |-
-            id(last_name_pressed).publish_state("K$gpio_rack_card_1_device_13");
+            id(last_name_pressed).publish_state("$gpio_rack_card_1_device_13");
             id(last_state_pressed).publish_state("OFF");           
   - platform: gpio
     id: rack_13_device
