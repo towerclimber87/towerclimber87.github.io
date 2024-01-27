@@ -212,8 +212,8 @@
     <option value="none">None</option>
     <option value="home_automation_system">Home Automation System</option>    
     <option value="iha_blinds">ESP32 Blinds</option>
-    <option value="Placeholder">Placeholder</option>  
-    <option value="Placeholder2">Placeholder2</option>      
+    <option value="wiegand_keypad">Wiegand Keypad</option>  
+    <option value="door_closer">Automatic Door Closer</option>      
       <!-- Add more options for Node Device 2 as needed -->
   </select>                                                                               
   <main> 
@@ -528,11 +528,20 @@
     <div>                                    
       <main>
         <main>
-          <h3>Place Holder</h3>
+          <h3>Wiegand Keypad</h3>
         <main>
       <main>          
     </div>                      
-  </div>   
+  </div> 
+  <div id="section3" class="subb16">  
+    <div>                                    
+      <main>
+        <main>
+          <h3>Automatic Door Closer</h3>
+        <main>
+      <main>          
+    </div>                      
+  </div>     
   <div id="section4" class="subb12">  
     <div class="flex-container">
       <!-- Column 1 -->
@@ -748,7 +757,8 @@
         const subbDiv12 = document.querySelector('.subb12');       
         const subbDiv13 = document.querySelector('.subb13');    
         const subbDiv14 = document.querySelector('.subb14');  
-        const subbDiv15 = document.querySelector('.subb15');                                                                        
+        const subbDiv15 = document.querySelector('.subb15');       
+        const subbDiv16 = document.querySelector('.subb16');                                                                                
         const downloadButton = document.getElementById('downloadButton');  
 
         function updateSubbVisibility() {
@@ -763,11 +773,12 @@
             subbDiv8.style.display = dropdown8.value === 'none' ? 'none' : 'block'; 
             subbDiv9.style.display = dropdown16.value !== 'home_automation_system' ? 'None' : 'block';  
             subbDiv10.style.display = dropdown16.value === 'iha_blinds' ? 'block' : 'none'; 
-            subbDiv11.style.display = dropdown16.value === 'Placeholder' ? 'block' : 'none';  
+            subbDiv11.style.display = dropdown16.value === 'wiegand_keypad' ? 'block' : 'none';  
             subbDiv12.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown1.value === '16 GPIO Rack Card 1') ? 'block' : 'none';                                                  
             subbDiv13.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown2.value === '16 GPIO Rack Card 2') ? 'block' : 'none';      
             subbDiv14.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown3.value === '16 GPIO Rack Card 3') ? 'block' : 'none';  
-            subbDiv15.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown4.value === '16 GPIO Rack Card 4') ? 'block' : 'none';                                         
+            subbDiv15.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown4.value === '16 GPIO Rack Card 4') ? 'block' : 'none';          
+            subbDiv16.style.display = dropdown16.value === 'door_closer' ? 'block' : 'none';                                 
         }
         dropdown1.addEventListener('change', updateSubbVisibility);
         dropdown2.addEventListener('change', updateSubbVisibility);
