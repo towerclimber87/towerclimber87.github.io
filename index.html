@@ -132,7 +132,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator 111</h1>
+  <h1>IHA Code Generator 222</h1>
 </header>
 <h4>ENTER YOUR OWN VALUES </h4>
 <div class="rounded-box">
@@ -831,9 +831,12 @@
             const selectedTypeValue5 = typeDropdown5.value;
             const selectedTypeValue6 = typeDropdown6.value;
             const selectedTypeValue7 = typeDropdown7.value;
-            const selectedTypeValue8 = typeDropdown8.value;                                  
+            const selectedTypeValue8 = typeDropdown8.value;     
+                                        
 
+          
             // Get text entry values
+            const checkbox1 = document.getElementById('checkbox1').checked;
             const textEntry1 = document.getElementById('textEntry1').value;
             const textEntry2 = document.getElementById('textEntry2').value;
             const textEntry3 = document.getElementById('textEntry3').value;
@@ -1678,7 +1681,20 @@ switch:
     inverted: no  
     id: relay     
     `;
-            }                  
+            }    
+            if (checkbox1 === 'checked' ) {
+                additionalConfig += `                 
+  - platform: gpio    checkbox1
+    id: $gpio_rack_card_1_device_1
+    name: 
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1
+      number: 0
+      mode:
+        input: False         
+      inverted: True     
+                `;
+            }                       
     if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
