@@ -132,7 +132,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator 777</h1>
+  <h1>IHA Code Generator 111</h1>
 </header>
 <h4>ENTER YOUR OWN VALUES </h4>
 <div class="rounded-box">
@@ -553,6 +553,10 @@
       <div class="flex-item">
         <label for="textEntryGPIO_1">Device 1:</label>
         <input type="text" id="textEntryGPIO_1" value="GPIO 1">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_1">
+          <label for="checkGPIO_1">Switch</label>
+        </div>
         <label for="textEntryGPIO_3">Device 3:</label>
         <input type="text" id="textEntryGPIO_3" value="GPIO 3">
         <label for="textEntryGPIO_5">Device 5:</label>
@@ -1674,20 +1678,7 @@ switch:
     inverted: no  
     id: relay     
     `;
-            }        
-    if (document.getElementById('checkbox1').checked) {
-        additionalConfig += `
-  - platform: gpio
-    id: $gpio_rack_card_1_device_1
-    name: 
-    pin:
-      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1
-      number: 0
-      mode:
-        input: False         
-      inverted: True     
-                `;
-            }            
+            }                  
     if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
