@@ -1310,7 +1310,7 @@ esphome:
        - delay: 1s           
                 `;
             }
-       if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 !== 'none' || selectedOptionValue2 !== 'none' || selectedOptionValue3 !== 'none' || selectedOptionValue4 !== 'none' || selectedOptionValue5 !== 'none' || selectedOptionValue6 !== 'none' || selectedOptionValue7 !== 'none' || selectedOptionValue8 !== 'none') {
+       if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 === '16 GPIO Rack Card 1' || selectedOptionValue2 === '16 GPIO Rack Card 2' || selectedOptionValue3 === '16 GPIO Rack Card 3' || selectedOptionValue4 === '16 GPIO Rack Card 4') {
                 additionalConfig += `   
        - text_sensor.template.publish:
           id: last_name_pressed
@@ -1343,7 +1343,7 @@ esphome:
             id(device_16_set_1_16) = 1;
             `;
             }        
-            if (selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            if (selectedTypeValue2 === 'none') {
                 additionalConfig += `       
             }                       
                 `;
@@ -1367,7 +1367,12 @@ esphome:
             id(device_15_set_17_32) = 1;
             id(device_16_set_17_32) = 1;  
             `;
-            }                                       
+            } 
+            if (selectedTypeValue3 === 'none') {
+                additionalConfig += `       
+            }                       
+                `;
+            }                                                        
                 if (selectedTypeValue3 === '16 GPIO Rack Card 3') {
                 additionalConfig += `              
             id(device_1_set_33_48) = 1;
@@ -1387,7 +1392,12 @@ esphome:
             id(device_15_set_33_48) = 1;
             id(device_16_set_33_48) = 1; 
             `;
-            }                                       
+            }     
+            if (selectedTypeValue4 === 'none') {
+                additionalConfig += `       
+            }                       
+                `;
+            }                                                    
                 if (selectedTypeValue4 === '16 GPIO Rack Card 4') {
                 additionalConfig += `             
             id(device_1_set_49_64) = 1;
