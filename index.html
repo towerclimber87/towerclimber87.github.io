@@ -1474,7 +1474,7 @@ api:
 `; 
     if (selectedOptionValue15 === 'Enabled' ) {
                 additionalConfig += `   
-  encryption:
+  encryption:brightness
     key: "${textEntry6}"           
                 `;
             }
@@ -1579,6 +1579,19 @@ text_sensor:
     icon: "mdi:ip-network"
     lambda: return { id(eth).get_ip_address().str() };
     update_interval: 5s  
+    on_value:
+     - if:
+        condition:
+          text_sensor.state:
+            id: ipaddress
+            state: '0.0.0.0'
+        then: 
+              - light.turn_on: 
+                  id: statusledlight
+                  green: 1.0
+                  red: 1.0
+                  blue: 0.0
+                  brightness: 55%      
   - platform: template
     id: last_state_pressed    
     name: ${textEntry5} State
@@ -1765,7 +1778,7 @@ binary_sensor:
                 green: 1.0
                 red: 0.0
                 blue: 0.0
-                brightness: 30%      
+                brightness: 55%      
     on_release:
           then:           
             - light.turn_on: 
@@ -1773,7 +1786,7 @@ binary_sensor:
                 red: 1.0
                 green: 0.0
                 blue: 0.0
-                brightness: 30%          
+                brightness: 55%          
                 `;
             }       
             if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
