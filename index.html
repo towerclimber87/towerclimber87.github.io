@@ -1496,7 +1496,7 @@ display:
     model: "SSD1306 128x64"
     address: 0x3C
     lambda: |-
-            it.printf(it.get_width() / 2, 0, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, "IHA Rack System Two"); 
+            it.printf(it.get_width() / 2, 0, id(my_font_13b), id(my_green), TextAlign::CENTER_HORIZONTAL, "${textEntry5}"); 
             it.printf(it.get_width() / 2, 14, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_name_pressed).state.c_str()); 
             it.printf(it.get_width() / 2, 24, id(my_font_20b), id(my_blue), TextAlign::CENTER_HORIZONTAL," %s",id(last_state_pressed).state.c_str());   
             it.print(0, 36, id(my_font_20b), id(my_white), "IP");                                                                    
