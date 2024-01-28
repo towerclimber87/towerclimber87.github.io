@@ -132,7 +132,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator 111</h1>
+  <h1>IHA Code Generator 222</h1>
 </header>
 <h4>ENTER YOUR OWN VALUES </h4>
 <div class="rounded-box">
@@ -1913,13 +1913,21 @@ text_sensor:
           text_sensor.state:
             id: ipaddress
             state: '0.0.0.0'
+            `;
+            }   
+            if (selectedOptionValue12 === 'Enabled' ) {
+                additionalConfig += `             
         then: 
               - light.turn_on: 
                   id: statusledlight
                   green: 1.0
                   red: 1.0
                   blue: 0.0
-                  brightness: 55%      
+                  brightness: 55%   
+                  `;
+              }              
+    if (selectedOptionValue16 === 'home_automation_system' ) {
+                additionalConfig += `                    
   - platform: template
     id: last_state_pressed    
     name: ${textEntry5} State
