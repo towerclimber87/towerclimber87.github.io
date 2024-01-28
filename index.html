@@ -559,18 +559,46 @@
         </div>
         <label for="textEntryGPIO_3">Device 3:</label>
         <input type="text" id="textEntryGPIO_3" value="GPIO 3">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_3">
+          <label for="checkGPIO_3">Switch</label>
+        </div>
         <label for="textEntryGPIO_5">Device 5:</label>
         <input type="text" id="textEntryGPIO_5" value="GPIO 5">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_5">
+          <label for="checkGPIO_5">Switch</label>
+        </div>
         <label for="textEntryGPIO_7">Device 7:</label>
         <input type="text" id="textEntryGPIO_7" value="GPIO 7">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_7">
+          <label for="checkGPIO_7">Switch</label>
+        </div>
         <label for="textEntryGPIO_9">Device 9:</label>
         <input type="text" id="textEntryGPIO_9" value="GPIO 9">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_9">
+          <label for="checkGPIO_9">Switch</label>
+        </div>
         <label for="textEntryGPIO_11">Device 11:</label>
         <input type="text" id="textEntryGPIO_11" value="GPIO 11">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_11">
+          <label for="checkGPIO_11">Switch</label>
+        </div>
         <label for="textEntryGPIO_13">Device 13:</label>
         <input type="text" id="textEntryGPIO_13" value="GPIO 13">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_13">
+          <label for="checkGPIO_13">Switch</label>
+        </div>
         <label for="textEntryGPIO_15">Device 15:</label>
         <input type="text" id="textEntryGPIO_15" value="GPIO 15">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_15">
+          <label for="checkGPIO_15">Switch</label>
+        </div>
       </div>
       
       <!-- Column 2 -->
@@ -1684,7 +1712,7 @@ switch:
      }       
      if (checkbox1.checked) {
             additionalConfig += `                
-  - platform: gpio    checkbox1
+  - platform: gpio
     id: $gpio_rack_card_1_device_1
     name: 
     pin:
@@ -1694,7 +1722,20 @@ switch:
         input: False         
       inverted: True     
                 `;
-            }                       
+            }   
+            if (checkbox2.checked) {
+            additionalConfig += `                
+  - platform: gpio
+    id: $gpio_rack_card_1_device_2
+    name: 
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1
+      number: 1
+      mode:
+        input: False         
+      inverted: True     
+                `;
+            }                                   
     if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
@@ -2007,9 +2048,9 @@ binary_sensor:
             id(last_name_pressed).publish_state("Key 8");
             id(last_state_pressed).publish_state("OFF");    
                 `;
-            }                                       
-                if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
-                additionalConfig += `                   
+            }                                            
+                if (!checkbox1.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `                  
   - platform: template
     name: $gpio_rack_card_1_device_1
     id: device_1_invert
@@ -2042,6 +2083,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }            
+      if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+                additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_2
