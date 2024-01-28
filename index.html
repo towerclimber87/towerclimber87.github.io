@@ -132,7 +132,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator 444</h1>
+  <h1>IHA Code Generator 555</h1>
 </header>
 <h4>ENTER YOUR OWN VALUES </h4>
 <div class="rounded-box">
@@ -2992,9 +2992,9 @@ binary_sensor:
         pullup: True          
       inverted: True
       `;
-            }            
-      if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
-                additionalConfig += `       
+            }                                                    
+                if (!checkbox2.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_2
@@ -3028,6 +3028,10 @@ binary_sensor:
         input: True
         pullup: True    
       inverted: True
+      `;
+            }                                            
+                if (!checkbox3.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_3
@@ -3062,6 +3066,10 @@ binary_sensor:
         input: True
         pullup: True           
       inverted: True
+      `;
+            }                                            
+                if (!checkbox4.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_4
@@ -3095,7 +3103,10 @@ binary_sensor:
         input: True
         pullup: True         
       inverted: True   
-                
+      `;
+            }                                            
+                if (!checkbox5.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `                   
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_5
@@ -3129,7 +3140,10 @@ binary_sensor:
         input: True
         pullup: True   
       inverted: True
-      
+      `;
+            }                                            
+                if (!checkbox6.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_6
@@ -3163,7 +3177,10 @@ binary_sensor:
         input: True
         pullup: True        
       inverted: True
-        
+      `;
+            }                                            
+                if (!checkbox7.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `           
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_7
@@ -3197,7 +3214,10 @@ binary_sensor:
         input: True
         pullup: True      
       inverted: True
-
+      `;
+            }                                            
+                if (!checkbox8.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `   
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_8
@@ -3231,7 +3251,10 @@ binary_sensor:
         input: True
         pullup: True           
       inverted: True
-   
+      `;
+            }                                            
+                if (!checkbox9.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `      
   - platform: template
     name: $gpio_rack_card_1_device_9
     id: device_9_invert
@@ -3264,7 +3287,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
-
+      `;
+            }                                            
+                if (!checkbox10.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `   
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_10
@@ -3299,7 +3325,10 @@ binary_sensor:
         input: True
         pullup: True    
       inverted: True
-
+      `;
+            }                                            
+                if (!checkbox11.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `   
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_11
@@ -3334,7 +3363,10 @@ binary_sensor:
         pullup: True           
       inverted: True
        
-
+      `;
+            }                                            
+                if (!checkbox12.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `   
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_12
@@ -3368,7 +3400,10 @@ binary_sensor:
         input: True
         pullup: True         
       inverted: True   
-               
+      `;
+            }                                            
+                if (!checkbox13.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `                  
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_13
@@ -3402,7 +3437,10 @@ binary_sensor:
         input: True
         pullup: True   
       inverted: True
-    
+      `;
+            }                                            
+                if (!checkbox14.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_14
@@ -3436,7 +3474,10 @@ binary_sensor:
         input: True
         pullup: True        
       inverted: True
-        
+      `;
+            }                                            
+                if (!checkbox15.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `           
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_15
@@ -3470,7 +3511,10 @@ binary_sensor:
         input: True
         pullup: True      
       inverted: True
-
+      `;
+            }                                            
+                if (!checkbox16.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `   
   #########################################################################
   - platform: template
     name: $gpio_rack_card_1_device_16
@@ -3504,10 +3548,10 @@ binary_sensor:
         input: True
         pullup: True           
       inverted: True
-         `;  
-          }       
-          if (selectedTypeValue2 === '16 GPIO Rack Card 2') {
-                additionalConfig += `   
+      `;
+            }                                            
+                if (!checkbox17.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `      
   - platform: template
     name: $gpio_rack_card_2_device_1
     id: device_1_invert_2
@@ -3540,6 +3584,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox18.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_2
@@ -3573,6 +3621,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox19.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_3
@@ -3606,6 +3658,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox20.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_4
@@ -3639,6 +3695,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox21.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_5
@@ -3672,6 +3732,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox22.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_6
@@ -3705,6 +3769,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox23.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_7
@@ -3738,6 +3806,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox24.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_8
@@ -3771,6 +3843,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox25.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_9
@@ -3804,6 +3880,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox26.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_10
@@ -3837,6 +3917,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox27.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_11
@@ -3870,6 +3954,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox28.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
   #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_12
@@ -3902,7 +3990,11 @@ binary_sensor:
       mode:
         input: True
         pullup: True          
-      inverted: True      
+      inverted: True     
+      `;
+            }                                            
+                if (!checkbox29.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `           
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_13
@@ -3936,6 +4028,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox30.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_14
@@ -3969,6 +4065,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox31.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_15
@@ -4002,6 +4102,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox32.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `          
       #########################################################################
   - platform: template
     name: $gpio_rack_card_2_device_16
@@ -4035,10 +4139,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
-          `;  
-          }       
-          if (selectedTypeValue3 === '16 GPIO Rack Card 3') {
-                additionalConfig += `   
+      `;
+            }                                            
+                if (!checkbox33.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += ` 
   - platform: template
     name: $gpio_rack_card_3_device_1
     id: device_1_invert_3
@@ -4071,6 +4175,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox34.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_2
@@ -4104,6 +4212,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox35.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_3
@@ -4137,6 +4249,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox36.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_4
@@ -4170,6 +4286,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox37.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_5
@@ -4203,6 +4323,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox38.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_6
@@ -4236,6 +4360,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox39.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_7
@@ -4269,6 +4397,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox40.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_8
@@ -4302,6 +4434,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox41.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_9
@@ -4335,6 +4471,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox42.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_10
@@ -4368,6 +4508,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox43.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_11
@@ -4401,6 +4545,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox44.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
   #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_12
@@ -4434,6 +4582,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True      
+      `;
+            }                                            
+                if (!checkbox45.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_13
@@ -4467,6 +4619,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox46.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_14
@@ -4500,6 +4656,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox47.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_15
@@ -4533,6 +4693,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox48.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `       
       #########################################################################
   - platform: template
     name: $gpio_rack_card_3_device_16
@@ -4566,10 +4730,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
-         `;  
-          }           
-          if (selectedTypeValue4 === '16 GPIO Rack Card 4') {
-                additionalConfig += `   
+      `;
+            }                                            
+                if (!checkbox49.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `   
   - platform: template
     name: $gpio_rack_card_4_device_1
     id: device_1_invert_4
@@ -4602,6 +4766,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox50.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_2
@@ -4635,6 +4803,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox51.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_3
@@ -4668,6 +4840,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox52.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_4
@@ -4701,6 +4877,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox53.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_5
@@ -4734,6 +4914,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox54.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_6
@@ -4767,6 +4951,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox55.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_7
@@ -4800,6 +4988,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox56.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_8
@@ -4833,6 +5025,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox57.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_9
@@ -4866,6 +5062,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox58.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_10
@@ -4899,6 +5099,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox59.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_11
@@ -4932,6 +5136,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox60.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
   #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_12
@@ -4964,7 +5172,11 @@ binary_sensor:
       mode:
         input: True
         pullup: True          
-      inverted: True      
+      inverted: True    
+      `;
+            }                                            
+                if (!checkbox61.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `           
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_13
@@ -4998,6 +5210,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox62.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_14
@@ -5031,6 +5247,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox63.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_15
@@ -5064,6 +5284,10 @@ binary_sensor:
         input: True
         pullup: True          
       inverted: True
+      `;
+            }                                            
+                if (!checkbox64.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `         
       #########################################################################
   - platform: template
     name: $gpio_rack_card_4_device_16
