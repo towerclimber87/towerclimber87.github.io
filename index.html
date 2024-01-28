@@ -543,6 +543,18 @@
       <main>
         <main>
           <h3>Automatic Door Closer</h3>
+          <div>
+            <label for="textEntry16">Door Name</label>
+            <input type="text" id="textEntry16" value="IHA Door Closer">
+          </div> 
+          <div>
+            <label for="textEntry17">Eifi SSID</label>
+            <input type="text" id="textEntry17" value="Your WiFi SSID">
+          </div> 
+          <div>
+            <label for="textEntry18">WiFi Password</label>
+            <input type="text" id="textEntry18" value="Your WiFi Password">
+          </div>             
         <main>
       <main>          
     </div>                      
@@ -1168,7 +1180,10 @@
             const textEntry12 = document.getElementById('textEntry12').value;  
             const textEntry13 = document.getElementById('textEntry13').value;  
             const textEntry14 = document.getElementById('textEntry14').value;  
-            const textEntry15 = document.getElementById('textEntry15').value;   
+            const textEntry15 = document.getElementById('textEntry15').value;  
+            const textEntry16 = document.getElementById('textEntry16').value;      
+            const textEntry17 = document.getElementById('textEntry17').value;      
+            const textEntry18 = document.getElementById('textEntry18').value;                        
             const textEntryGPIO1 = document.getElementById('textEntryGPIO_1').value;
             const textEntryGPIO2 = document.getElementById('textEntryGPIO_2').value;  
             const textEntryGPIO3 = document.getElementById('textEntryGPIO_3').value;  
@@ -8036,7 +8051,903 @@ binary_sensor:
           then:
             - cover.toggle: my_blind4        
                 `;
-              }                                    
+              }    
+////////////////////////////////////  Blinds  ////////////////////////////////////////////////////////
+if (selectedOptionValue16 === 'door_closer' ) {
+                additionalConfig += `     
+  esphome:
+  name: ${textEntry1}
+  on_boot:          
+###### Working ####################################     
+          then: 
+            - delay: 4s
+            - script.execute: safetystartup
+            - switch.turn_off: motor_forward 
+            - switch.turn_off: motor_reverse     
+            - script.stop: door_open_script_auto_offa   
+            - script.stop: door_open_script_auto_offb   
+            - script.stop: door_open_script_auto_offaa   
+            - script.stop: door_open_script_auto_offba                               
+            - script.stop: door_open_script_auto_offa_return
+            - script.stop: door_open_script_auto_offb_return  
+   ###################################################                 
+            - if:
+                condition:
+                  for:
+                    time: 10s
+                    condition:
+                      - switch.is_off: motor_reverse
+                      - switch.is_off: motor_forward     
+                      - binary_sensor.is_off: visitor                            
+                then:      
+                      - script.stop: door_open_script_auto_offa   
+                      - script.stop: door_open_script_auto_offb 
+                      - script.stop: door_open_script_auto_offaa   
+                      - script.stop: door_open_script_auto_offba                           
+                      - script.stop: safety               
+                      - delay: !lambda return id(external_trigger_delay).state * 1000;           
+                      - script.execute: door_open_script_auto_offa 
+                      - script.execute: door_open_script_auto_offb
+                      - script.execute: door_open_script_auto_offaa 
+                      - script.execute: door_open_script_auto_offba                
+            - script.execute: door_open_script_auto_offa_return
+            - script.execute: door_open_script_auto_offb_return  
+            - script.execute: safety                    
+   ###################################################                                        
+            - delay: 2s
+            - number.set:
+               id: opening_time
+               value: !lambda "return id(opening_time_restore);"     
+            - number.set:
+               id: external_trigger_delay
+               value: !lambda "return id(external_trigger_delay_restore);"       
+            - number.set:
+               id: auto_alight_helper 
+               value: !lambda "return id(auto_align_save);" 
+            - number.set:
+               id: hing_helper 
+               value: !lambda "return id(hing_save);" 
+            - number.set:
+               id: rpm_number 
+               value: !lambda "return id(rpm_save);"                                               
+            - delay: 5s                                      
+            - if:
+                condition:
+                  number.in_range:
+                    id: hing_helper
+                    above: 5
+                then:
+                  - select.set:
+                      id: hing_side
+                      option: "Hing on Left" 
+            - if:
+                condition:
+                  number.in_range:
+                    id: hing_helper
+                    below: 4
+                then:
+                  - select.set:
+                      id: hing_side
+                      option: "Hing on Right"  
+            - if:
+                condition:
+                  number.in_range:
+                    id: rpm_number
+                    above: 5
+                then:
+                  - select.set:
+                      id: motor_rpm
+                      option: "Motor 5 RPM" 
+            - if:
+                condition:
+                  number.in_range:
+                    id: rpm_number
+                    below: 4
+                then:
+                  - select.set:
+                      id: motor_rpm
+                      option: "Motor 10 RPM"  
+            - switch.turn_on: ontimeout                
+###################################################                                                   
+esp32:
+  board: wemos_d1_mini32
+  framework:
+    type: arduino
+substitutions:
+  $cover_name: ${textEntry16}
+
+web_server:
+  port: 80
+  auth:
+    username: admin
+    password: password1234
+wifi:
+  ssid: ${textEntry17}
+  password: ${textEntry18}
+  reboot_timeout: 0s
+  ap:
+    ssid: "IHA Door Closure"
+    password: password1234
+    ap_timeout: 10s
+captive_portal:
+button:
+###### Working ####################################  
+  - platform: template
+    name: (Calibration) Park Arm
+    icon: "mdi:parking"
+    on_press:
+      - if: 
+         condition:
+             - lambda: 'return id(saftey_bypass).state == "Calibration";' 
+             - binary_sensor.is_off: motor_parked
+             - lambda: 'return id(hing_side).state == "Hing on Left";'              
+         then:      
+          - switch.turn_on: motor_reverse
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked
+          - switch.turn_off: motor_reverse  
+###################################################            
+###### Working ####################################           
+      - if: 
+         condition:
+             - lambda: 'return id(saftey_bypass).state == "Calibration";' 
+             - binary_sensor.is_off: motor_parked_right
+             - lambda: 'return id(hing_side).state == "Hing on Right";'              
+         then:      
+          - switch.turn_on: motor_forward
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked_right
+          - switch.turn_off: motor_forward             
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: Motor Forward (Manual)
+    icon: "mdi:arrow-right"
+    on_press:
+      - if: 
+         condition:
+             - lambda: 'return id(saftey_bypass).state == "Calibration";' 
+             - lambda: 'return id(hing_side).state == "Hing on Left";'              
+         then:      
+             - switch.turn_on: motor_forward 
+             - delay: 500ms
+             - switch.turn_off: motor_forward                    
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: Motor Reverse (Manual)
+    icon: "mdi:arrow-left"
+    on_press:
+      - if: 
+         condition:
+             - lambda: 'return id(saftey_bypass).state == "Calibration";' 
+             - lambda: 'return id(hing_side).state == "Hing on Left";'                
+         then:         
+             - switch.turn_on: motor_reverse 
+             - delay: 500ms
+             - switch.turn_off: motor_reverse           
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: RF Clear Remote
+    icon: "mdi:remote-off"
+    on_press:
+     - script.execute: code_clear
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: RF Learn Remote
+    icon: "mdi:remote"
+    on_press:
+     - switch.turn_on: learn    
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: Stop All
+    icon: "mdi:close-octagon"
+    on_press:
+     - switch.turn_off: motor_forward 
+     - switch.turn_off: motor_reverse     
+     - script.stop: door_open_script_auto_offa   
+     - script.stop: door_open_script_auto_offb  
+     - script.stop: door_open_script_auto_offaa   
+     - script.stop: door_open_script_auto_offba                        
+     - script.stop: door_open_script_auto_offa_return
+     - script.stop: door_open_script_auto_offb_return        
+###################################################            
+###### Working ####################################                                               
+script:
+  - id: safetystartup
+    mode: restart 
+    then:
+          - delay: 8s
+          - switch.turn_off: motor_reverse 
+          - switch.turn_off: motor_forward      
+          - script.stop: door_open_script_auto_offa   
+          - script.stop: door_open_script_auto_offb   
+          - script.stop: door_open_script_auto_offaa   
+          - script.stop: door_open_script_auto_offba                             
+          - script.stop: door_open_script_auto_offa_return
+          - script.stop: door_open_script_auto_offb_return 
+  - id: safety
+    mode: restart 
+    then:
+          - delay: 15s
+          - switch.turn_off: motor_reverse 
+          - switch.turn_off: motor_forward      
+          - script.stop: door_open_script_auto_offa   
+          - script.stop: door_open_script_auto_offb   
+          - script.stop: door_open_script_auto_offaa   
+          - script.stop: door_open_script_auto_offba                             
+          - script.stop: door_open_script_auto_offa_return
+          - script.stop: door_open_script_auto_offb_return        
+###################################################            
+###### Working #################################### 
+  - id: code_clear
+    mode: restart 
+    then:
+       - delay: 100ms
+       - switch.turn_off: learn   
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - delay: 100ms          
+       - switch.turn_on: learn
+       - delay: 100ms
+       - switch.turn_off: learn
+       - switch.turn_off: learn
+###################################################            
+###### Working #################################### 
+  - id: restart_park
+    mode: restart 
+    then:
+     - if: 
+              condition:
+                 - lambda: 'return id(hing_side).state == "Hing on Left";'   
+                 - for:
+                    time: 1min
+                    condition:
+                      switch.is_on: ontimeout                  
+              then:                       
+                - switch.turn_on: motor_reverse
+                - wait_until:
+                    condition:    
+                      binary_sensor.is_on: motor_parked
+                - switch.turn_off: motor_reverse 
+                - logger.log: "Single-Clicked" 
+###################################################            
+###### Working ####################################                 
+     - if: 
+              condition:
+                 - lambda: 'return id(hing_side).state == "Hing on Right";'   
+                 - for:
+                    time: 1min
+                    condition:
+                      switch.is_on: ontimeout                      
+              then:                       
+                - switch.turn_on: motor_forward
+                - wait_until:
+                    condition:    
+                      binary_sensor.is_on: motor_parked_right
+                - switch.turn_off: motor_forward 
+                - logger.log: "Single-Clicked"                 
+###################################################            
+###### Working #################################### 
+  - id: door_open_script_auto_offa_return
+    mode: restart   
+    then:
+     - if: 
+         condition:
+           and:
+             - binary_sensor.is_off: motor_parked  
+             - lambda: 'return id(saftey_bypass).state == "Normal";'                 
+             - lambda: 'return id(hing_side).state == "Hing on Left";'    
+             - for:
+                time: 1min
+                condition:
+                  switch.is_on: ontimeout                            
+         then:                        
+#          - delay: 5s
+          - switch.turn_off: motor_forward 
+          - delay: 250ms 
+          - switch.turn_on: motor_reverse
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked
+          - switch.turn_off: motor_reverse     
+###################################################            
+###### Working ####################################                     
+  - id: door_open_script_auto_offa
+    mode: restart   
+    then:
+     - if: 
+         condition:
+           and:
+             - binary_sensor.is_on: motor_parked  
+             - lambda: 'return id(saftey_bypass).state == "Normal";'                 
+             - lambda: 'return id(hing_side).state == "Hing on Left";'   
+             - lambda: 'return id(motor_rpm).state == "Motor 10 RPM";'               
+             - for:
+                time: 1min
+                condition:
+                  switch.is_on: ontimeout                            
+         then:                  
+          - switch.turn_on: motor_forward
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked_right          
+          - delay: !lambda return id(opening_time).state * 1000/2;
+          - switch.turn_off: motor_forward 
+          - delay: 250ms 
+          - switch.turn_on: motor_reverse        
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked
+          - switch.turn_off: motor_reverse   
+          - script.stop: door_open_script_auto_offa   
+          - script.stop: door_open_script_auto_offb    
+          - script.stop: door_open_script_auto_offaa   
+          - script.stop: door_open_script_auto_offba                             
+          - script.stop: door_open_script_auto_offa_return
+          - script.stop: door_open_script_auto_offb_return        
+  - id: door_open_script_auto_offaa
+    mode: restart   
+    then:
+     - if: 
+         condition:
+           and:
+             - binary_sensor.is_on: motor_parked  
+             - lambda: 'return id(saftey_bypass).state == "Normal";'                 
+             - lambda: 'return id(hing_side).state == "Hing on Left";'   
+             - lambda: 'return id(motor_rpm).state == "Motor 5 RPM";'               
+             - for:
+                time: 1min
+                condition:
+                  switch.is_on: ontimeout                            
+         then:                  
+          - switch.turn_on: motor_forward
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked_right          
+          - delay: !lambda return id(opening_time).state * 1000;
+          - switch.turn_off: motor_forward 
+          - delay: 250ms 
+          - switch.turn_on: motor_reverse        
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked
+          - switch.turn_off: motor_reverse   
+          - script.stop: door_open_script_auto_offa   
+          - script.stop: door_open_script_auto_offb 
+          - script.stop: door_open_script_auto_offaa   
+          - script.stop: door_open_script_auto_offba                             
+          - script.stop: door_open_script_auto_offa_return
+          - script.stop: door_open_script_auto_offb_return                   
+###################################################            
+###### Working #################################### 
+  - id: door_open_script_auto_offb_return
+    mode: restart   
+    then:
+     - if: 
+         condition:
+           and:
+             - binary_sensor.is_off: motor_parked_right  
+             - lambda: 'return id(saftey_bypass).state == "Normal";'                 
+             - lambda: 'return id(hing_side).state == "Hing on Right";'      
+             - for:
+                time: 1min
+                condition:
+                  switch.is_on: ontimeout                           
+         then:                           
+#          - delay: 5s
+          - switch.turn_off: motor_reverse 
+          - delay: 250ms 
+          - switch.turn_on: motor_forward
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked_right
+          - switch.turn_off: motor_forward   
+###################################################            
+###### Working #################################### 
+  - id: door_open_script_auto_offb
+    mode: restart   
+    then:
+     - if: 
+         condition:
+           and:
+             - binary_sensor.is_on: motor_parked_right  
+             - lambda: 'return id(saftey_bypass).state == "Normal";'                 
+             - lambda: 'return id(hing_side).state == "Hing on Right";'  
+             - lambda: 'return id(motor_rpm).state == "Motor 5 RPM";'                   
+
+             - for:
+                time: 2min
+                condition:
+                  switch.is_on: ontimeout                           
+         then:                  
+          - switch.turn_on: motor_reverse
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked          
+          - delay: !lambda return id(opening_time).state * 1000;
+          - switch.turn_off: motor_reverse 
+          - delay: 250ms 
+          - switch.turn_on: motor_forward      
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked_right
+          - switch.turn_off: motor_forward      
+          - script.stop: door_open_script_auto_offa   
+          - script.stop: door_open_script_auto_offb   
+          - script.stop: door_open_script_auto_offaa   
+          - script.stop: door_open_script_auto_offba                             
+          - script.stop: door_open_script_auto_offa_return
+          - script.stop: door_open_script_auto_offb_return        
+  - id: door_open_script_auto_offba
+    mode: restart   
+    then:
+     - if: 
+         condition:
+           and:
+             - binary_sensor.is_on: motor_parked_right  
+             - lambda: 'return id(saftey_bypass).state == "Normal";'                 
+             - lambda: 'return id(hing_side).state == "Hing on Right";'  
+             - lambda: 'return id(motor_rpm).state == "Motor 10 RPM";'                   
+
+             - for:
+                time: 2min
+                condition:
+                  switch.is_on: ontimeout                           
+         then:                  
+          - switch.turn_on: motor_reverse
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked          
+          - delay: !lambda return id(opening_time).state * 1000/2;
+          - switch.turn_off: motor_reverse 
+          - delay: 250ms 
+          - switch.turn_on: motor_forward
+          - wait_until:
+              condition:    
+                binary_sensor.is_on: motor_parked_right
+          - switch.turn_off: motor_forward      
+          - script.stop: door_open_script_auto_offa   
+          - script.stop: door_open_script_auto_offb  
+          - script.stop: door_open_script_auto_offaa   
+          - script.stop: door_open_script_auto_offba                             
+          - script.stop: door_open_script_auto_offa_return
+          - script.stop: door_open_script_auto_offb_return                                                      
+select:
+###################################################            
+###### Working ####################################   
+  - platform: template
+    name: "Motor RPM"
+    id: motor_rpm
+    optimistic: true
+    options:
+      - Motor 5 RPM
+      - Motor 10 RPM
+    on_value:      
+      - if:
+          condition:
+            - lambda: 'return id(motor_rpm).state == "Motor 5 RPM";'                           
+          then:
+            - number.set:
+               id: rpm_number
+               value: "6"     
+      - if:
+          condition:
+            - lambda: 'return id(motor_rpm).state == "Motor 10 RPM";'                           
+          then:
+            - number.set:
+               id: rpm_number
+               value: "3"      
+###################################################            
+###### Working ####################################   
+  - platform: template
+    name: "Operating Mode"
+    id: saftey_bypass
+    optimistic: true
+    options:
+      - Normal
+      - Calibration
+    initial_option: Normal   
+###################################################            
+  - platform: template
+    name: "Hing Side"
+    id: hing_side
+    optimistic: true
+    options:
+      - Hing on Left
+      - Hing on Right
+    on_value:      
+      - if:
+          condition:
+            - lambda: 'return id(hing_side).state == "Hing on Left";'                           
+          then:
+            - number.set:
+               id: hing_helper
+               value: "6"     
+      - if:
+          condition:
+            - lambda: 'return id(hing_side).state == "Hing on Right";'                           
+          then:
+            - number.set:
+               id: hing_helper
+               value: "3"       
+
+
+###################################################           
+###### Working #################################### 
+binary_sensor:  
+  - platform: homeassistant
+    entity_id: input_boolean.visitor
+    id: visitor     
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin:
+      number: D4
+      mode: INPUT_PULLUP      
+    id: motor_parked
+    icon: "mdi:car-brake-parking"         
+    filters:
+      - invert:
+      - delayed_off: 100ms  
+    on_press:      
+      - if:
+          condition:
+            - lambda: 'return id(hing_side).state == "Hing on Left";'                           
+          then:
+            - switch.turn_off: motor_reverse 
+            - switch.turn_off: motor_forward   
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin:
+      number: D5
+      mode: INPUT_PULLUP
+    id: motor_parked_right
+    icon: "mdi:car-brake-parking"         
+    filters:
+      - invert:
+      - delayed_off: 100ms  
+    on_press:      
+      - if:
+          condition:
+            - lambda: 'return id(hing_side).state == "Hing on Right";'                 
+          then:
+            - switch.turn_off: motor_reverse 
+            - switch.turn_off: motor_forward             
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin:
+      number: D8
+      mode: INPUT_PULLUP 
+    id: remote
+    name:  External Switch
+    filters:
+      - invert:    
+    icon: "mdi:remote"  
+    on_press:     
+      - if:
+          condition:
+            for:
+              time: 10s
+              condition:
+                - switch.is_off: motor_reverse
+                - switch.is_off: motor_forward     
+                - binary_sensor.is_off: visitor                            
+          then:      
+                - script.stop: door_open_script_auto_offa   
+                - script.stop: door_open_script_auto_offb 
+                - script.stop: door_open_script_auto_offaa   
+                - script.stop: door_open_script_auto_offba                           
+                - script.stop: safety               
+                - delay: !lambda return id(external_trigger_delay).state * 1000;           
+                - script.execute: door_open_script_auto_offa 
+                - script.execute: door_open_script_auto_offb
+                - script.execute: door_open_script_auto_offaa 
+                - script.execute: door_open_script_auto_offba                
+      - script.execute: door_open_script_auto_offa_return
+      - script.execute: door_open_script_auto_offb_return  
+      - script.execute: safety                           
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin:
+      number: D6
+      mode: INPUT_PULLUP
+    id: remote_switch
+    name:  External Trigger
+    icon: "mdi:remote"    
+    filters:
+      - delayed_off: 100ms  
+      - invert:         
+    on_press:           
+      - if:
+          condition:
+            for:
+              time: 10s
+              condition:
+                - switch.is_off: motor_reverse
+                - switch.is_off: motor_forward     
+                - binary_sensor.is_off: visitor                            
+          then:      
+                - script.stop: door_open_script_auto_offa   
+                - script.stop: door_open_script_auto_offb 
+                - script.stop: door_open_script_auto_offaa   
+                - script.stop: door_open_script_auto_offba                           
+                - script.stop: safety               
+                - delay: !lambda return id(external_trigger_delay).state * 1000;           
+                - script.execute: door_open_script_auto_offa 
+                - script.execute: door_open_script_auto_offb
+                - script.execute: door_open_script_auto_offaa 
+                - script.execute: door_open_script_auto_offba                
+      - script.execute: door_open_script_auto_offa_return
+      - script.execute: door_open_script_auto_offb_return  
+      - script.execute: safety             
+###################################################                    
+###### Working ####################################      
+  - platform: gpio
+    pin:
+      number: D3
+      mode: INPUT_PULLUP
+    id: restart_unit_button
+    filters:
+      - invert:
+    on_multi_click:
+        - timing:
+            - ON for at least 10s         
+          then:           
+                - switch.turn_on: unit_restart  
+        - timing:
+            - ON for at least 2s              
+            - OFF for at least .5s                        
+          then:                            
+                - script.execute: restart_park 
+###################################################            
+###### Working #################################### 
+switch:
+  - platform: template
+    id: ontimeout 
+    optimistic: True
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin: D7
+    inverted: no    
+    id: learn
+    on_turn_on:
+       - delay: 100ms
+       - switch.turn_off: learn
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin: D1
+    inverted: no    
+    id: motor_forward
+    interlock: [motor_reverse]
+    interlock_wait_time: 500ms
+###################################################            
+###### Working #################################### 
+  - platform: gpio
+    pin: D2
+    inverted: no    
+    id: motor_reverse   
+    interlock: [motor_forward]
+    interlock_wait_time: 500ms    
+###################################################            
+###### Working ####################################     
+  - platform: restart
+    name: Restart Unit
+    id: unit_restart
+    icon: "mdi:restart"     
+###################################################            
+###### Working #################################### 
+globals:
+  - id: opening_time_restore
+    type: float
+    restore_value: yes
+  - id: manual_time_restore
+    type: float
+    restore_value: yes
+  - id: external_trigger_delay_restore
+    type: float
+    restore_value: yes    
+  - id: auto_align_save
+    type: float
+    restore_value: yes 
+  - id: hing_save
+    type: float
+    restore_value: yes     
+  - id: rpm_save
+    type: float
+    restore_value: yes              
+###################################################            
+###### Working #################################### 
+text_sensor:
+  - platform: template
+    name: Parked Status
+    id: parking_status
+    update_interval: 1s
+    lambda: |-
+      if (id(motor_parked).state) {
+        return std::string("Parked Left");
+      } else if (id(motor_parked_right).state) {
+        return std::string("Parked Right");
+      } else {
+        return std::string("Not Parked");
+      }
+
+  - platform: wifi_info
+    ip_address:
+      name: Unit IP
+  - platform: template
+    name: "Version"
+    lambda: |-
+      return {"IHA_V4.esp32"};    
+###################################################            
+###### Working #################################### 
+number:
+  - platform: template
+    icon: "mdi:timer"
+    id: auto_alight_helper
+    optimistic: true
+    min_value: 4
+    max_value: 6
+    step: 1
+    on_value:
+      then:
+      - if:
+          condition:
+            - for:
+               time: 2min
+               condition:
+                 switch.is_on: ontimeout                   
+          then:      
+              - lambda: id(auto_alight_helper).state = id(auto_align_save);                 
+###################################################            
+###### Working #################################### 
+  - platform: template
+    icon: "mdi:timer"
+    id: hing_helper
+    optimistic: true
+    min_value: 3
+    max_value: 6
+    step: 1
+    on_value:
+      then:
+      - if:
+          condition:
+            - for:
+               time: 2min
+               condition:
+                 switch.is_on: ontimeout                  
+          then:
+              - lambda: id(hing_helper).state = id(hing_save);                       
+
+  - platform: template
+    icon: "mdi:timer"
+    id: rpm_number
+    optimistic: true
+    min_value: 3
+    max_value: 6
+    step: 1
+    on_value:
+      then:
+      - if:
+          condition:
+            - for:
+               time: 2min
+               condition:
+                 switch.is_on: ontimeout                 
+          then:  
+              - lambda: id(rpm_number).state = id(rpm_save);                                      
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: "Closing Time"
+    icon: "mdi:timer"
+    id: opening_time
+    optimistic: true
+    min_value: 0
+    max_value: 1.4
+    step: .05
+    on_value:
+      then:
+      - if:
+          condition:
+            - for:
+               time: 2min
+               condition:
+                 switch.is_on: ontimeout                 
+          then:         
+              - lambda: id(opening_time).state = id(opening_time_restore);                
+###################################################            
+###### Working #################################### 
+  - platform: template
+    name: "External Trigger Delay Seconds"
+    id: external_trigger_delay
+    icon: "mdi:timer-cog"    
+    optimistic: true
+    min_value: 0
+    max_value: 120
+    step: 1
+    on_value:
+      then:
+      - if:
+          condition:
+            - for:
+               time: 2min
+               condition:
+                 switch.is_on: ontimeout                 
+          then:         
+              - lambda: id(external_trigger_delay).state = id(external_trigger_delay_restore);                                          
+###################################################            
+###### Working #################################### 
+cover:
+  - platform: template
+    name: "$cover_name"
+    id: coverdoor
+    close_action:
+      - script.stop: safety       
+      - if:
+          condition:
+            for:
+              time: 10s
+              condition:
+                - switch.is_off: motor_reverse
+                - switch.is_off: motor_forward                
+          then:      
+                - script.execute: door_open_script_auto_offa 
+                - script.execute: door_open_script_auto_offb
+                - script.execute: door_open_script_auto_offaa 
+                - script.execute: door_open_script_auto_offba                
+      - script.execute: door_open_script_auto_offa_return
+      - script.execute: door_open_script_auto_offb_return  
+      - script.execute: safety          
+      - delay: 1s
+      - cover.open: coverdoor     
+    stop_action:
+     - switch.turn_off: motor_forward 
+     - switch.turn_off: motor_reverse     
+     - script.stop: door_open_script_auto_offa   
+     - script.stop: door_open_script_auto_offb  
+     - script.stop: door_open_script_auto_offaa   
+     - script.stop: door_open_script_auto_offba        
+    optimistic: true                
+           
+  `;
+              }                                               
 ////////////////////////////////////////////////////////////////////////////////////////////       
                         // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
