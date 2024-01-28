@@ -132,7 +132,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator 555</h1>
+  <h1>IHA Code Generator 111</h1>
 </header>
 <h4>ENTER YOUR OWN VALUES </h4>
 <div class="rounded-box">
@@ -5338,14 +5338,22 @@ button:
     name: GPIO State Set (NO\NC 1-16)
     icon: "mdi:set-merge"
     on_press:
+           `;
+            }   
+          if (!checkbox1.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `    
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_1") {
             id(device_1_set_1_16) = 1;
-          } 
+          }            
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_1") {
             id(device_1_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox2.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_2") {
             id(device_2_set_1_16) = 1;
@@ -5354,6 +5362,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_2") {
             id(device_2_set_1_16) = 2;
           }          
+          `;
+            }   
+          if (!checkbox3.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_3") {
             id(device_3_set_1_16) = 1;
@@ -5362,6 +5374,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_3") {
             id(device_3_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox4.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_4") {
             id(device_4_set_1_16) = 1;
@@ -5370,6 +5386,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_4") {
             id(device_4_set_1_16) = 2;
           }  
+          `;
+            }   
+          if (!checkbox5.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_5") {
             id(device_5_set_1_16) = 1;
@@ -5378,6 +5398,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_5") {
             id(device_5_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox6.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_6") {
             id(device_6_set_1_16) = 1;
@@ -5385,7 +5409,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_6") {
             id(device_6_set_1_16) = 2;
-          }          
+          }         
+          `;
+            }   
+          if (!checkbox7.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += `  
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_7") {
             id(device_7_set_1_16) = 1;
@@ -5394,6 +5422,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_7") {
             id(device_7_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox8.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_8") {
             id(device_8_set_1_16) = 1;
@@ -5402,6 +5434,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_8") {
             id(device_8_set_1_16) = 2;
           }  
+          `;
+            }   
+          if (!checkbox9.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_9") {
             id(device_9_set_1_16) = 1;
@@ -5410,6 +5446,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_9") {
             id(device_9_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox10.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_10") {
             id(device_10_set_1_16) = 1;
@@ -5418,6 +5458,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_10") {
             id(device_10_set_1_16) = 2;
           }          
+          `;
+            }   
+          if (!checkbox11.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_11") {
             id(device_11_set_1_16) = 1;
@@ -5426,6 +5470,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_11") {
             id(device_11_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox12.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_12") {
             id(device_12_set_1_16) = 1;
@@ -5434,6 +5482,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_12") {
             id(device_12_set_1_16) = 2;
           }  
+          `;
+            }   
+          if (!checkbox13.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_13") {
             id(device_13_set_1_16) = 1;
@@ -5442,6 +5494,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_13") {
             id(device_13_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox14.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_14") {
             id(device_14_set_1_16) = 1;
@@ -5449,7 +5505,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_14") {
             id(device_14_set_1_16) = 2;
-          }          
+          }         
+          `;
+            }   
+          if (!checkbox15.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_15") {
             id(device_15_set_1_16) = 1;
@@ -5458,6 +5518,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_15") {
             id(device_15_set_1_16) = 2;
           }
+          `;
+            }   
+          if (!checkbox16.checked && selectedTypeValue1 === '16 GPIO Rack Card 1') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_1_device_16") {
             id(device_16_set_1_16) = 1;
@@ -5466,6 +5530,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_1_device_16") {
             id(device_16_set_1_16) = 2;
           }  
+          `;  
+          }    
+          if (selectedTypeValue1 === '16 GPIO Rack Card 1') {
+          additionalConfig += `    
       - select.set:
           id: select_gpio_1
           option: "None" 
@@ -5476,7 +5544,11 @@ button:
   - platform: template
     name: GPIO State Set (NO\NC 17-32)
     icon: "mdi:set-merge"
-    on_press:           
+    on_press:         
+    `;
+            }   
+          if (!checkbox17.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_1") {
             id(device_1_set_17_32) = 1;
@@ -5485,6 +5557,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_1") {
             id(device_1_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox18.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_2") {
             id(device_2_set_17_32) = 1;
@@ -5492,7 +5568,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_2") {
             id(device_2_set_17_32) = 2;
-          }          
+          }         
+          `;
+            }   
+          if (!checkbox19.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `    
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_3") {
             id(device_3_set_17_32) = 1;
@@ -5501,6 +5581,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_3") {
             id(device_3_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox20.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_4") {
             id(device_4_set_17_32) = 1;
@@ -5509,6 +5593,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_4") {
             id(device_4_set_17_32) = 2;
           }  
+          `;
+            }   
+          if (!checkbox21.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_5") {
             id(device_5_set_17_32) = 1;
@@ -5516,7 +5604,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_5") {
             id(device_5_set_17_32) = 2;
-          }
+          }    
+          `;
+            }   
+          if (!checkbox22.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_6") {
             id(device_6_set_17_32) = 1;
@@ -5524,7 +5616,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_6") {
             id(device_6_set_17_32) = 2;
-          }          
+          }     
+          `;
+            }   
+          if (!checkbox23.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `        
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_7") {
             id(device_7_set_17_32) = 1;
@@ -5533,6 +5629,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_7") {
             id(device_7_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox24.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_8") {
             id(device_8_set_17_32) = 1;
@@ -5541,6 +5641,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_8") {
             id(device_8_set_17_32) = 2;
           }  
+          `;
+            }   
+          if (!checkbox25.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_9") {
             id(device_9_set_17_32) = 1;
@@ -5549,6 +5653,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_9") {
             id(device_9_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox26.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_10") {
             id(device_10_set_17_32) = 1;
@@ -5556,7 +5664,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_10") {
             id(device_10_set_17_32) = 2;
-          }          
+          }     
+          `;
+            }   
+          if (!checkbox27.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `        
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_11") {
             id(device_11_set_17_32) = 1;
@@ -5565,6 +5677,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_11") {
             id(device_11_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox28.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_12") {
             id(device_12_set_17_32) = 1;
@@ -5573,6 +5689,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_12") {
             id(device_12_set_17_32) = 2;
           }  
+          `;
+            }   
+          if (!checkbox29.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_13") {
             id(device_13_set_17_32) = 1;
@@ -5581,6 +5701,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_13") {
             id(device_13_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox30.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_14") {
             id(device_14_set_17_32) = 1;
@@ -5588,7 +5712,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_14") {
             id(device_14_set_17_32) = 2;
-          }          
+          }       
+          `;
+            }   
+          if (!checkbox31.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `      
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_15") {
             id(device_15_set_17_32) = 1;
@@ -5597,6 +5725,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_15") {
             id(device_15_set_17_32) = 2;
           }
+          `;
+            }   
+          if (!checkbox32.checked && selectedTypeValue2 === '16 GPIO Rack Card 2') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_2_device_16") {
             id(device_16_set_17_32) = 1;
@@ -5605,6 +5737,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_2_device_16") {
             id(device_16_set_17_32) = 2;
           }  
+          `;    
+        }                
+        if (selectedTypeValue2 === '16 GPIO Rack Card 2' ) {
+                additionalConfig += `          
       - select.set:
           id: select_gpio_1
           option: "None" 
@@ -5615,7 +5751,11 @@ button:
   - platform: template
     name: GPIO State Set (NO\NC 33-48)
     icon: "mdi:set-merge"
-    on_press:                
+    on_press:   
+    `;
+            }   
+          if (!checkbox33.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `              
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_1") {
             id(device_1_set_33_48) = 1;
@@ -5624,6 +5764,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_1") {
             id(device_1_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox34.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_2") {
             id(device_2_set_33_48) = 1;
@@ -5631,7 +5775,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_2") {
             id(device_2_set_33_48) = 2;
-          }          
+          }      
+          `;
+            }   
+          if (!checkbox35.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `    
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_3") {
             id(device_3_set_33_48) = 1;
@@ -5639,7 +5787,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_3") {
             id(device_3_set_33_48) = 2;
-          }
+          } 
+             `;
+            }   
+          if (!checkbox36.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_4") {
             id(device_4_set_33_48) = 1;
@@ -5648,6 +5800,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_4") {
             id(device_4_set_33_48) = 2;
           }  
+          `;
+            }   
+          if (!checkbox37.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_5") {
             id(device_5_set_33_48) = 1;
@@ -5656,6 +5812,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_5") {
             id(device_5_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox38.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_6") {
             id(device_6_set_33_48) = 1;
@@ -5663,7 +5823,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_6") {
             id(device_6_set_33_48) = 2;
-          }          
+          }        
+          `;
+            }   
+          if (!checkbox39.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `  
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_7") {
             id(device_7_set_33_48) = 1;
@@ -5672,6 +5836,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_7") {
             id(device_7_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox40.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_8") {
             id(device_8_set_33_48) = 1;
@@ -5680,6 +5848,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_8") {
             id(device_8_set_33_48) = 2;
           }  
+          `;
+            }   
+          if (!checkbox41.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_9") {
             id(device_9_set_33_48) = 1;
@@ -5688,6 +5860,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_9") {
             id(device_9_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox42.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_10") {
             id(device_10_set_33_48) = 1;
@@ -5695,7 +5871,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_10") {
             id(device_10_set_33_48) = 2;
-          }          
+          }         
+          `;
+            }   
+          if (!checkbox43.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_11") {
             id(device_11_set_33_48) = 1;
@@ -5704,6 +5884,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_11") {
             id(device_11_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox44.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_12") {
             id(device_12_set_33_48) = 1;
@@ -5712,6 +5896,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_12") {
             id(device_12_set_33_48) = 2;
           }  
+          `;
+            }   
+          if (!checkbox45.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_13") {
             id(device_13_set_33_48) = 1;
@@ -5720,6 +5908,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_13") {
             id(device_13_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox46.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_14") {
             id(device_14_set_33_48) = 1;
@@ -5727,7 +5919,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_14") {
             id(device_14_set_33_48) = 2;
-          }          
+          }     
+          `;
+            }   
+          if (!checkbox47.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `     
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_15") {
             id(device_15_set_33_48) = 1;
@@ -5736,6 +5932,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_15") {
             id(device_15_set_33_48) = 2;
           }
+          `;
+            }   
+          if (!checkbox48.checked && selectedTypeValue3 === '16 GPIO Rack Card 3') {
+            additionalConfig += `
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_3_device_16") {
             id(device_16_set_33_48) = 1;
@@ -5744,6 +5944,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_3_device_16") {
             id(device_16_set_33_48) = 2;
           }  
+          `;  
+          }    
+          if (selectedTypeValue3 === '16 GPIO Rack Card 3' ) {
+                additionalConfig += `          
       - select.set:
           id: select_gpio_1
           option: "None" 
@@ -5755,6 +5959,10 @@ button:
     name: GPIO State Set (NO\NC 49-64)
     icon: "mdi:set-merge"
     on_press:
+    `;
+            }   
+          if (!checkbox49.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_1") {
             id(device_1_set_49_64) = 1;
@@ -5763,6 +5971,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_1") {
             id(device_1_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox50.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_2") {
             id(device_2_set_49_64) = 1;
@@ -5770,7 +5982,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_2") {
             id(device_2_set_49_64) = 2;
-          }          
+          }      
+          `;
+            }   
+          if (!checkbox51.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `     
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_3") {
             id(device_3_set_49_64) = 1;
@@ -5779,6 +5995,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_3") {
             id(device_3_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox52.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_4") {
             id(device_4_set_49_64) = 1;
@@ -5787,6 +6007,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_4") {
             id(device_4_set_49_64) = 2;
           }  
+          `;
+            }   
+          if (!checkbox53.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_5") {
             id(device_5_set_49_64) = 1;
@@ -5795,6 +6019,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_5") {
             id(device_5_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox54.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_6") {
             id(device_6_set_49_64) = 1;
@@ -5802,7 +6030,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_6") {
             id(device_6_set_49_64) = 2;
-          }          
+          }        
+          `;
+            }   
+          if (!checkbox55.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `   
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_7") {
             id(device_7_set_49_64) = 1;
@@ -5811,6 +6043,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_7") {
             id(device_7_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox56.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_8") {
             id(device_8_set_49_64) = 1;
@@ -5819,6 +6055,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_8") {
             id(device_8_set_49_64) = 2;
           }  
+          `;
+            }   
+          if (!checkbox57.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_9") {
             id(device_9_set_49_64) = 1;
@@ -5827,6 +6067,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_9") {
             id(device_9_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox58.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_10") {
             id(device_10_set_49_64) = 1;
@@ -5834,7 +6078,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_10") {
             id(device_10_set_49_64) = 2;
-          }          
+          }    
+          `;
+            }   
+          if (!checkbox59.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `       
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_11") {
             id(device_11_set_49_64) = 1;
@@ -5843,6 +6091,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_11") {
             id(device_11_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox60.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_12") {
             id(device_12_set_49_64) = 1;
@@ -5851,6 +6103,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_12") {
             id(device_12_set_49_64) = 2;
           }  
+          `;
+            }   
+          if (!checkbox61.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_13") {
             id(device_13_set_49_64) = 1;
@@ -5859,6 +6115,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_13") {
             id(device_13_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox62.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_14") {
             id(device_14_set_49_64) = 1;
@@ -5866,7 +6126,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_14") {
             id(device_14_set_49_64) = 2;
-          }          
+          }   
+          `;
+            }   
+          if (!checkbox63.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += `        
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_15") {
             id(device_15_set_49_64) = 1;
@@ -5875,6 +6139,10 @@ button:
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_15") {
             id(device_15_set_49_64) = 2;
           }
+          `;
+            }   
+          if (!checkbox64.checked && selectedTypeValue4 === '16 GPIO Rack Card 4') {
+            additionalConfig += ` 
       - lambda: |-
           if (id(device_select_1).state == "NO" && id(select_gpio_1).state == "$gpio_rack_card_4_device_16") {
             id(device_16_set_49_64) = 1;
@@ -5882,7 +6150,11 @@ button:
       - lambda: |-
           if (id(device_select_1).state == "NC" && id(select_gpio_1).state == "$gpio_rack_card_4_device_16") {
             id(device_16_set_49_64) = 2;
-          }  
+          } 
+          `;  
+          }    
+          if (selectedTypeValue4 === '16 GPIO Rack Card 4' ) {
+                additionalConfig += `          
       - select.set:
           id: select_gpio_1
           option: "None"    
