@@ -555,49 +555,49 @@
         <input type="text" id="textEntryGPIO_1" value="GPIO 1">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_1">
-          <label for="checkGPIO_1">Switch</label>
+          <label for="checkGPIO_1">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_3">Device 3:</label>
         <input type="text" id="textEntryGPIO_3" value="GPIO 3">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_3">
-          <label for="checkGPIO_3">Switch</label>
+          <label for="checkGPIO_3">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_5">Device 5:</label>
         <input type="text" id="textEntryGPIO_5" value="GPIO 5">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_5">
-          <label for="checkGPIO_5">Switch</label>
+          <label for="checkGPIO_5">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_7">Device 7:</label>
         <input type="text" id="textEntryGPIO_7" value="GPIO 7">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_7">
-          <label for="checkGPIO_7">Switch</label>
+          <label for="checkGPIO_7">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_9">Device 9:</label>
         <input type="text" id="textEntryGPIO_9" value="GPIO 9">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_9">
-          <label for="checkGPIO_9">Switch</label>
+          <label for="checkGPIO_9">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_11">Device 11:</label>
         <input type="text" id="textEntryGPIO_11" value="GPIO 11">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_11">
-          <label for="checkGPIO_11">Switch</label>
+          <label for="checkGPIO_11">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_13">Device 13:</label>
         <input type="text" id="textEntryGPIO_13" value="GPIO 13">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_13">
-          <label for="checkGPIO_13">Switch</label>
+          <label for="checkGPIO_13">Check to use Switch</label>
         </div>
         <label for="textEntryGPIO_15">Device 15:</label>
         <input type="text" id="textEntryGPIO_15" value="GPIO 15">
         <div class="checkbox-container">
           <input type="checkbox" id="checkGPIO_15">
-          <label for="checkGPIO_15">Switch</label>
+          <label for="checkGPIO_15">Check to use Switch</label>
         </div>
       </div>
       
@@ -605,6 +605,10 @@
       <div class="flex-item">
         <label for="textEntryGPIO_2">Device 2:</label>
         <input type="text" id="textEntryGPIO_2" value="GPIO 2">
+        <div class="checkbox-container">
+          <input type="checkbox" id="checkGPIO_2">
+          <label for="checkGPIO_2">Check to use Switch</label>
+        </div>        
         <label for="textEntryGPIO_4">Device 4:</label>
         <input type="text" id="textEntryGPIO_4" value="GPIO 4">
         <label for="textEntryGPIO_6">Device 6:</label>
@@ -798,6 +802,8 @@
         const subbDiv16 = document.querySelector('.subb16');                                                                                
         const downloadButton = document.getElementById('downloadButton');  
         const checkbox1 = document.getElementById('checkGPIO_1');
+        const checkbox2 = document.getElementById('checkGPIO_2');
+        const checkbox3 = document.getElementById('checkGPIO_3');                
         function updateSubbVisibility() {
             // Show/hide the subbDiv1 based on the selected value of dropdown1
             subbDiv1.style.display = dropdown1.value === 'none' ? 'none' : 'block';
