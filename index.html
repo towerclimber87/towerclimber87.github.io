@@ -580,7 +580,28 @@
         <main>
       <main>          
     </div>                      
-  </div>       
+  </div>  
+  <div id="section6" class="subb18">  
+    <div>                                    
+      <main>
+        <main>
+          <h3>Thermostate</h3>
+          <div>
+            <label for="textEntry16">Door Name</label>
+            <input type="text" id="textEntry16" value="IHA Door Closer">
+          </div> 
+          <div>
+            <label for="textEntry17">Eifi SSID</label>
+            <input type="text" id="textEntry17" value="Your WiFi SSID">
+          </div> 
+          <div>
+            <label for="textEntry18">WiFi Password</label>
+            <input type="text" id="textEntry18" value="Your WiFi Password">
+          </div>             
+        <main>
+      <main>          
+    </div>                      
+  </div>         
   <div id="section4" class="subb12">  
     <div class="flex-container">
       <!-- Column 1 -->
@@ -1054,7 +1075,8 @@
         const subbDiv14 = document.querySelector('.subb14');  
         const subbDiv15 = document.querySelector('.subb15');       
         const subbDiv16 = document.querySelector('.subb16'); 
-        const subbDiv17 = document.querySelector('.subb17');                                                                                        
+        const subbDiv17 = document.querySelector('.subb17');       
+        const subbDiv18 = document.querySelector('.subb18');                                                                                                
         const downloadButton = document.getElementById('downloadButton');  
         const checkbox1 = document.getElementById('checkGPIO_1');
         const checkbox2 = document.getElementById('checkGPIO_2');
@@ -1141,7 +1163,8 @@
             subbDiv14.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown3.value === '16 GPIO Rack Card 3') ? 'block' : 'none';  
             subbDiv15.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown4.value === '16 GPIO Rack Card 4') ? 'block' : 'none';          
             subbDiv16.style.display = dropdown16.value === 'door_closer' ? 'block' : 'none';    
-            subbDiv17.style.display = dropdown16.value === 'coil_maker' ? 'block' : 'none';                                             
+            subbDiv17.style.display = dropdown16.value === 'coil_maker' ? 'block' : 'none';    
+            subbDiv18.style.display = dropdown16.value === 'thermostate' ? 'block' : 'none';                                                         
         }
         dropdown1.addEventListener('change', updateSubbVisibility);
         dropdown2.addEventListener('change', updateSubbVisibility);
