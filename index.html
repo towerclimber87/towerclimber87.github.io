@@ -8052,7 +8052,7 @@ binary_sensor:
             - cover.toggle: my_blind4        
                 `;
               }    
-////////////////////////////////////  Blinds  ////////////////////////////////////////////////////////
+////////////////////////////////////  Door Closer  ////////////////////////////////////////////////////////
 if (selectedOptionValue16 === 'door_closer' ) {
                 additionalConfig += `     
   esphome:
@@ -8156,11 +8156,6 @@ esp32:
 substitutions:
   $cover_name: ${textEntry16}
 
-web_server:
-  port: 80
-  auth:
-    username: admin
-    password: password1234
 wifi:
   ssid: ${textEntry17}
   password: ${textEntry18}
