@@ -219,7 +219,8 @@
     <option value="iha_blinds">ESP32 Blinds</option>
     <option value="wiegand_keypad">Wiegand Keypad</option>  
     <option value="door_closer">Automatic Door Closer</option>      
-    <option value="spool_winder">Coil Maker</option>          
+    <option value="spool_winder">Coil Maker</option>       
+    <option value="thermostate">Thermostate</option>              
       <!-- Add more options for Node Device 2 as needed -->
   </select>                                                                               
   <main> 
@@ -1163,7 +1164,7 @@
             subbDiv14.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown3.value === '16 GPIO Rack Card 3') ? 'block' : 'none';  
             subbDiv15.style.display = (dropdown16.value === 'home_automation_system' && typeDropdown4.value === '16 GPIO Rack Card 4') ? 'block' : 'none';          
             subbDiv16.style.display = dropdown16.value === 'door_closer' ? 'block' : 'none';    
-            subbDiv17.style.display = dropdown16.value === 'coil_maker' ? 'block' : 'none';    
+            subbDiv17.style.display = dropdown16.value === 'spool_winder' ? 'block' : 'none';    
             subbDiv18.style.display = dropdown16.value === 'thermostate' ? 'block' : 'none';                                                         
         }
         dropdown1.addEventListener('change', updateSubbVisibility);
