@@ -623,6 +623,10 @@
           <input type="checkbox" id="checkGPIO_3">
           <label for="checkGPIO_3">On/Off Switch</label>
         </div>
+        <div class="checkbox-container">
+          <input type="checkbox" id="checktrigger_2">
+          <label for="checktrigger_2">Momentary Trigger</label>
+        </div>
         <label for="textEntryGPIO_5">Device 5:</label>
         <input type="text" id="textEntryGPIO_5" value="GPIO 5">
         <div class="checkbox-container">
@@ -669,6 +673,10 @@
           <input type="checkbox" id="checkGPIO_2">
           <label for="checkGPIO_2">On/Off Switch</label>
         </div>        
+        <div class="checkbox-container">
+          <input type="checkbox" id="checktrigger_2">
+          <label for="checktrigger_2">Momentary Trigger</label>
+        </div>
         <label for="textEntryGPIO_4">Device 4:</label>
         <input type="text" id="textEntryGPIO_4" value="GPIO 4">
         <div class="checkbox-container">
@@ -1148,7 +1156,9 @@
         const checkbox63 = document.getElementById('checkGPIO_63');
         const checkbox64 = document.getElementById('checkGPIO_64');
         const checkbox65 = document.getElementById('checktrigger_1');        
-        const checkbox66 = document.getElementById('checktrigger_2');                
+        const checkbox66 = document.getElementById('checktrigger_2');     
+        const checkbox67 = document.getElementById('checktrigger_3');
+
         
         
         function updateSubbVisibility() {        
@@ -2081,10 +2091,24 @@ switch:
   - platform: gpio
     name: $gpio_rack_card_1_device_1 
     pin:
-      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1   
       number: 0
       inverted: False 
-                `;
+      `;
+     }       
+     if (checkbox65.checked) {
+            additionalConfig += `           
+  - platform: gpio
+    name: $gpio_rack_card_1_device_1 
+    id: switch_1
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1   
+      number: 0
+      inverted: False 
+    on_turn_on:
+      - delay: 10ms
+      - switch.turn_off: switch_1  
+      `;              
             }   
             if (checkbox2.checked) {
             additionalConfig += `                
@@ -2096,6 +2120,20 @@ switch:
       inverted: False     
                 `;
             }    
+      if (checkbox66.checked) {
+            additionalConfig += `            
+  - platform: gpio
+    name: $gpio_rack_card_1_device_2
+    id: switch_2
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1   
+      number: 1
+      inverted: False 
+    on_turn_on:
+      - delay: 10ms
+      - switch.turn_off: switch_2
+      `;              
+            }              
             if (checkbox3.checked) {
             additionalConfig += `                
   - platform: gpio
@@ -2106,6 +2144,20 @@ switch:
       inverted: False 
                 `;
             }   
+            if (checkbox67.checked) {
+            additionalConfig += `            
+  - platform: gpio
+    name: $gpio_rack_card_1_device_3
+    id: switch_3
+    pin:
+      mcp23xxx: mcp23017_hub_16_gpio_rack_card_1   
+      number: 1=2
+      inverted: False 
+    on_turn_on:
+      - delay: 10ms
+      - switch.turn_off: switch_3
+      `;              
+            }              
             if (checkbox4.checked) {
             additionalConfig += `                
   - platform: gpio
