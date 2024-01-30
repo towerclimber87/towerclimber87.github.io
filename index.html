@@ -132,7 +132,7 @@
 </main>                                              
 </div>    
 <header>
-  <h1>IHA Code Generator</h1>
+  <h1>IHA Code Generator  111</h1>
 </header>
 <h4>ENTER YOUR OWN VALUES </h4>
 <div class="rounded-box">
@@ -1163,13 +1163,7 @@
         const checkbox62 = document.getElementById('checkGPIO_62');
         const checkbox63 = document.getElementById('checkGPIO_63');
         const checkbox64 = document.getElementById('checkGPIO_64');
-        const checkbox65 = document.getElementById('checktrigger_1');        
-        const checkbox66 = document.getElementById('checktrigger_2');  
-        const checkbox67 = document.getElementById('checktrigger_3');        
-        const checkbox68 = document.getElementById('checktrigger_4');   
-        const checkbox69 = document.getElementById('checktrigger_5');                                
-        
-        
+        const checkbox65 = document.getElementById('checktrigger_1');                                    
         function updateSubbVisibility() {        
 
             // Show/hide the subbDiv1 based on the selected value of dropdown1
@@ -1320,7 +1314,8 @@
             const textEntryGPIO61 = document.getElementById('textEntryGPIO_61').value;
             const textEntryGPIO62 = document.getElementById('textEntryGPIO_62').value;  
             const textEntryGPIO63 = document.getElementById('textEntryGPIO_63').value;  
-            const textEntryGPIO64 = document.getElementById('textEntryGPIO_64').value;              
+            const textEntryGPIO64 = document.getElementById('textEntryGPIO_64').value; 
+        
             //updateSubbVisibility();                                             
             //  Create the YAML configuration string based on the selected type
             let yamlConfig = '';
@@ -2117,7 +2112,7 @@ switch:
     on_turn_on:
       - delay: 10ms
       - switch.turn_off: switch_1  
-      `;              
+         `;              
             }   
             if (checkbox2.checked) {
             additionalConfig += `                
@@ -2189,7 +2184,7 @@ switch:
     on_turn_on:
       - delay: 10ms
       - switch.turn_off: switch_4
-      `;              
+           `;              
             }             
             if (checkbox5.checked) {
             additionalConfig += `                
@@ -2213,7 +2208,7 @@ switch:
     on_turn_on:
       - delay: 10ms
       - switch.turn_off: switch_5
-      `;              
+          `;              
             }                
             if (checkbox6.checked) {
             additionalConfig += `                
