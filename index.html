@@ -1416,7 +1416,56 @@
         const checkbox77 = document.getElementById('checktrigger_13');
         const checkbox78 = document.getElementById('checktrigger_14');
         const checkbox79 = document.getElementById('checktrigger_15');
-        const checkbox80 = document.getElementById('checktrigger_16');  
+        const checkbox80 = document.getElementById('checktrigger_16');
+        const checkbox81 = document.getElementById('checktrigger_17');
+        const checkbox82 = document.getElementById('checktrigger_18');
+        const checkbox83 = document.getElementById('checktrigger_19');
+        const checkbox84 = document.getElementById('checktrigger_20');
+        const checkbox85 = document.getElementById('checktrigger_21');
+        const checkbox86 = document.getElementById('checktrigger_22');
+        const checkbox87 = document.getElementById('checktrigger_23');
+        const checkbox88 = document.getElementById('checktrigger_24');
+        const checkbox89 = document.getElementById('checktrigger_25');
+        const checkbox90 = document.getElementById('checktrigger_26');
+        const checkbox91 = document.getElementById('checktrigger_27');
+        const checkbox92 = document.getElementById('checktrigger_28');
+        const checkbox93 = document.getElementById('checktrigger_29');
+        const checkbox94 = document.getElementById('checktrigger_30');
+        const checkbox95 = document.getElementById('checktrigger_31');
+        const checkbox96 = document.getElementById('checktrigger_32');
+        const checkbox97 = document.getElementById('checktrigger_33');
+        const checkbox98 = document.getElementById('checktrigger_34');
+        const checkbox99 = document.getElementById('checktrigger_35');
+        const checkbox100 = document.getElementById('checktrigger_36');
+        const checkbox101 = document.getElementById('checktrigger_37');
+        const checkbox102 = document.getElementById('checktrigger_38');
+        const checkbox103 = document.getElementById('checktrigger_39');
+        const checkbox104 = document.getElementById('checktrigger_40');
+        const checkbox105 = document.getElementById('checktrigger_41');
+        const checkbox106 = document.getElementById('checktrigger_42');
+        const checkbox107 = document.getElementById('checktrigger_43');
+        const checkbox108 = document.getElementById('checktrigger_44');
+        const checkbox109 = document.getElementById('checktrigger_45');
+        const checkbox110 = document.getElementById('checktrigger_46');
+        const checkbox111 = document.getElementById('checktrigger_47');
+        const checkbox112 = document.getElementById('checktrigger_48');
+        const checkbox113 = document.getElementById('checktrigger_49');
+        const checkbox114 = document.getElementById('checktrigger_50');
+        const checkbox115 = document.getElementById('checktrigger_51');
+        const checkbox116 = document.getElementById('checktrigger_52');
+        const checkbox117 = document.getElementById('checktrigger_53');
+        const checkbox118 = document.getElementById('checktrigger_54');
+        const checkbox119 = document.getElementById('checktrigger_55');
+        const checkbox120 = document.getElementById('checktrigger_56');
+        const checkbox121 = document.getElementById('checktrigger_57');
+        const checkbox122 = document.getElementById('checktrigger_58');
+        const checkbox123 = document.getElementById('checktrigger_59');
+        const checkbox124 = document.getElementById('checktrigger_60');
+        const checkbox125 = document.getElementById('checktrigger_61');
+        const checkbox126 = document.getElementById('checktrigger_62');
+        const checkbox127 = document.getElementById('checktrigger_63');
+        const checkbox128 = document.getElementById('checktrigger_64');
+
         function updateSubbVisibility() {        
 
             // Show/hide the subbDiv1 based on the selected value of dropdown1
@@ -2634,436 +2683,776 @@ switch:
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_1 
+    id: switch_17
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 0
       inverted: False 
                 `;
-            }   
+            }      
+            if (checkbox81.checked && checkbox17.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_17
+      `;   
+       }                
             if (checkbox18.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_2
+    id: switch_18
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 1        
       inverted: False     
                 `;
             }    
+            if (checkbox82.checked && checkbox18.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_18
+      `;   
+       }              
             if (checkbox19.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_3
+    id: switch_19
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 2
       inverted: False 
                 `;
             }   
+            if (checkbox83.checked && checkbox19.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_19
+      `;   
+       }              
             if (checkbox20.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_4
+    id: switch_20
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 3
       inverted: False 
                 `;
             }   
+            if (checkbox84.checked && checkbox20.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_20
+      `;   
+       }                   
             if (checkbox21.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_5
+    id: switch_21
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 4       
       inverted: False     
                 `;
             }    
+            if (checkbox85.checked && checkbox21.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_21
+      `;   
+       }             
             if (checkbox22.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_6
+    id: switch_22
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 5
       inverted: False 
                 `;
-            }       
+            }   
+            if (checkbox86.checked && checkbox22.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_22
+      `;   
+       }                                
             if (checkbox23.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_7
+    id: switch_23
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 6
       inverted: False 
                 `;
             }   
+            if (checkbox87.checked && checkbox23.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_23
+      `;   
+       }              
             if (checkbox24.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_8
+    id: switch_24
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 7       
       inverted: False     
                 `;
-            }    
+            }   
+            if (checkbox88.checked && checkbox24.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_24
+      `;   
+       }                   
             if (checkbox25.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_9
+    id: switch_25
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 8        
       inverted: False     
                 `;
             }    
+            if (checkbox89.checked && checkbox25.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_25
+      `;   
+       }             
             if (checkbox26.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_10
+    id: switch_26
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 9
       inverted: False 
                 `;
             }   
+            if (checkbox90.checked && checkbox26.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_26
+      `;   
+       }               
             if (checkbox27.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_11
+    id: switch_27
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 10
       inverted: False 
                 `;
             }   
+            if (checkbox91.checked && checkbox27.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_27
+      `;   
+       }                  
             if (checkbox28.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_12
+    id: switch_28
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 11     
       inverted: False     
                 `;
             }    
+            if (checkbox92.checked && checkbox28.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_28
+      `;   
+       }               
             if (checkbox29.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_13
+    id: switch_29
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 12
       inverted: False 
                 `;
-            }       
+            }      
+            if (checkbox93.checked && checkbox29.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_29
+      `;   
+       }              
             if (checkbox30.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_14
+    id: switch_30
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 13
       inverted: False 
                 `;
             }   
+            if (checkbox94.checked && checkbox30.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_30
+      `;   
+       }                    
             if (checkbox31.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_15
+    id: switch_31
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 14      
       inverted: False     
                 `;
-            }              
+            }   
+            if (checkbox95.checked && checkbox31.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_31
+      `;   
+       }                           
             if (checkbox32.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_2_device_16
+    id: switch_32
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_2
       number: 15
       inverted: False 
                 `;
-            }           
+            }   
+            if (checkbox96.checked && checkbox32.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_32
+      `;   
+       }                    
             if (checkbox33.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_1 
+    id: switch_33
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 0
       inverted: False 
                 `;
             }   
+            if (checkbox97.checked && checkbox33.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_33
+      `;   
+       }              
             if (checkbox34.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_2
+    id: switch_34
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 1        
       inverted: False     
                 `;
             }    
+            if (checkbox98.checked && checkbox34.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_34
+      `;   
+       }                
             if (checkbox35.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_3
+    id: switch_35
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 2
       inverted: False 
                 `;
-            }   
+            }  
+            if (checkbox99.checked && checkbox35.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_35
+      `;   
+       }                 
             if (checkbox36.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_4
+    id: switch_36
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 3
       inverted: False 
                 `;
             }   
+            if (checkbox100.checked && checkbox36.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_36
+      `;   
+       }                
             if (checkbox37.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_5
+    id: switch_37
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 4       
       inverted: False     
                 `;
             }    
+            if (checkbox101.checked && checkbox37.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_37
+      `;   
+       }                    
             if (checkbox38.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_6
+    id: switch_38
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 5
       inverted: False 
                 `;
-            }       
+            }      
+            if (checkbox102.checked && checkbox38.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_38
+      `;   
+       }                  
             if (checkbox39.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_7
+    id: switch_39
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 6
       inverted: False 
                 `;
             }   
+            if (checkbox103.checked && checkbox39.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_39
+      `;   
+       }              
             if (checkbox40.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_8
+    id: switch_40
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 7       
       inverted: False     
                 `;
             }    
-
-     
+            if (checkbox104.checked && checkbox40.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_40
+      `;   
+       }      
             if (checkbox41.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_9
+    id: switch_41
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 8        
       inverted: False     
                 `;
-            }    
+            }   
+            if (checkbox105.checked && checkbox41.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_41
+      `;   
+       }              
             if (checkbox42.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_10
+    id: switch_42
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 9
       inverted: False 
                 `;
             }   
+            if (checkbox106.checked && checkbox42.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_42
+      `;   
+       }            
             if (checkbox43.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_11
+    id: switch_43
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 10
       inverted: False 
                 `;
             }   
+            if (checkbox107.checked && checkbox43.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_43
+      `;   
+       }               
             if (checkbox44.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_12
+    id: switch_44
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 11     
       inverted: False     
                 `;
             }    
+            if (checkbox108.checked && checkbox44.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_44
+      `;   
+       }                   
             if (checkbox45.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_13
+    id: switch_45
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 12
       inverted: False 
                 `;
             }       
+            if (checkbox109.checked && checkbox45.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_45
+      `;   
+       }              
             if (checkbox46.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_14
+    id: switch_46
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 13
       inverted: False 
                 `;
             }   
+            if (checkbox110.checked && checkbox46.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_46
+      `;   
+       }                       
             if (checkbox47.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_15
+    id: switch_47
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 14      
       inverted: False     
                 `;
-            }              
+            }       
+            if (checkbox111.checked && checkbox47.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_47
+      `;   
+       }                            
             if (checkbox48.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_3_device_16
+    id: switch_48
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_3
       number: 15
       inverted: False 
                 `;
             }   
+            if (checkbox112.checked && checkbox48.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_48
+      `;   
+       }                    
             if (checkbox49.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_1 
+    id: switch_49
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 0
       inverted: False 
                 `;
             }   
+            if (checkbox113.checked && checkbox49.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_49
+      `;   
+       }              
             if (checkbox50.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_2
+    id: switch_50
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 1        
       inverted: False     
                 `;
             }    
+            if (checkbox114.checked && checkbox50.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_50
+      `;   
+       }             
             if (checkbox51.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_3
+    id: switch_51
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 2
       inverted: False 
                 `;
             }   
+            if (checkbox115.checked && checkbox51.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_51
+      `;   
+       }               
             if (checkbox52.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_4
+    id: switch_52
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 3
       inverted: False 
                 `;
             }   
+            if (checkbox116.checked && checkbox52.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_52
+      `;   
+       }               
             if (checkbox53.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_5
+    id: switch_53
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 4       
       inverted: False     
                 `;
             }    
+            if (checkbox117.checked && checkbox53.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_53
+      `;   
+       }                 
             if (checkbox54.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_6
+    id: switch_54
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 5
       inverted: False 
                 `;
-            }       
+            }   
+            if (checkbox118.checked && checkbox54.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_54
+      `;   
+       }                  
             if (checkbox55.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_7
+    id: switch_55
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 6
       inverted: False 
                 `;
             }   
+            if (checkbox119.checked && checkbox55.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_55
+      `;   
+       }             
             if (checkbox56.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_8
+    id: switch_56
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 7       
       inverted: False     
                 `;
             }    
-
-     
+            if (checkbox120.checked && checkbox56.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_56
+      `;   
+       }    
             if (checkbox57.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_9
+    id: switch_57
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 8        
       inverted: False     
                 `;
             }    
+            if (checkbox121.checked && checkbox57.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_57
+      `;   
+       }                
             if (checkbox58.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_10
+    id: switch_58
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 9
       inverted: False 
                 `;
-            }   
+            }  
+            if (checkbox122.checked && checkbox58.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_58
+      `;   
+       }                     
             if (checkbox59.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_11
+    id: switch_59
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 10
       inverted: False 
                 `;
             }   
+            if (checkbox123.checked && checkbox59.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_59
+      `;   
+       }              
             if (checkbox60.checked) {
             additionalConfig += `                
   - platform: gpio
@@ -3074,47 +3463,85 @@ switch:
       inverted: False     
                 `;
             }    
+            if (checkbox124.checked && checkbox60.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_60
+      `;   
+       }             
             if (checkbox61.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_13
+    id: switch_61
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 12
       inverted: False 
                 `;
-            }       
+            }     
+            if (checkbox125.checked && checkbox61.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_61
+      `;   
+       }                 
             if (checkbox62.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_14
+    id: switch_62
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 13
       inverted: False 
                 `;
             }   
+            if (checkbox126.checked && checkbox62.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_62
+      `;   
+       }              
             if (checkbox63.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_15
+    id: switch_63
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 14      
       inverted: False     
                 `;
-            }              
+            }      
+            if (checkbox127.checked && checkbox63.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_63
+      `;   
+       }                         
             if (checkbox64.checked) {
             additionalConfig += `                
   - platform: gpio
     name: $gpio_rack_card_4_device_16
+    id: switch_64
     pin:
       mcp23xxx: mcp23017_hub_16_gpio_rack_card_4
       number: 15
       inverted: False 
                 `;
             }  
-
+            if (checkbox128.checked && checkbox64.checked) {
+            additionalConfig += `            
+    on_turn_on:
+      - delay: 20ms
+      - switch.turn_off: switch_64
+      `;   
+       }    
     if (typeDropdown1 === 'Button Controller' || typeDropdown2 === 'Button Controller' || typeDropdown3 === 'Button Controller' || typeDropdown4 === 'Button Controller' || typeDropdown5 === 'Button Controller' || typeDropdown6 === 'Button Controller' || typeDropdown7 === 'Button Controller' || typeDropdown8 === 'Button Controller') {
                 additionalConfig += `   
   - platform: gpio
