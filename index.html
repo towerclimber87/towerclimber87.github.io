@@ -87,7 +87,11 @@
             display: flex;
             align-items: center; /* Vertically centers the items in the container */
             justify-content: center; /* Horizontally centers the items in the container */
-        }                    
+          }     
+          .button-container {
+            display: flex; /* Use flexbox to place buttons in a row */
+            justify-content: space-between; /* Space the buttons equally */
+          }                       
     </style>
 </head>
 <head>
@@ -1290,17 +1294,10 @@
 </div>     
   <div>                                                                  
       <main>     
-        <pre></pre>      
-        <pre></pre>
-        <pre></pre>
-        <button id="downloadButton">Download YAML File</button>       
-        <pre></pre>
-        <pre></pre>  
-        <pre></pre>
-        <pre></pre>  
-        <pre></pre>
-        <pre></pre>                  
-        <button id="downloadGuideButton">Download Flashing Guide</button>                
+        <div class="button-container">
+          <button id="downloadButton">Download YAML File</button>
+          <button id="downloadGuideButton">Download Flashing Guide</button>
+        </div>            
   </div>  
   </body>      
     <!-- Add your JavaScript code here if needed -->
