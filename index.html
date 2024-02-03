@@ -234,22 +234,22 @@
       <main>
         <label for="dropdown10">Display:</label>
         <select id="dropdown10">
-            <option value="Enabled">Enabled</option>
             <option value="Disabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>    
         <main>
         <label for="dropdown11">Uptime Sensor:</label>
         <select id="dropdown11">
-            <option value="Enabled">Enabled</option>
             <option value="Disabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>  
         <main>
         <label for="dropdown12">Status RGB:</label>
         <select id="dropdown12">
-            <option value="Enabled">Enabled</option>
             <option value="Disabled">Disabled</option>
+            <option value="Enabled">Enabled</option>
             <!-- Add more options for Node Device 2 as needed -->
         </select>                                                                               
         <main>   
@@ -2033,7 +2033,7 @@ esphome:
        - delay: 1s           
                 `;
             }
-       if (selectedOptionValue11 === 'Enabled' || selectedOptionValue1 === '16 GPIO Rack Card 1' || selectedOptionValue2 === '16 GPIO Rack Card 2' || selectedOptionValue3 === '16 GPIO Rack Card 3' || selectedOptionValue4 === '16 GPIO Rack Card 4') {
+       if (selectedOptionValue11 === 'Enabled' && selectedOptionValue1 === '16 GPIO Rack Card 1' || selectedOptionValue2 === '16 GPIO Rack Card 2' || selectedOptionValue3 === '16 GPIO Rack Card 3' || selectedOptionValue4 === '16 GPIO Rack Card 4') {
                 additionalConfig += `   
        - text_sensor.template.publish:
           id: last_name_pressed
