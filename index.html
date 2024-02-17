@@ -1568,7 +1568,8 @@
             const textEntry15 = document.getElementById('textEntry15').value;  
             const textEntry16 = document.getElementById('textEntry16').value;      
             const textEntry17 = document.getElementById('textEntry17').value;      
-            const textEntry18 = document.getElementById('textEntry18').value;                        
+            const textEntry18 = document.getElementById('textEntry18').value;         
+            const textEntry19 = document.getElementById('textEntry19').value;                                    
             const textEntryGPIO1 = document.getElementById('textEntryGPIO_1').value;
             const textEntryGPIO2 = document.getElementById('textEntryGPIO_2').value;  
             const textEntryGPIO3 = document.getElementById('textEntryGPIO_3').value;  
@@ -9948,18 +9949,6 @@ ethernet:
   phy_addr: 1
   power_pin: GPIO16
 
-web_server:
-  port: 80
-  auth:
-    username: $webportal_username
-    password: $webportal_password 
-api:
-  encryption:
-    key: $apipassword
-  reboot_timeout: 0s  
-  
-ota:
-  safe_mode: false
 select:
   - platform: template
     name: "(Config) Code Set"
