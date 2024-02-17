@@ -539,6 +539,35 @@
       <main>
         <main>
           <h3>Wiegand Keypad</h3>
+          <h3>You can have up to 12 user codes and 12 user tags. 
+            Codes are set using 1001-1012 and tags are set using 2001-2012
+            Codes are deleted by setting code to 9999
+            Admin code is set using 9000 and the four admin tags are set using 9001-9004
+            Master code by default is 123456 and can only be changed using the web server.
+            
+            Step 1. Enter master code and press #.
+            Step 2. Within 2 seconds, press desired from above. 
+               Example, if setting user code 1. Enter 100(1-12) for user code, 200(1-12) for user tags, 9000 for admin code and 900(1-4) for admin tags
+            Step 3. Within 2 seconds ,Enter New code up to 6 numbers. 
+            Step 4. Within 2 seconds, Press #
+            
+              Full example for setting user code 1
+                           Example master code (654321)      Example user 1 code (1234)
+            
+                                 Enter 654321 then #
+                      Enter 1001 then #
+                                   Enter 1234 then #.
+            
+              To add user 1 tag, it would be 
+                                 Enter 654321 then #
+                      Enter 2001 then #
+                                   Scan the tag, then # 
+            
+              To delete user 1 tag or code, it would be 
+                                 Enter 654321 then #
+                      Enter 1001 or 2001 then #
+                                   Enter 9999, then # 
+            </h3>
           <div>
             <label for="textEntry16">Keypad Name</label>
             <input type="text" id="textEntry16" value="Keypad Blank Door">
