@@ -539,6 +539,22 @@
       <main>
         <main>
           <h3>Wiegand Keypad</h3>
+          <div>
+            <label for="textEntry16">Keypad Name</label>
+            <input type="text" id="textEntry16" value="Keypad Blank Door">
+          </div> 
+          <div>
+            <label for="textEntry17">User Lock Code</label>
+            <input type="text" id="textEntry17" value="1111">
+          </div>  
+          <div>
+            <label for="textEntry18">Alarm Entity</label>
+            <input type="text" id="textEntry18" value="alarm_control_panel.alarmo">
+          </div> 
+          <div>
+            <label for="textEntry19">Alarm Code</label>
+            <input type="text" id="textEntry19" value="4905">
+          </div>                                 
         <main>
       <main>          
     </div>                      
@@ -553,7 +569,7 @@
             <input type="text" id="textEntry16" value="IHA Door Closer">
           </div> 
           <div>
-            <label for="textEntry17">Eifi SSID</label>
+            <label for="textEntry17">Wifi SSID</label>
             <input type="text" id="textEntry17" value="Your WiFi SSID">
           </div> 
           <div>
@@ -574,7 +590,7 @@
             <input type="text" id="textEntry16" value="IHA Door Closer">
           </div> 
           <div>
-            <label for="textEntry17">Eifi SSID</label>
+            <label for="textEntry17">Wifi SSID</label>
             <input type="text" id="textEntry17" value="Your WiFi SSID">
           </div> 
           <div>
@@ -9872,7 +9888,2083 @@ cover:
     optimistic: true                
            
   `;
-              }                                               
+              }     
+////////////////////////////////////  Keypad  ////////////////////////////////////////////////////////
+if (selectedOptionValue16 === 'wiegand_keypad' ) {
+                additionalConfig += `   
+
+substitutions:  
+#### ERASE USER CODE 9999
+#### TOGGLE LOCK CODE 1111
+  esphome_name: "${textEntry1}"
+  keypad_name: "${textEntry16}" 
+  alarm_name: "${textEntry18}"  
+  alarmcode: "${textEntry19}"       
+  user_lock_code: "${textEntry17}" 
+
+  buzzer_master_mode: 'scale_up:d=32,o=5,b=100:c,c#,d#,e,f#,g#,a#,bp'  
+  buzzer_master_mode_off: ''    
+  buzzer_user_added: 'mission_imp:d=16,o=6,b=95:32d,32d#' 
+  buzzer_user_removed: 'siren:d=8,o=5,b=100:d,e,d,e,d,e,d,e' 
+  buzzer_door_trigger: 'mario:d=4,o=5,b=100:16e6,16e6,32p,8e6,16c6,8e6,8g6'  
+  buzzer: 'AccessGrantedShort:d=4,o=5,b=50:16e6,16f6,16g6,16a6,16g6,16f6,16e6,16d6'
+  buzzer_code: 'two_short:d=4,o=5,b=100:16e6,16e6'
+  delay_time: 6s 
+  
+esphome: 
+  name: $esphome_name
+  platform: ESP32
+  board: esp-wrover-kit
+  on_boot:
+    then:
+       - delay: 2s
+       - if:
+           condition:
+              - switch.is_off: door_trigger
+           then: 
+              - lock.lock: locklock   
+       - if:
+           condition:
+              - switch.is_on: door_trigger
+           then: 
+              - lock.unlock: locklock   
+       - lambda: id(relay_time_out).state = id(relay);      
+       - if:                            
+           condition:
+              - lambda: 'return id(master_code) == 0;'  
+           then:  
+              - lambda: id(master_code) = 123456; ;   
+       - sensor.template.publish:
+                id: Keypad_code_master
+                state: "000000"
+       - sensor.template.publish:
+           id: Keypad_code
+           state: "0000000"
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO0_IN
+  phy_addr: 1
+  power_pin: GPIO16
+
+web_server:
+  port: 80
+  auth:
+    username: $webportal_username
+    password: $webportal_password 
+api:
+  encryption:
+    key: $apipassword
+  reboot_timeout: 0s  
+  
+ota:
+  safe_mode: false
+select:
+  - platform: template
+    name: "(Config) Code Set"
+    id: code_set
+    optimistic: true
+    initial_option: "Select User"
+    options:
+      - Select User
+      - Admin Code
+      - Admin Tag A 
+      - Admin Tag B 
+      - Admin Tag C 
+      - Admin Tag D 
+      - ----------
+      - User 1 Code
+      - User 1 Tag
+      - ----------      
+      - User 2 Code
+      - User 2 Tag
+      - ----------          
+      - User 3 Code
+      - User 3 Tag
+      - ----------                  
+      - User 4 Code
+      - User 4 Tag
+      - ----------          
+      - User 5 Code
+      - User 5 Tag
+      - ----------      
+      - User 6 Code
+      - User 6 Tag
+      - ----------        
+      - User 7 Code
+      - User 7 Tag
+      - ----------            
+      - User 8 Code
+      - User 8 Tag
+      - ----------            
+      - User 9 Code
+      - User 9 Tag     
+      - ----------       
+      - User 10 Code
+      - User 10 Tag    
+      - ----------        
+      - User 11 Code
+      - User 11 Tag
+      - ----------            
+      - User 12 Code  
+      - User 12 Tag                                       
+      - ----------      
+      - Master Code
+
+  - platform: template
+    name: "$keypad_name User Access (3-12)"
+    id: user_access
+    optimistic: true
+    initial_option: "Access"
+    options:
+      - Access
+      - Disabled
+
+
+output:
+  - platform: ledc
+    pin: GPIO02
+    id: rtttl_out
+
+rtttl:
+  output: rtttl_out
+
+
+sensor:                  
+  - platform: template
+    name: "master code"
+    update_interval: 2s
+    lambda: |-
+      return id(master_code);      
+#######################  
+  - platform: template
+    id: Keypad_code_master
+    update_interval: 500ms        
+    accuracy_decimals: 0
+    on_value:     
+            - delay: 100ms      
+            - if:                            
+                condition:
+                    - lambda: 'return id(Keypad_code_master).state == id(master_code);'
+                    - switch.is_off: master_code_allow 
+                    - switch.is_off: master_code_change
+                then:  
+                    - sensor.template.publish:
+                        id: Keypad_code_master
+                        state: "0000000"                                        
+                    - switch.turn_on: master_code_allow    
+            - if:                            
+                condition:
+                    - lambda: 'return id(Keypad_code_master).state == id(master_code);'
+                    - switch.is_on: master_code_allow
+                    - switch.is_off: master_code_change
+                then:           
+                  - switch.turn_on: master_code_change            
+                  - delay: 500ms
+                  - sensor.template.publish:
+                      id: Keypad_code_master
+                      state: "00000"   
+                  - delay: 500ms   
+                  - wait_until:
+                      - lambda: 'return id(clear_key).state == 11;'                   
+                  - lambda: id(master_code) = id(Keypad_code_master).state;  
+                  - delay: 2s    
+                  - switch.turn_off: master_code_allow   
+                  - switch.turn_off: user_code_set   
+                  - switch.turn_off: master_code_change                     
+                  - sensor.template.publish:
+                     id: Keypad_code_master
+                     state: "000000" 
+                  - sensor.template.publish:
+                     id: Keypad_code
+                     state: "000000"                                        
+            - if:                            
+                condition:
+                    - and:
+                      - switch.is_off: master_code_allow  
+                      - switch.is_off: master_code_change    
+                then:                                       
+                  - delay: 2s    
+                  - sensor.template.publish:
+                      id: Keypad_code_master
+                      state: "0.0"       
+                                       
+
+  - platform: template
+    id: clear_key
+    update_interval: never
+    accuracy_decimals: 0
+    on_value:     
+            - delay: 500ms              
+            - if:                            
+                condition:
+                    - lambda: 'return id(clear_key).state == 10;'   
+                then:                          
+                  - switch.turn_off: master_code_allow   
+                  - switch.turn_off: user_code_set   
+                  - switch.turn_off: master_code_change                     
+                  - sensor.template.publish:
+                     id: Keypad_code_master
+                     state: "000000" 
+                  - sensor.template.publish:
+                     id: Keypad_code
+                     state: "000000"                                                       
+                
+
+  - platform: template
+    id: Keypad_code 
+    update_interval: never        
+    accuracy_decimals: 0
+    on_value:     
+            - delay: 500ms                                   
+            - lambda: |-
+                  if (id(Keypad_code).state == id(admin_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(haadmin).turn_on();}    
+                  else if (id(Keypad_code).state == id(user_1_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_1).turn_on();}                                                                                                                                                            
+                  else if (id(Keypad_code).state == id(user_2_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_2).turn_on();}   
+                  else if (id(Keypad_code).state == id(user_3_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_3).turn_on();}     
+                  else if (id(Keypad_code).state == id(user_4_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_4).turn_on();} 
+                  else if (id(Keypad_code).state == id(user_5_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_5).turn_on();}   
+                  else if (id(Keypad_code).state == id(user_6_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_6).turn_on();}     
+                  else if (id(Keypad_code).state == id(user_7_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_7).turn_on();}                                                                                                                                                            
+                  else if (id(Keypad_code).state == id(user_8_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_8).turn_on();}   
+                  else if (id(Keypad_code).state == id(user_9_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_9).turn_on();}     
+                  else if (id(Keypad_code).state == id(user_10_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_10).turn_on();} 
+                  else if (id(Keypad_code).state == id(user_11_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_11).turn_on();}   
+                  else if (id(Keypad_code).state == id(user_12_code) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_12).turn_on();}     
+
+
+
+#############
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 9000;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(admin_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(admin_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 9001;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(admin_tag_a) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(admin_tag_a) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 9002;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(admin_tag_b) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(admin_tag_b) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 9003;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(admin_tag_c) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(admin_tag_c) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 9004;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(admin_tag_d) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(admin_tag_d) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}          
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1001;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_1_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_1_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2001;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_1_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_1_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1002;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_2_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_2_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2002;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_2_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_2_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1003;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_3_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_3_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2003;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_3_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_3_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1004;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_4_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_4_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2004;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_4_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_4_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1005;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_5_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_5_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2005;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_5_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_5_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1006;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_6_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_6_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2006;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_6_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_6_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1007;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_7_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_7_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2007;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_7_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_7_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1008;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_8_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_8_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2008;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_8_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_8_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1009;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_9_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_9_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2009;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_9_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_9_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1010;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_10_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_10_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2010;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_10_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_10_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1011;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_11_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_11_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2011;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_11_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_11_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                          
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1012;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - lambda: 'return id(clear_key).state == 11;'
+                  - lambda: |-
+                      if (id(Keypad_code).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_12_code) = id(Keypad_code).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_12_code) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);}
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 2012;'   
+                  - switch.is_on: master_code_allow                                   
+                then:     
+                  - sensor.template.publish:
+                     id: clear_key
+                     state: "0.0"         
+                  - switch.turn_on: user_code_set                          
+                  - wait_until:
+                       - or:
+                         - lambda: 'return id(clear_key).state == 11;' 
+                         - lambda: 'return id(Keypad_tag).state > 1;'
+                  - lambda: |-
+                      if (id(Keypad_tag).state > 1 && id(user_code_set).state && id(Keypad_code).state != 9999) {
+                        id(user_12_tag) = id(Keypad_tag).state;
+                        id(buzzer_add).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);
+                      } else if (id(Keypad_code).state == 9999 && id(master_code_allow).state) {
+                        id(user_12_tag) = 0000;
+                        id(buzzer_remove).turn_on();
+                        id(master_code_allow).turn_off();
+                        id(user_code_set).turn_off();
+                        id(master_code_change).turn_off();
+                        id(Keypad_code_master).publish_state(0.0);
+                        id(Keypad_code).publish_state(0.0);
+                        id(Keypad_tag).publish_state(0.0);} 
+#################                                                  
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == $user_lock_code;'   
+                  - switch.is_on: master_code_allow    
+                  - lambda: 'return id(user_access).state == "Disabled";'                                         
+                then:    
+                  - delay: 1s                  
+                  - select.set:
+                        id: user_access
+                        option: "Access"   
+            - if:                            
+                condition:
+                  - lambda: 'return id(Keypad_code).state == 1111;'   
+                  - switch.is_on: master_code_allow    
+                  - lambda: 'return id(user_access).state == "Access";'                                         
+                then:    
+                  - delay: 1s                  
+                  - select.set:
+                        id: user_access
+                        option: "Disabled"   
+                                                                    
+
+  - platform: template
+    id: Keypad_tag
+    accuracy_decimals: 0
+    update_interval: never        
+    on_value:               
+            - delay: 500ms                                   
+            - lambda: |-
+                  if (id(Keypad_tag).state == id(admin_tag_a) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(haadmin).turn_on();}    
+                  else if (id(Keypad_tag).state == id(admin_tag_b) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(haadmin).turn_on();}  
+                  else if (id(Keypad_tag).state == id(admin_tag_c) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(haadmin).turn_on();}  
+                  else if (id(Keypad_tag).state == id(admin_tag_d) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(haadmin).turn_on();}                                                               
+                  else if (id(Keypad_tag).state == id(user_1_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_1).turn_on();}                                                                                                                                                            
+                  else if (id(Keypad_tag).state == id(user_2_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_2).turn_on();}   
+                  else if (id(Keypad_tag).state == id(user_3_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_3).turn_on();}     
+                  else if (id(Keypad_tag).state == id(user_4_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_4).turn_on();} 
+                  else if (id(Keypad_tag).state == id(user_5_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_5).turn_on();}   
+                  else if (id(Keypad_tag).state == id(user_6_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_6).turn_on();}     
+                  else if (id(Keypad_code).state == id(user_7_tag) &&
+                      id(Keypad_code).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_7).turn_on();}                                                                                                                                                            
+                  else if (id(Keypad_tag).state == id(user_8_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_8).turn_on();}   
+                  else if (id(Keypad_tag).state == id(user_9_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_9).turn_on();}     
+                  else if (id(Keypad_tag).state == id(user_10_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_10).turn_on();} 
+                  else if (id(Keypad_tag).state == id(user_11_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_11).turn_on();}   
+                  else if (id(Keypad_tag).state == id(user_12_tag) &&
+                      id(Keypad_tag).state > 1 &&
+                      id(user_access).state == "Access" &&
+                      !id(master_code_allow).state) {
+                      id(all_trigger).turn_on();
+                      id(hauser_12).turn_on();}
+number:
+  - platform: template
+    name: Relay Timeout
+    id: relay_time_out
+    optimistic: true
+    mode: slider    
+    min_value: .01   
+    max_value: 10
+    step: .05
+    on_value:
+      - if:      
+          condition:
+            - for:
+               time: 1min
+               condition:
+                 binary_sensor.is_on: keypad_status                  
+          then:  
+            - lambda: id(relay) = id(relay_time_out).state; 
+       
+
+  - platform: template
+    name: Code Set
+    id: code_Tag   
+    optimistic: true
+    min_value: 1000
+    max_value: 999999999
+    mode: box
+    step: 1    
+    on_value:
+      - delay: 500ms
+      - lambda: |-
+          std::string code = id(code_set).state;
+          float tag = id(code_Tag).state;  
+          if (code == "Admin Tag A")
+            id(admin_tag_a) = tag;
+          else if (code == "Admin Tag B")
+            id(admin_tag_b) = tag;
+          else if (code == "Admin Tag C")
+            id(admin_tag_c) = tag;
+          else if (code == "Admin Tag D")
+            id(admin_tag_d) = tag;
+          else if (code == "User 1 Tag")
+            id(user_1_tag) = tag;
+          else if (code == "User 2 Tag")
+            id(user_2_tag) = tag;
+          else if (code == "User 3 Tag")
+            id(user_3_tag) = tag;
+          else if (code == "User 4 Tag")
+            id(user_4_tag) = tag;
+          else if (code == "User 5 Tag")
+            id(user_5_tag) = tag;
+          else if (code == "User 6 Tag")
+            id(user_6_tag) = tag;
+          else if (code == "User 7 Tag")
+            id(user_7_tag) = tag;
+          else if (code == "User 8 Tag")
+            id(user_8_tag) = tag;
+          else if (code == "User 9 Tag")
+            id(user_9_tag) = tag;
+          else if (code == "User 10 Tag")
+            id(user_10_tag) = tag;
+          else if (code == "User 11 Tag")
+            id(user_11_tag) = tag;
+          else if (code == "User 12 Tag")
+            id(user_12_tag) = tag;
+          else if (code == "Admin Code")
+            id(admin_code) = tag;
+          else if (code == "User 1 Code")
+            id(user_1_code) = tag;
+          else if (code == "User 2 Code")
+            id(user_2_code) = tag;
+          else if (code == "User 3 Code")
+            id(user_3_code) = tag;
+          else if (code == "User 4 Code")
+            id(user_4_code) = tag;
+          else if (code == "User 5 Code")
+            id(user_5_code) = tag;
+          else if (code == "User 6 Code")
+            id(user_6_code) = tag;
+          else if (code == "User 7 Code")
+            id(user_7_code) = tag;
+          else if (code == "User 8 Code")
+            id(user_8_code) = tag;
+          else if (code == "User 9 Code")
+            id(user_9_code) = tag;
+          else if (code == "User 10 Code")
+            id(user_10_code) = tag;
+          else if (code == "User 11 Code")
+            id(user_11_code) = tag;
+          else if (code == "User 12 Code")
+            id(user_12_code) = tag;
+          else if (code == "Master Code")
+            id(master_code) = tag;
+      - if:
+          condition:
+            - not:
+               - lambda: 'return id(code_set).state == "Select User";' 
+          then:                      
+            - delay: 2min
+            - select.set:
+                id: code_set
+                option: "Select User"  
+
+
+
+
+
+    
+ 
+ 
+wiegand:
+  - id: reader
+    d0: 15
+    d1: 14
+    on_key:
+                  - lambda: ESP_LOGI("KEY", "received key %d", x);             
+                  - sensor.template.publish:
+                      id: clear_key
+                      state: !lambda return x;  
+                  - delay: 2s
+                  - sensor.template.publish:
+                      id: clear_key
+                      state: "0.0"    
+                                        
+    on_tag:
+            - lambda: ESP_LOGI("TAG", "received tag %s", x.c_str());
+            - sensor.template.publish:
+                id: Keypad_tag 
+                state: !lambda "return parse_number<float>(x).value();"   
+    on_raw:
+            - lambda: ESP_LOGI("RAW", "received raw %d bits, value %llx", bits, value);             
+
+
+key_collector:
+  - id: pin_reader_master
+    source_id: reader
+    min_length: 1
+    max_length: 6
+    end_keys: "#"
+    end_key_required: true
+    back_keys: ""
+    clear_keys: ""
+    timeout: 2s
+    allowed_keys: "0123456789"  # if not included, then any otherwise unused keys will be allowed
+    on_progress:
+            - logger.log:
+                format: "input progress: '%s', started by '%c'"
+                args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]          
+    on_result:
+            - logger.log:
+                format: "input result: '%s', started by '%c', ended by '%c'"
+                args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]          
+            - sensor.template.publish:
+                id: Keypad_code_master
+                state: !lambda "return parse_number<float>(x).value();"  
+                
+
+    on_timeout:
+            - logger.log:
+                format: "input timeout: '%s', started by '%c'"
+                args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ] 
+
+  - id: pin_reader
+    source_id: reader
+    min_length: 4
+    max_length: 6
+    end_keys: "#"
+    end_key_required: false  # default is false
+    back_keys: ""
+    clear_keys: ""
+    timeout: 2s
+    allowed_keys: "0123456789"  # if not included, then any otherwise unused keys will be allowed
+    on_progress:
+            - logger.log:
+                format: "input progress: '%s', started by '%c'"
+                args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]          
+    on_result:
+            - logger.log:
+                format: "input result: '%s', started by '%c', ended by '%c'"
+                args: [ 'x.c_str()', "(start == 0 ? '~' : start)", "(end == 0 ? '~' : end)" ]
+            - sensor.template.publish:
+                id: Keypad_code 
+                state: !lambda "return parse_number<float>(x).value();"  
+            - wait_until:
+                 switch.is_off: user_code_set   
+            - delay: 1s
+            - sensor.template.publish:
+                id: Keypad_code 
+                state: "0.0"                              
+    on_timeout:
+            - logger.log:
+                format: "input timeout: '%s', started by '%c'"
+                args: [ 'x.c_str()', "(start == 0 ? '~' : start)" ]                
+# ########################################################################
+binary_sensor:
+
+
+- platform: status
+  id: keypad_status
+  name: ${textEntry16} Status
+
+- platform: gpio
+  pin:
+    number: GPIO17
+    mode: INPUT_PULLUP
+  name: ${textEntry16} Remote
+  filters:
+   - invert:
+  id: lockteset
+  on_press:
+    - switch.turn_on: all_trigger
+
+
+- platform: gpio
+  pin:
+    number: GPIO39
+  filters:
+#   - invert:
+   - delayed_on: 500ms
+  id: link_trigger
+  on_press:
+    - switch.turn_on: all_trigger
+
+lock:
+  - platform: template 
+    optimistic: true    
+    id: locklock
+    name: ${textEntry16} Lock 
+    lambda: |-
+      if (id(door_trigger).state) {
+        return LOCK_STATE_UNLOCKED;
+      } else {
+        return LOCK_STATE_LOCKED;
+      }    
+    on_lock:
+    - switch.turn_off: door_trigger
+    on_unlock:
+    - switch.turn_on: door_trigger
+
+
+switch: 
+- platform: template
+  id: master_code_change
+  optimistic: true
+  on_turn_on:
+    - rtttl.play: $buzzer_code
+- platform: template 
+  id: user_code_set
+  optimistic: true
+  on_turn_on:
+    - rtttl.play: $buzzer_code
+  ## Master Code Step 1 ##
+- platform: template 
+  id: master_code_allow
+  optimistic: true
+  on_turn_on:
+      - rtttl.play: $buzzer_master_mode
+      - delay: 20s
+      - switch.turn_off: master_code_allow
+      - delay: 500ms
+      - switch.turn_off: user_code_set   
+      - delay: 500ms 
+      - switch.turn_off: master_code_change   
+      - sensor.template.publish:
+           id: Keypad_code_master
+           state: "000000" 
+      - sensor.template.publish:
+           id: Keypad_code
+           state: "000000"    
+      - sensor.template.publish:
+           id: Keypad_tag
+           state: "000000"  
+  on_turn_off:
+      - rtttl.play: $buzzer_master_mode_off
+      - switch.turn_off: master_code_allow
+      - delay: 500ms
+      - switch.turn_off: user_code_set   
+      - delay: 500ms 
+      - switch.turn_off: master_code_change   
+      - sensor.template.publish:
+           id: Keypad_code_master
+           state: "000000" 
+      - sensor.template.publish:
+           id: Keypad_code
+           state: "000000"    
+      - sensor.template.publish:
+           id: Keypad_tag
+           state: "000000" 
+
+- platform: restart
+  id: restartunit
+
+- platform: gpio
+  pin:
+    number: GPIO32
+    inverted: false
+  id: alarm_disarm_link
+
+- platform: copy
+  source_id: clear       
+  id: learn
+  on_turn_on:
+     - delay: 100ms
+     - switch.turn_off: learn
+
+- platform: gpio
+  pin:
+    number: GPIO33
+    inverted: false
+  id: clear       
+
+- platform: gpio
+  id: door_trigger
+  pin: 12
+  inverted: false 
+  
+- platform: template
+  id: all_trigger
+  optimistic: true   
+  on_turn_on:
+    - then:
+           - homeassistant.service:
+                service: alarmo.disarm
+                data_template:
+                    entity_id: $alarm_name
+                    code: "$alarmcode"  
+           - switch.turn_on: alarm_disarm_link 
+           - rtttl.play: $buzzer_door_trigger        
+           - switch.turn_on: door_trigger
+           - delay: !lambda return id(relay) * 1000;      
+           - switch.turn_off: door_trigger           
+           - switch.turn_off: all_trigger
+           - switch.turn_off: master_code_allow
+           - delay: 500ms
+           - switch.turn_off: user_code_set   
+           - delay: 500ms 
+           - switch.turn_off: master_code_change   
+           - sensor.template.publish:
+              id: Keypad_code_master
+              state: "000000" 
+           - sensor.template.publish:
+              id: Keypad_code
+              state: "000000"    
+           - sensor.template.publish:
+              id: Keypad_tag
+              state: "000000" 
+           - delay: 1s     
+           - switch.turn_off: alarm_disarm_link  
+
+# Template for User 1           
+- platform: template
+  id: hauser_1
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 1  $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_1
+# Template for User 2    
+- platform: template
+  id: hauser_2
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 2  $keypad_name  
+    - delay: 1s
+    - switch.turn_off: hauser_1    
+# Template for User 3    
+- platform: template
+  id: hauser_3
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 3  $keypad_name 
+    - delay: 1s
+    - switch.turn_off: hauser_1         
+# Template for User 4
+- platform: template
+  id: hauser_4
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 4 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_4
+
+# Template for User 5
+- platform: template
+  id: hauser_5
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 5 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_5
+
+# Template for User 6
+- platform: template
+  id: hauser_6
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 6 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_6
+
+# Template for User 7
+- platform: template
+  id: hauser_7
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 7 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_7
+
+# Template for User 8
+- platform: template
+  id: hauser_8
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 8 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_8
+
+# Template for User 9
+- platform: template
+  id: hauser_9
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 9 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_9
+
+# Template for User 10
+- platform: template
+  id: hauser_10
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 10 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_10
+
+# Template for User 11
+- platform: template
+  id: hauser_11
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 11 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_11
+
+# Template for User 12
+- platform: template
+  id: hauser_12
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: User 12 $keypad_name
+    - delay: 1s
+    - switch.turn_off: hauser_12
+
+# Template for Admin
+- platform: template
+  id: haadmin
+  optimistic: true
+  on_turn_on:
+    - homeassistant.tag_scanned: Admin $keypad_name
+    - delay: 1s
+    - switch.turn_off: haadmin   
+
+# Buzzer Add
+- platform: template
+  id: buzzer_add
+  optimistic: true
+  on_turn_on:
+    - delay: 500ms    
+    - switch.turn_off: buzzer_add   
+    - delay: 500ms
+    - rtttl.play: $buzzer_user_added    
+# Buzzer Remove
+- platform: template
+  id: buzzer_remove
+  optimistic: true
+  on_turn_on:
+    - delay: 500ms    
+    - switch.turn_off: buzzer_remove           
+    - delay: 500ms
+    - rtttl.play: $buzzer_user_removed    
+# ########################################################################
+globals: 
+  - id: relay
+    type: float
+    restore_value: yes  
+
+  - id: master_code
+    type: float
+    restore_value: yes
+
+  - id: admin_code
+    type: float
+    restore_value: yes
+  - id: admin_tag_a
+    type: float
+    restore_value: yes
+  - id: admin_tag_b
+    type: float
+    restore_value: yes
+  - id: admin_tag_c
+    type: float
+    restore_value: yes
+  - id: admin_tag_d
+    type: float
+    restore_value: yes            
+  - id: user_1_code
+    type: float
+    restore_value: yes    
+  - id: user_2_code
+    type: float
+    restore_value: yes  
+  - id: user_3_code
+    type: float
+    restore_value: yes    
+  - id: user_4_code
+    type: float
+    restore_value: yes              
+  - id: user_5_code
+    type: float
+    restore_value: yes    
+  - id: user_6_code
+    type: float
+    restore_value: yes  
+  - id: user_7_code
+    type: float
+    restore_value: yes    
+  - id: user_8_code
+    type: float
+    restore_value: yes
+  - id: user_9_code
+    type: float
+    restore_value: yes    
+  - id: user_10_code
+    type: float
+    restore_value: yes  
+  - id: user_11_code
+    type: float
+    restore_value: yes    
+  - id: user_12_code
+    type: float
+    restore_value: yes
+  - id: user_1_tag
+    type: float
+    restore_value: yes
+  - id: user_2_tag
+    type: float
+    restore_value: yes
+  - id: user_3_tag
+    type: float
+    restore_value: yes
+  - id: user_4_tag
+    type: float
+    restore_value: yes
+  - id: user_5_tag
+    type: float
+    restore_value: yes
+  - id: user_6_tag
+    type: float
+    restore_value: yes
+  - id: user_7_tag
+    type: float
+    restore_value: yes
+  - id: user_8_tag
+    type: float
+    restore_value: yes
+  - id: user_9_tag
+    type: float
+    restore_value: yes
+  - id: user_10_tag
+    type: float
+    restore_value: yes
+  - id: user_11_tag
+    type: float
+    restore_value: yes
+  - id: user_12_tag
+    type: float
+    restore_value: yes
+
+
+
+
+
+button:
+  - platform: template
+    name: Zero Out User Code
+    icon: mdi:cancel
+    on_press:
+      - lambda: |-
+          std::string code_value;
+          if (id(code_set).has_state()) {
+            code_value = id(code_set).state;
+            if (code_value == "Admin Code") id(admin_code) = 0;
+            else if (code_value == "Admin Tag A") id(admin_tag_a) = 0;
+            else if (code_value == "Admin Tag B") id(admin_tag_b) = 0;
+            else if (code_value == "Admin Tag C") id(admin_tag_c) = 0;
+            else if (code_value == "Admin Tag D") id(admin_tag_d) = 0;
+            else if (code_value == "User 1 Code") id(user_1_code) = 0;
+            else if (code_value == "User 2 Code") id(user_2_code) = 0;
+            else if (code_value == "User 3 Code") id(user_3_code) = 0;
+            else if (code_value == "User 4 Code") id(user_4_code) = 0;
+            else if (code_value == "User 5 Code") id(user_5_code) = 0;
+            else if (code_value == "User 6 Code") id(user_6_code) = 0;
+            else if (code_value == "User 7 Code") id(user_7_code) = 0;
+            else if (code_value == "User 8 Code") id(user_8_code) = 0;
+            else if (code_value == "User 9 Code") id(user_9_code) = 0;
+            else if (code_value == "User 10 Code") id(user_10_code) = 0;
+            else if (code_value == "User 11 Code") id(user_11_code) = 0;
+            else if (code_value == "User 12 Code") id(user_12_code) = 0;
+            else if (code_value == "User 1 Tag") id(user_1_tag) = 0;
+            else if (code_value == "User 2 Tag") id(user_2_tag) = 0;
+            else if (code_value == "User 3 Tag") id(user_3_tag) = 0;
+            else if (code_value == "User 4 Tag") id(user_4_tag) = 0;
+            else if (code_value == "User 5 Tag") id(user_5_tag) = 0;
+            else if (code_value == "User 6 Tag") id(user_6_tag) = 0;
+            else if (code_value == "User 7 Tag") id(user_7_tag) = 0;
+            else if (code_value == "User 8 Tag") id(user_8_tag) = 0;
+            else if (code_value == "User 9 Tag") id(user_9_tag) = 0;
+            else if (code_value == "User 10 Tag") id(user_10_tag) = 0;
+            else if (code_value == "User 11 Tag") id(user_11_tag) = 0;
+            else if (code_value == "User 12 Tag") id(user_12_tag) = 0;
+          }
+
+      - logger.log: "User codes zeroed out"
+
+
+  - platform: template
+    name: ${textEntry16} (Remote) Learn
+    icon: mdi:remote
+    on_press:
+      - switch.turn_on: learn
+
+  - platform: template
+    name: ${textEntry16} (Remote) Clear
+    icon: mdi:remote-off
+    on_press:
+       - delay: 100ms
+       - switch.turn_off: clear   
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear
+       - delay: 100ms          
+       - switch.turn_on: clear
+       - delay: 100ms
+       - switch.turn_off: clear           
+
+
+
+text_sensor:
+  - platform: template
+    name: "Version"
+    lambda: |-
+      return {"IHA V3.0 B(9/9/2023) ESP32(E)"}; 
+
+  - platform: template
+    name: "Assigned Codes/Tag"
+    update_interval: 5s
+    id: users_est
+    lambda: |-
+      std::string active_sensors;
+      if (id(admin_code) != 0) active_sensors += "Admin Code, ";
+      if (id(admin_tag_a) != 0) active_sensors += "Admin Tag A, ";
+      if (id(admin_tag_b) != 0) active_sensors += "Admin Tag B, ";
+      if (id(admin_tag_c) != 0) active_sensors += "Admin Tag C, ";
+      if (id(admin_tag_d) != 0) active_sensors += "Admin Tag D, ";      
+      if (id(user_1_code) != 0) active_sensors += "User 1 Code, ";
+      if (id(user_1_tag) != 0) active_sensors += "User 1 Tag, ";
+      if (id(user_2_code) != 0) active_sensors += "User 2 Code, ";
+      if (id(user_2_tag) != 0) active_sensors += "User 2 Tag, ";
+      if (id(user_3_code) != 0) active_sensors += "User 3 Code, ";
+      if (id(user_3_tag) != 0) active_sensors += "User 3 Tag, ";
+      if (id(user_4_code) != 0) active_sensors += "User 4 Code, ";
+      if (id(user_4_tag) != 0) active_sensors += "User 4 Tag, ";  
+      if (id(user_5_code) != 0) active_sensors += "User 5 Code, ";
+      if (id(user_5_tag) != 0) active_sensors += "User 5 Tag, ";
+      if (id(user_6_code) != 0) active_sensors += "User 6 Code, ";
+      if (id(user_6_tag) != 0) active_sensors += "User 6 Tag, ";
+      if (id(user_7_code) != 0) active_sensors += "User 7 Code, ";
+      if (id(user_7_tag) != 0) active_sensors += "User 7 Tag, ";
+      if (id(user_8_code) != 0) active_sensors += "User 8 Code, ";
+      if (id(user_8_tag) != 0) active_sensors += "User 8 Tag, ";            
+      if (id(user_9_code) != 0) active_sensors += "User 9 Code, ";
+      if (id(user_9_tag) != 0) active_sensors += "User 9 Tag, ";
+      if (id(user_10_code) != 0) active_sensors += "User 10 Code, ";
+      if (id(user_10_tag) != 0) active_sensors += "User 10 Tag, ";
+      if (id(user_11_code) != 0) active_sensors += "User 11 Code, ";
+      if (id(user_11_tag) != 0) active_sensors += "User 11 Tag, ";
+      if (id(user_12_code) != 0) active_sensors += "User 12 Code, ";
+      if (id(user_12_tag) != 0) active_sensors += "User 12 Tag, ";  
+      if (active_sensors.empty()) {
+        return esphome::optional<std::string>("No active sensors");
+      } else {
+        active_sensors.erase(active_sensors.length() - 2); // Remove the trailing comma and space
+        return esphome::optional<std::string>(active_sensors);
+      }          
+                
+                `;
+              }                     
 ////////////////////////////////////////////////////////////////////////////////////////////       
                         // Combine the two configurations
             const combinedConfig = `${yamlConfig}\n${additionalConfig}`;
